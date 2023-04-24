@@ -45,7 +45,7 @@
             this.btn_confirmar.TabIndex = 0;
             this.btn_confirmar.Text = "Agregar";
             this.btn_confirmar.UseVisualStyleBackColor = true;
-            this.btn_confirmar.Click += new System.EventHandler(this.btn_confirmar_Click);
+            this.btn_confirmar.Click += new System.EventHandler(this.Btn_confirmar_Click);
             // 
             // textBox1
             // 

@@ -14,17 +14,17 @@ namespace Vista
 {
     public partial class FormListado : Form
     {
-        List<Producto> productos; 
+        List<Jugador> jugadores; 
         public FormListado()
         {
             InitializeComponent();
-            productos = new List<Producto>();
+            jugadores = new List<Jugador>();
         }
 
         private void FormListado_Load(object sender, EventArgs e)
         {
-            Hardcodeo.HardcodearProductos(productos);
-            dgv_listado.DataSource = productos;
+            Hardcodeo.HardcodearJugadores(jugadores);
+            dgv_listado.DataSource = jugadores;
 
         }
 

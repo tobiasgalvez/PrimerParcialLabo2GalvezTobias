@@ -58,7 +58,7 @@
             this.btn_agregarProducto.Name = "btn_agregarProducto";
             this.btn_agregarProducto.Size = new System.Drawing.Size(217, 23);
             this.btn_agregarProducto.TabIndex = 2;
-            this.btn_agregarProducto.Text = "Agregar producto";
+            this.btn_agregarProducto.Text = "Agregar jugador";
             this.btn_agregarProducto.UseVisualStyleBackColor = true;
             this.btn_agregarProducto.Click += new System.EventHandler(this.btn_agregarProducto_Click);
             // 

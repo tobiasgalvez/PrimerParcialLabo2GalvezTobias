@@ -17,7 +17,7 @@ namespace Vista
             InitializeComponent();
         }
 
-        private void btn_confirmar_Click(object sender, EventArgs e)
+        private void Btn_confirmar_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
