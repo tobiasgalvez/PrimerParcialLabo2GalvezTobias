@@ -71,5 +71,15 @@ namespace Vista
             pic_mostrarContraseña.BringToFront();
             txt_contraseña.PasswordChar = '*';
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

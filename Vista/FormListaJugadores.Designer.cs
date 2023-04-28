@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FormListado
+    partial class FormListaJugadores
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,7 @@
             // 
             // dgv_listado
             // 
+            this.dgv_listado.BackgroundColor = System.Drawing.Color.Black;
             this.dgv_listado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_listado.Location = new System.Drawing.Point(7, 53);
             this.dgv_listado.Name = "dgv_listado";
@@ -46,17 +47,19 @@
             // lbl_listado
             // 
             this.lbl_listado.AutoSize = true;
+            this.lbl_listado.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_listado.Location = new System.Drawing.Point(12, 24);
             this.lbl_listado.Name = "lbl_listado";
-            this.lbl_listado.Size = new System.Drawing.Size(31, 15);
+            this.lbl_listado.Size = new System.Drawing.Size(47, 15);
             this.lbl_listado.TabIndex = 1;
             this.lbl_listado.Text = "Lista";
             // 
             // btn_agregarProducto
             // 
-            this.btn_agregarProducto.Location = new System.Drawing.Point(131, 22);
+            this.btn_agregarProducto.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_agregarProducto.Location = new System.Drawing.Point(131, 12);
             this.btn_agregarProducto.Name = "btn_agregarProducto";
-            this.btn_agregarProducto.Size = new System.Drawing.Size(217, 23);
+            this.btn_agregarProducto.Size = new System.Drawing.Size(217, 33);
             this.btn_agregarProducto.TabIndex = 2;
             this.btn_agregarProducto.Text = "Agregar jugador";
             this.btn_agregarProducto.UseVisualStyleBackColor = true;

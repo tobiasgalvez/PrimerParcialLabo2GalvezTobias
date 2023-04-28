@@ -19,9 +19,9 @@ namespace Vista
 
         private void verPersonasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormListado formListado = new FormListado();
+            FormListaJugadores formListado = new FormListaJugadores();
             formListado.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void FormContenedor_Load(object sender, EventArgs e)
@@ -34,6 +34,12 @@ namespace Vista
             Login login = new Login();
             login.Show();
             this.Hide();
+        }
+
+        private void verEquiposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListaEquipos formListado = new FormListaEquipos();
+            formListado.Show();
         }
     }
 }

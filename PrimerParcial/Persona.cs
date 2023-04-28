@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,10 +22,45 @@ namespace BibliotecaDeClases
             _edad = edad;
             _dni = dni;
         }
-        public string Nombre { get => _nombre; set => _nombre = value; }
-        public string Apellido { get => _apellido; set => _apellido = value; }
-        public int Edad { get => _edad; set => _edad = value; }
-        public int Dni { get => _dni;}
+        public string Nombre
+        {
+            get { return _nombre; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Falta llenar campo 'nombre'.");
+                }
+                _nombre = value;
+            }
+        }
 
+        public string Apellido
+        {
+            get { return _apellido; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Falta llenar campo 'apellido'");
+                }
+                _apellido = value;
+            }
+        }
+
+        public int Edad
+        {
+            get { return _edad; }
+            set
+            {
+                if (value <= 0 || value >= 100)
+                {
+                    throw new ArgumentException("La edad debe estar entre 1 y 100 años.");
+                }
+                _edad = value;
+            }
+        }
+
+        public int Dni { get => _dni; set => _dni = Validacion.ValidarDni(value); }
     }
 }

@@ -9,20 +9,30 @@ namespace BibliotecaDeClases
 {
     public static class Hardcodeo
     {
-        public static void HardcodearProductos(List<Producto> lista)
-        {
-            Random random = new Random();
-            lista.Add(new Producto("Cereales", random.Next(1,100), random.Next(200,500)));
-            lista.Add(new Producto("Papas fritas", random.Next(1, 100), random.Next(200, 500)));
-            lista.Add(new Producto("Chocolate", random.Next(1, 100), random.Next(200, 500)));
-        }
+        //public static void HardcodearProductos(List<Producto> lista)
+        //{
+        //    Random random = new Random();
+        //    lista.Add(new Producto("Cereales", random.Next(1,100), random.Next(200,500)));
+        //    lista.Add(new Producto("Papas fritas", random.Next(1, 100), random.Next(200, 500)));
+        //    lista.Add(new Producto("Chocolate", random.Next(1, 100), random.Next(200, 500)));
+        //}
 
         public static void HardcodearJugadores(List<Jugador> lista)
         {
            // Random random = new Random();
-            lista.Add(new Jugador("Tobias", "Galvez" , 20, 44521134, Enumerados.EPosiciones.Delantero.ToString(), "Boca Juniors"));
-            lista.Add(new Jugador("Juan", "Galvez", 54, 20508973, Enumerados.EPosiciones.Defensor.ToString(), "River Plate"));
-            lista.Add(new Jugador("Federico", "Sanchez", 20, 43123444, Enumerados.EPosiciones.Mediocampista.ToString(), "Boca Juniors"));
+            lista.Add(new Jugador("Tobias", "Galvez" , 20, 44521134, Enumerados.EPosiciones.Delantero.ToString(), "El Rejunte"));
+            lista.Add(new Jugador("Juan", "Galvez", 54, 20508973, Enumerados.EPosiciones.Defensor.ToString(), "Los mismos de siempre"));
+            lista.Add(new Jugador("Federico", "Sanchez", 20, 43123444, Enumerados.EPosiciones.Mediocampista.ToString(), "El Rejunte"));
+
+
+        }
+
+
+        public static void HardcodearEquipos(List<Equipo> listaEquipos, List<Jugador> listaJugadores)
+        {
+            // Random random = new Random();
+            listaEquipos.Add(new Equipo("El Rejunte", listaJugadores, "Carabao"));
+            listaEquipos.Add(new Equipo("Los mismos de siempre", listaJugadores, "Carabao"));
 
 
         }

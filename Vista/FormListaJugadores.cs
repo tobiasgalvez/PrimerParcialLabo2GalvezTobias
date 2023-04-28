@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FormListado : Form
+    public partial class FormListaJugadores : Form
     {
         List<Jugador> jugadores; 
-        public FormListado()
+        public FormListaJugadores()
         {
             InitializeComponent();
             jugadores = new List<Jugador>();
