@@ -15,7 +15,7 @@ namespace BibliotecaDeClases
        
 
 
-        public Jugador(string nombre, string apellido, int edad, int dni, string posicion, string equipo):base(nombre, apellido, edad, dni)
+        public Jugador(string nombre, string apellido, DateTime edad, int dni, string posicion, string equipo):base(nombre, apellido, edad, dni)
         {
             _posicion = posicion;
             _equipo = equipo;
@@ -37,6 +37,19 @@ namespace BibliotecaDeClases
         //{
         //    return new Jugador();
         //}
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Nombre:{Nombre}");
+            sb.AppendLine($"Dni: {Dni.ToString()}");
+            sb.AppendLine($"Edad {CalcularEdad().ToString()}");
+            sb.AppendLine($"Equipo:{Equipo}");
+            sb.AppendLine($"Posicion:{Posicion}");
+            return sb.ToString();
+        }
 
 
     }

@@ -23,7 +23,7 @@ namespace BibliotecaDeClases
         public static Usuario VerificarUsuarioExcepciones(string usuario, string contraseña)
         {
             string mensaje = "Error, datos ingresados invalidos";
-            if (String.IsNullOrEmpty(usuario) == false && String.IsNullOrEmpty(contraseña) == false)
+            if (Validacion.ValidarString(usuario) && Validacion.ValidarString(contraseña))
             {
                 foreach (Usuario item in _listaDeUsuarios)
                 {

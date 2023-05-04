@@ -14,6 +14,7 @@ namespace Vista
 {
     public partial class Login : Form
     {
+        
         public Login()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace Vista
                 usuarioAux = Sistema.VerificarUsuarioExcepciones(txt_usuario.Text, txt_contraseña.Text);
                 if (usuarioAux is not null)
                 {
-                    FormContenedor formContenedor = new FormContenedor();
+                    FormContenedor formContenedor = new FormContenedor(usuarioAux);
                     formContenedor.Show();
                     this.Hide();
                 }

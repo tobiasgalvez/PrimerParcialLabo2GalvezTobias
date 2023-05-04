@@ -14,25 +14,26 @@ namespace Vista
 {
     public partial class FormListaJugadores : Form
     {
-        List<Jugador> jugadores; 
+        public List<Jugador> Jugadores { get; set; }
+        //Jugador jugador;
         public FormListaJugadores()
         {
             InitializeComponent();
-            jugadores = new List<Jugador>();
+            Jugadores = new List<Jugador>();
         }
 
         private void FormListado_Load(object sender, EventArgs e)
         {
-            Hardcodeo.HardcodearJugadores(jugadores);
-            dgv_listado.DataSource = jugadores;
+            Hardcodeo.HardcodearJugadores(Jugadores);
+            //jugadores.Add(jugador);
+            dgv_listado.DataSource = Jugadores;
 
         }
 
         private void btn_agregarProducto_Click(object sender, EventArgs e)
         {
-            AltaProducto altaProducto = new AltaProducto();
-            altaProducto.ShowDialog();
-            
+            AltaJugador altaProducto = new AltaJugador(Jugadores);
+            altaProducto.ShowDialog(); //para poner foco en el form alta jugador
         }
     }
 }

@@ -13,22 +13,14 @@ namespace BibliotecaDeClases
 
 
 
-        public Usuario(string nombre, string apellido, int edad, int dni, string usuario, string contraseña) : base(nombre, apellido, edad, dni)
+        public Usuario(string nombre, string apellido, DateTime edad, int dni, string usuario, string contraseña) : base(nombre, apellido, edad, dni)
         {
             _user = usuario;
             _contraseña = contraseña;
 
         }
 
-        public string Contraseña
-        {
-            get { return _contraseña; }
-        }
-
-        public string User
-        {
-            get { return _user; }
-            set { _user = value; }
-        }
+        public string User { get => _user; set => _user = value; }
+        public string Contraseña { get => _contraseña; set => _contraseña = value; }
     }
 }

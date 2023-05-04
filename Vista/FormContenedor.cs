@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaDeClases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace Vista
 {
     public partial class FormContenedor : Form
     {
-        public FormContenedor()
+        private Usuario _usuarioIngresado;
+        public FormContenedor(Usuario usuarioIngresado)
         {
             InitializeComponent();
+            _usuarioIngresado = usuarioIngresado;
+
         }
 
         private void verPersonasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -22,11 +26,17 @@ namespace Vista
             FormListaJugadores formListado = new FormListaJugadores();
             formListado.Show();
             //this.Hide();
+
         }
 
         private void FormContenedor_Load(object sender, EventArgs e)
         {
             IsMdiContainer = true;
+            if(!(_usuarioIngresado.User == "tobigalvez"))
+            {
+                modificarToolStripMenuItem.Visible = false;    //CAMBIAR ESTO
+                verUsuariosToolStripMenuItem.Visible = false;
+            }
         }
 
         private void desconectarToolStripMenuItem_Click(object sender, EventArgs e)

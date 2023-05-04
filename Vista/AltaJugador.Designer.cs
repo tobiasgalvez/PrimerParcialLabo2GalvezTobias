@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class AltaProducto
+    partial class AltaJugador
     {
         /// <summary>
         /// Required designer variable.
@@ -29,55 +29,58 @@
         private void InitializeComponent()
         {
             this.btn_confirmar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txt_altaNombre = new System.Windows.Forms.TextBox();
+            this.txt_altaApellido = new System.Windows.Forms.TextBox();
+            this.txt_altaDni = new System.Windows.Forms.TextBox();
             this.lbl_nombre = new System.Windows.Forms.Label();
             this.lbl_cantidad = new System.Windows.Forms.Label();
             this.lbl_precio = new System.Windows.Forms.Label();
             this.lbl_equipo = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbo_altaEquipo = new System.Windows.Forms.ComboBox();
             this.lbl_posicion = new System.Windows.Forms.Label();
             this.cbo_posiciones = new System.Windows.Forms.ComboBox();
+            this.lbl_fechaDeNacimiento = new System.Windows.Forms.Label();
+            this.monthCalendar_fechaNacimiento = new System.Windows.Forms.MonthCalendar();
+            this.lbl_msjError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_confirmar
             // 
             this.btn_confirmar.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_confirmar.Location = new System.Drawing.Point(71, 327);
+            this.btn_confirmar.Location = new System.Drawing.Point(81, 327);
             this.btn_confirmar.Name = "btn_confirmar";
-            this.btn_confirmar.Size = new System.Drawing.Size(150, 35);
+            this.btn_confirmar.Size = new System.Drawing.Size(171, 35);
             this.btn_confirmar.TabIndex = 0;
             this.btn_confirmar.Text = "Agregar";
             this.btn_confirmar.UseVisualStyleBackColor = true;
             this.btn_confirmar.Click += new System.EventHandler(this.Btn_confirmar_Click);
             // 
-            // textBox1
+            // txt_altaNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 23);
-            this.textBox1.TabIndex = 1;
+            this.txt_altaNombre.Location = new System.Drawing.Point(14, 37);
+            this.txt_altaNombre.Name = "txt_altaNombre";
+            this.txt_altaNombre.Size = new System.Drawing.Size(138, 23);
+            this.txt_altaNombre.TabIndex = 1;
             // 
-            // textBox2
+            // txt_altaApellido
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 23);
-            this.textBox2.TabIndex = 2;
+            this.txt_altaApellido.Location = new System.Drawing.Point(14, 94);
+            this.txt_altaApellido.Name = "txt_altaApellido";
+            this.txt_altaApellido.Size = new System.Drawing.Size(138, 23);
+            this.txt_altaApellido.TabIndex = 2;
             // 
-            // textBox3
+            // txt_altaDni
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 148);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 23);
-            this.textBox3.TabIndex = 3;
+            this.txt_altaDni.Location = new System.Drawing.Point(14, 148);
+            this.txt_altaDni.Name = "txt_altaDni";
+            this.txt_altaDni.Size = new System.Drawing.Size(138, 23);
+            this.txt_altaDni.TabIndex = 3;
             // 
             // lbl_nombre
             // 
             this.lbl_nombre.AutoSize = true;
             this.lbl_nombre.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_nombre.Location = new System.Drawing.Point(12, 19);
+            this.lbl_nombre.Location = new System.Drawing.Point(14, 19);
             this.lbl_nombre.Name = "lbl_nombre";
             this.lbl_nombre.Size = new System.Drawing.Size(63, 15);
             this.lbl_nombre.TabIndex = 4;
@@ -87,7 +90,7 @@
             // 
             this.lbl_cantidad.AutoSize = true;
             this.lbl_cantidad.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_cantidad.Location = new System.Drawing.Point(12, 76);
+            this.lbl_cantidad.Location = new System.Drawing.Point(14, 76);
             this.lbl_cantidad.Name = "lbl_cantidad";
             this.lbl_cantidad.Size = new System.Drawing.Size(79, 15);
             this.lbl_cantidad.TabIndex = 5;
@@ -97,7 +100,7 @@
             // 
             this.lbl_precio.AutoSize = true;
             this.lbl_precio.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_precio.Location = new System.Drawing.Point(12, 130);
+            this.lbl_precio.Location = new System.Drawing.Point(14, 130);
             this.lbl_precio.Name = "lbl_precio";
             this.lbl_precio.Size = new System.Drawing.Size(39, 15);
             this.lbl_precio.TabIndex = 6;
@@ -107,28 +110,28 @@
             // 
             this.lbl_equipo.AutoSize = true;
             this.lbl_equipo.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_equipo.Location = new System.Drawing.Point(12, 183);
+            this.lbl_equipo.Location = new System.Drawing.Point(14, 183);
             this.lbl_equipo.Name = "lbl_equipo";
             this.lbl_equipo.Size = new System.Drawing.Size(63, 15);
             this.lbl_equipo.TabIndex = 7;
             this.lbl_equipo.Text = "Equipo:";
             // 
-            // comboBox1
+            // cbo_altaEquipo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbo_altaEquipo.FormattingEnabled = true;
+            this.cbo_altaEquipo.Items.AddRange(new object[] {
             "El Rejunte",
             "Los mismos de siempre"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 201);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 8;
+            this.cbo_altaEquipo.Location = new System.Drawing.Point(14, 201);
+            this.cbo_altaEquipo.Name = "cbo_altaEquipo";
+            this.cbo_altaEquipo.Size = new System.Drawing.Size(138, 23);
+            this.cbo_altaEquipo.TabIndex = 8;
             // 
             // lbl_posicion
             // 
             this.lbl_posicion.AutoSize = true;
             this.lbl_posicion.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_posicion.Location = new System.Drawing.Point(15, 244);
+            this.lbl_posicion.Location = new System.Drawing.Point(17, 244);
             this.lbl_posicion.Name = "lbl_posicion";
             this.lbl_posicion.Size = new System.Drawing.Size(79, 15);
             this.lbl_posicion.TabIndex = 9;
@@ -137,29 +140,61 @@
             // cbo_posiciones
             // 
             this.cbo_posiciones.FormattingEnabled = true;
-            this.cbo_posiciones.Location = new System.Drawing.Point(12, 262);
+            this.cbo_posiciones.Location = new System.Drawing.Point(14, 262);
             this.cbo_posiciones.Name = "cbo_posiciones";
-            this.cbo_posiciones.Size = new System.Drawing.Size(121, 23);
+            this.cbo_posiciones.Size = new System.Drawing.Size(138, 23);
             this.cbo_posiciones.TabIndex = 10;
             // 
-            // AltaProducto
+            // lbl_fechaDeNacimiento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.lbl_fechaDeNacimiento.AutoSize = true;
+            this.lbl_fechaDeNacimiento.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_fechaDeNacimiento.Location = new System.Drawing.Point(262, 19);
+            this.lbl_fechaDeNacimiento.Name = "lbl_fechaDeNacimiento";
+            this.lbl_fechaDeNacimiento.Size = new System.Drawing.Size(159, 15);
+            this.lbl_fechaDeNacimiento.TabIndex = 12;
+            this.lbl_fechaDeNacimiento.Text = "Fecha de nacimiento";
+            // 
+            // monthCalendar_fechaNacimiento
+            // 
+            this.monthCalendar_fechaNacimiento.Location = new System.Drawing.Point(262, 43);
+            this.monthCalendar_fechaNacimiento.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.monthCalendar_fechaNacimiento.Name = "monthCalendar_fechaNacimiento";
+            this.monthCalendar_fechaNacimiento.TabIndex = 13;
+            // 
+            // lbl_msjError
+            // 
+            this.lbl_msjError.AutoSize = true;
+            this.lbl_msjError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_msjError.Location = new System.Drawing.Point(210, 265);
+            this.lbl_msjError.Name = "lbl_msjError";
+            this.lbl_msjError.Size = new System.Drawing.Size(31, 15);
+            this.lbl_msjError.TabIndex = 14;
+            this.lbl_msjError.Text = "...";
+            this.lbl_msjError.Visible = false;
+            // 
+            // AltaJugador
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lime;
-            this.ClientSize = new System.Drawing.Size(298, 450);
+            this.ClientSize = new System.Drawing.Size(547, 450);
+            this.Controls.Add(this.lbl_msjError);
+            this.Controls.Add(this.monthCalendar_fechaNacimiento);
+            this.Controls.Add(this.lbl_fechaDeNacimiento);
             this.Controls.Add(this.cbo_posiciones);
             this.Controls.Add(this.lbl_posicion);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbo_altaEquipo);
             this.Controls.Add(this.lbl_equipo);
             this.Controls.Add(this.lbl_precio);
             this.Controls.Add(this.lbl_cantidad);
             this.Controls.Add(this.lbl_nombre);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_altaDni);
+            this.Controls.Add(this.txt_altaApellido);
+            this.Controls.Add(this.txt_altaNombre);
             this.Controls.Add(this.btn_confirmar);
-            this.Name = "AltaProducto";
+            this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Name = "AltaJugador";
             this.Text = "AltaProducto";
             this.Load += new System.EventHandler(this.AltaProducto_Load);
             this.ResumeLayout(false);
@@ -170,15 +205,18 @@
         #endregion
 
         private Button btn_confirmar;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txt_altaNombre;
+        private TextBox txt_altaApellido;
+        private TextBox txt_altaDni;
         private Label lbl_nombre;
         private Label lbl_cantidad;
         private Label lbl_precio;
         private Label lbl_equipo;
-        private ComboBox comboBox1;
+        private ComboBox cbo_altaEquipo;
         private Label lbl_posicion;
         private ComboBox cbo_posiciones;
+        private Label lbl_fechaDeNacimiento;
+        private MonthCalendar monthCalendar_fechaNacimiento;
+        private Label lbl_msjError;
     }
 }

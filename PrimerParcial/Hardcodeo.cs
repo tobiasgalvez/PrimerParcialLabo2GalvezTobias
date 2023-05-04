@@ -20,9 +20,9 @@ namespace BibliotecaDeClases
         public static void HardcodearJugadores(List<Jugador> lista)
         {
            // Random random = new Random();
-            lista.Add(new Jugador("Tobias", "Galvez" , 20, 44521134, Enumerados.EPosiciones.Delantero.ToString(), "El Rejunte"));
-            lista.Add(new Jugador("Juan", "Galvez", 54, 20508973, Enumerados.EPosiciones.Defensor.ToString(), "Los mismos de siempre"));
-            lista.Add(new Jugador("Federico", "Sanchez", 20, 43123444, Enumerados.EPosiciones.Mediocampista.ToString(), "El Rejunte"));
+            lista.Add(new Jugador("Tobias", "Galvez" , new DateTime(2002, 10, 10), 44521134, Enumerados.EPosiciones.Delantero.ToString(), "El Rejunte"));
+            lista.Add(new Jugador("Juan", "Galvez", new DateTime(2002, 10, 10), 20508973, Enumerados.EPosiciones.Defensor.ToString(), "Los mismos de siempre"));
+            lista.Add(new Jugador("Federico", "Sanchez", new DateTime(2002, 10, 10), 43123444, Enumerados.EPosiciones.Mediocampista.ToString(), "El Rejunte"));
 
 
         }
@@ -39,9 +39,9 @@ namespace BibliotecaDeClases
 
         public static void HardcodearUsuarios(List<Usuario> lista)
         {
-            lista.Add(new Usuario("Tobias", "Galvez", 19, 44521134, "tobigalvez", "hola1234"));
-            lista.Add(new Usuario("Gonzalo", "Paz", 29, 39678521, "gonza.paz", "14876"));
-            lista.Add(new Usuario("Juan", "Regueira", 38, 34785441, "juancito_regue", "juanitoR"));
+            lista.Add(new Usuario("Tobias", "Galvez", new DateTime(2002, 10, 10), 44521134, "tobigalvez", "hola1234"));
+            lista.Add(new Usuario("Gonzalo", "Paz", new DateTime(2002, 10, 10), 39678521, "gonza.paz", "14876"));
+            lista.Add(new Usuario("Juan", "Regueira", new DateTime(2002, 10, 10), 34785441, "juancito_regue", "juanitoR"));
 
         }
     }
