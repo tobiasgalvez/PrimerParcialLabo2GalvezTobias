@@ -8,24 +8,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BibliotecaDeClases.Enumerados;
 
 namespace Vista
 {
     public partial class AltaJugador : Form
     {
         Jugador jugador;
-        List<Jugador> _jugadorList;
-      
-        public AltaJugador(List<Jugador> jugadores)
+
+
+        public AltaJugador()
         {
             InitializeComponent();
-            _jugadorList = jugadores;
+        }
+        public Jugador Jugador { get => jugador;}
+
+       
+        private void AltaProducto_Load(object sender, EventArgs e)
+        {
+
+            Enum.GetValues(typeof(EPosiciones)).Cast<EPosiciones>().ToList();
+
+            //var lista = new List<Enumerados.EPosiciones>();
+            //lista = Enumerados.GetAll();
+
+            //foreach (var item in lista)
+            //{
+            //    cbo_posiciones.Items.Add(item);
+            //}
         }
 
         private void Btn_confirmar_Click(object sender, EventArgs e)
         {
             string auxNombre;
             string auxApellido;
+            string dniTexto;
             int dni;
             DateTime fechaNacimiento;
             string equipo;
@@ -36,19 +53,24 @@ namespace Vista
 
                 auxNombre = txt_altaNombre.Text;
                 auxApellido = txt_altaApellido.Text;
-                dni = Validacion.DevolverCadenaParseadaInt(txt_altaDni.Text);
-                Validacion.ValidarJugador(auxNombre, auxApellido, dni);
+                dniTexto = txt_altaDni.Text;
+                //dni = Validacion.DevolverCadenaParseadaInt(txt_altaDni.Text);
+                Jugador.ValidarJugador(auxNombre, auxApellido, dniTexto);
+                dni = Validacion.DevolverCadenaParseadaInt(dniTexto);
                 fechaNacimiento = monthCalendar_fechaNacimiento.SelectionStart;
                 equipo = cbo_altaEquipo.Text;
                 posicion = cbo_posiciones.Text;
+                Validacion.ValidarString(equipo);
+                Validacion.ValidarString(posicion);
 
                 jugador = new Jugador(auxNombre, auxApellido, fechaNacimiento, dni, posicion, equipo);
                 MessageBox.Show(jugador.ToString());
+                this.DialogResult = DialogResult.OK;
 
-                FormListaJugadores formJugadores = new FormListaJugadores();
+                //FormListaJugadores formJugadores = new FormListaJugadores();
 
-                formJugadores.Jugadores.Add(jugador);
-                formJugadores.Show();
+                //formJugadores.Jugadores.Add(jugador);
+                //formJugadores.Show();
                 this.Hide();
             }
             catch (Exception excepcion)
@@ -65,16 +87,16 @@ namespace Vista
             
         }
 
-        private void AltaProducto_Load(object sender, EventArgs e)
+
+        private void CargarJugador()
+        { 
+            //tendría q pasarme el codigo de "agregar" acá 
+        }
+
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            var lista = new List<Enumerados.EPosiciones>();
-
-            lista = Enumerados.GetAll();
-
-            foreach (var item in lista)
-            {
-                cbo_posiciones.Items.Add(item);
-            }
+            this.DialogResult=DialogResult.Cancel;
         }
     }
 }

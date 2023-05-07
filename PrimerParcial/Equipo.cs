@@ -24,9 +24,13 @@ namespace BibliotecaDeClases
             _partidosPerdidos = 0;
         }
 
-        public Equipo(string nombre, List<Jugador> listaJugadores, string liga):this()
+        public Equipo(string nombre):base()
         {
             _nombre = nombre;
+        }
+
+        public Equipo(string nombre, List<Jugador> listaJugadores, string liga):this(nombre)
+        {
             _listaJugadores = listaJugadores;
             _liga = liga;
            

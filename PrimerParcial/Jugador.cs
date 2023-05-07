@@ -26,12 +26,12 @@ namespace BibliotecaDeClases
         public string Equipo { get => _equipo; set => _equipo = value; }
 
 
-        
 
-        public static List<Jugador> GetAll()
-        {
-            return new List<Jugador>();
-        }
+
+        //public static List<Jugador> GetAll()
+        //{
+        //    return new List<Jugador>();
+        //}
 
         //public static Jugador Save()
         //{
@@ -39,16 +39,30 @@ namespace BibliotecaDeClases
         //}
 
 
-        public override string ToString()
+        public override string ObtenerInformacion()
         {
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine($"Nombre:{Nombre}");
+            sb.AppendLine($"Apellido:{Apellido}");
             sb.AppendLine($"Dni: {Dni.ToString()}");
             sb.AppendLine($"Edad {CalcularEdad().ToString()}");
             sb.AppendLine($"Equipo:{Equipo}");
             sb.AppendLine($"Posicion:{Posicion}");
             return sb.ToString();
+            
+        }
+
+        //public override string ToString()
+        //{
+        //}
+
+
+
+        public static void ValidarJugador(string nombre, string apellido, string dni)
+        {
+            ValidarDni(dni);
+            ValidarNombreYApellido(nombre, apellido);
         }
 
 

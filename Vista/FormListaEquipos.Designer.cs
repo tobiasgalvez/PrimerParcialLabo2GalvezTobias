@@ -43,6 +43,7 @@
             this.btn_agregarEquipo.TabIndex = 5;
             this.btn_agregarEquipo.Text = "Agregar equipo";
             this.btn_agregarEquipo.UseVisualStyleBackColor = true;
+            this.btn_agregarEquipo.Click += new System.EventHandler(this.btn_agregarEquipo_Click);
             // 
             // lbl_listadoEquipos
             // 

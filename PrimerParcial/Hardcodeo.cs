@@ -39,9 +39,9 @@ namespace BibliotecaDeClases
 
         public static void HardcodearUsuarios(List<Usuario> lista)
         {
-            lista.Add(new Usuario("Tobias", "Galvez", new DateTime(2002, 10, 10), 44521134, "tobigalvez", "hola1234"));
-            lista.Add(new Usuario("Gonzalo", "Paz", new DateTime(2002, 10, 10), 39678521, "gonza.paz", "14876"));
-            lista.Add(new Usuario("Juan", "Regueira", new DateTime(2002, 10, 10), 34785441, "juancito_regue", "juanitoR"));
+            lista.Add(new Usuario("Tobias", "Galvez", new DateTime(2002, 10, 10), 44521134, "tobigalvez", "hola1234", Enumerados.ERol.Admin));
+            lista.Add(new Usuario("Gonzalo", "Paz", new DateTime(2002, 10, 10), 39678521, "gonza.paz", "14876", Enumerados.ERol.Visitante));
+            lista.Add(new Usuario("Juan", "Regueira", new DateTime(2002, 10, 10), 34785441, "juancito_regue", "juanitoR", Enumerados.ERol.Visitante));
 
         }
     }

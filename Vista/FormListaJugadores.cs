@@ -32,8 +32,26 @@ namespace Vista
 
         private void btn_agregarProducto_Click(object sender, EventArgs e)
         {
-            AltaJugador altaProducto = new AltaJugador(Jugadores);
-            altaProducto.ShowDialog(); //para poner foco en el form alta jugador
+            AltaJugador altaJugador = new AltaJugador();
+            DialogResult resultado = altaJugador.ShowDialog(); //para poner foco en el form alta jugador
+            if(resultado == DialogResult.OK)
+            {
+                Jugador jugadorIngresado = altaJugador.Jugador;
+                Jugadores.Add(jugadorIngresado);
+                ActualizarDataGrid();
+                MessageBox.Show("jugador cargado con exito!!!!");
+            }
+            else
+            {
+                MessageBox.Show("Se canceló el alta de un jugador!!!!");
+            }
+        }
+
+        private void ActualizarDataGrid()
+        {
+            dgv_listado.DataSource = null; // limpiar el DataSource para actualizar los datos
+            dgv_listado.DataSource = Jugadores; // volver a vincular con la lista de jugadores actualizada
+            dgv_listado.Refresh(); // refrescar el datagrid
         }
     }
 }

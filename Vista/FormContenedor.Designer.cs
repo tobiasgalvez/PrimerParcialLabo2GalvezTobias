@@ -111,6 +111,7 @@
             this.verResultadosToolStripMenuItem.Name = "verResultadosToolStripMenuItem";
             this.verResultadosToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.verResultadosToolStripMenuItem.Text = "Ver resultados";
+            this.verResultadosToolStripMenuItem.Click += new System.EventHandler(this.verResultadosToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 

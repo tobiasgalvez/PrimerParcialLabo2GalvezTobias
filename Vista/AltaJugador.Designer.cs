@@ -42,12 +42,13 @@
             this.lbl_fechaDeNacimiento = new System.Windows.Forms.Label();
             this.monthCalendar_fechaNacimiento = new System.Windows.Forms.MonthCalendar();
             this.lbl_msjError = new System.Windows.Forms.Label();
+            this.btn_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_confirmar
             // 
             this.btn_confirmar.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_confirmar.Location = new System.Drawing.Point(81, 327);
+            this.btn_confirmar.Location = new System.Drawing.Point(17, 326);
             this.btn_confirmar.Name = "btn_confirmar";
             this.btn_confirmar.Size = new System.Drawing.Size(171, 35);
             this.btn_confirmar.TabIndex = 0;
@@ -149,7 +150,7 @@
             // 
             this.lbl_fechaDeNacimiento.AutoSize = true;
             this.lbl_fechaDeNacimiento.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_fechaDeNacimiento.Location = new System.Drawing.Point(262, 19);
+            this.lbl_fechaDeNacimiento.Location = new System.Drawing.Point(185, 19);
             this.lbl_fechaDeNacimiento.Name = "lbl_fechaDeNacimiento";
             this.lbl_fechaDeNacimiento.Size = new System.Drawing.Size(159, 15);
             this.lbl_fechaDeNacimiento.TabIndex = 12;
@@ -157,7 +158,7 @@
             // 
             // monthCalendar_fechaNacimiento
             // 
-            this.monthCalendar_fechaNacimiento.Location = new System.Drawing.Point(262, 43);
+            this.monthCalendar_fechaNacimiento.Location = new System.Drawing.Point(185, 43);
             this.monthCalendar_fechaNacimiento.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.monthCalendar_fechaNacimiento.Name = "monthCalendar_fechaNacimiento";
             this.monthCalendar_fechaNacimiento.TabIndex = 13;
@@ -166,19 +167,33 @@
             // 
             this.lbl_msjError.AutoSize = true;
             this.lbl_msjError.ForeColor = System.Drawing.Color.Red;
-            this.lbl_msjError.Location = new System.Drawing.Point(210, 265);
+            this.lbl_msjError.Location = new System.Drawing.Point(22, 406);
             this.lbl_msjError.Name = "lbl_msjError";
             this.lbl_msjError.Size = new System.Drawing.Size(31, 15);
             this.lbl_msjError.TabIndex = 14;
             this.lbl_msjError.Text = "...";
             this.lbl_msjError.Visible = false;
             // 
+            // btn_cancelar
+            // 
+            this.btn_cancelar.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_cancelar.Location = new System.Drawing.Point(272, 326);
+            this.btn_cancelar.Name = "btn_cancelar";
+            this.btn_cancelar.Size = new System.Drawing.Size(171, 35);
+            this.btn_cancelar.TabIndex = 15;
+            this.btn_cancelar.Text = "Cancelar";
+            this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
+            // 
             // AltaJugador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lime;
-            this.ClientSize = new System.Drawing.Size(547, 450);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(501, 450);
+            this.ControlBox = false;
+            this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.lbl_msjError);
             this.Controls.Add(this.monthCalendar_fechaNacimiento);
             this.Controls.Add(this.lbl_fechaDeNacimiento);
@@ -218,5 +233,6 @@
         private Label lbl_fechaDeNacimiento;
         private MonthCalendar monthCalendar_fechaNacimiento;
         private Label lbl_msjError;
+        private Button btn_cancelar;
     }
 }

@@ -24,7 +24,7 @@ namespace Vista
         private void verPersonasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormListaJugadores formListado = new FormListaJugadores();
-            formListado.Show();
+            formListado.ShowDialog();
             //this.Hide();
 
         }
@@ -32,7 +32,7 @@ namespace Vista
         private void FormContenedor_Load(object sender, EventArgs e)
         {
             IsMdiContainer = true;
-            if(!(_usuarioIngresado.User == "tobigalvez"))
+            if(_usuarioIngresado.Rol == Enumerados.ERol.Visitante)
             {
                 modificarToolStripMenuItem.Visible = false;    //CAMBIAR ESTO
                 verUsuariosToolStripMenuItem.Visible = false;
@@ -50,6 +50,11 @@ namespace Vista
         {
             FormListaEquipos formListado = new FormListaEquipos();
             formListado.Show();
+        }
+
+        private void verResultadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

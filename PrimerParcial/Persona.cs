@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaDeClases
 {
-    public class Persona
+    public abstract class Persona
     {
         private string _nombre;
         private string _apellido;
@@ -30,11 +30,43 @@ namespace BibliotecaDeClases
         public int Dni { get => _dni; set => _dni = value; }
 
 
+        public abstract string ObtenerInformacion();
+
 
         public int CalcularEdad()
         {
             int edad;
             return edad = DateTime.Today.AddTicks(-FechaDeNacimiento.Ticks).Year - 1;
+        }
+
+
+        public static void ValidarNombreYApellido(string nombre, string apellido)
+        {
+            Validacion.ValidarString(nombre);
+            Validacion.ValidarString(apellido);
+            
+                if (!(nombre.All(char.IsLetter) && apellido.All(char.IsLetter)))
+                {
+                    throw new ArgumentException("nombre y/o apellido deben ser letras");
+                    //argumentFormatException
+                }
+            
+        }
+
+        public static void ValidarDni(string dni)
+        {
+            int dniParser;
+            dniParser = Validacion.DevolverCadenaParseadaInt(dni);
+
+            if(dniParser == -1)
+            {
+                throw new ArgumentException("El campo DNI sólo acepta números");
+            }
+                if (dniParser > 70000000 || dniParser < 1000000)
+                {
+                    throw new ArgumentException("Numero de DNI invalido");
+                }
+            
         }
     }
 }

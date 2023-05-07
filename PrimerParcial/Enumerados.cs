@@ -9,7 +9,7 @@ namespace BibliotecaDeClases
 {
     public static class Enumerados
     {
-        public enum EPosiciones
+        public enum EPosiciones  //pertenece a la clase 'jugador'
         {
             Arquero,
             Defensor,
@@ -17,16 +17,33 @@ namespace BibliotecaDeClases
             Delantero,
         }
 
-        public static List<EPosiciones> GetAll()
+        public enum ERol        //pertenece a la clase 'usuario'
         {
-            List<EPosiciones> list = new List<EPosiciones>();
-
-            list.Add(EPosiciones.Arquero);
-            list.Add(EPosiciones.Defensor);
-            list.Add(EPosiciones.Mediocampista);
-            list.Add(EPosiciones.Delantero);
-
-            return list;
+            Visitante,
+            Admin,
         }
+
+        public enum EResultado  //pertenece a la clase 'partido'
+        {
+            Local,
+            Visitante,
+            Empate,
+        }
+
+
+
+        //public static List<EPosiciones> GetAll()
+        //{
+        //    List<EPosiciones> list = new List<EPosiciones>();
+
+        //    list.Add(EPosiciones.Arquero);
+        //    list.Add(EPosiciones.Defensor);
+        //    list.Add(EPosiciones.Mediocampista);
+        //    list.Add(EPosiciones.Delantero);
+
+
+
+        //    return list;
+        //}
     }
 }
