@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaDeClases.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace BibliotecaDeClases
         {
              if(string.IsNullOrEmpty(cadena)) //conviene usar 'string' y no 'String'
              {
-                throw new ArgumentException("Hay campos vacios!!!");
+                throw new CampoVacioException("Hay campos vacios!!!");
                 //throw new ArgumentNullException(cadena, "Hay campos vacios!!!!");
              }
 

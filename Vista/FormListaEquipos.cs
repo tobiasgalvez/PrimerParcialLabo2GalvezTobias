@@ -13,38 +13,70 @@ namespace Vista
 {
     public partial class FormListaEquipos : Form
     {
-        List<Equipo> listaEquipos;
-        List<Jugador> listaJugadores;
+        List<Equipo> Equipos { get; set; }
+        //List<Jugador> listaJugadores;
 
 
         public FormListaEquipos()
         {
             InitializeComponent();
-            listaEquipos = new List<Equipo>();
-            listaJugadores = new List<Jugador>();
+            Equipos = new List<Equipo>();
+            //listaJugadores = new List<Jugador>();
         }
-        public List<Equipo> ListaEquipos { get => listaEquipos; set => listaEquipos = value; }
 
         private void FormListaEquipos_Load(object sender, EventArgs e)
         {
-            Hardcodeo.HardcodearEquipos(listaEquipos, listaJugadores);
-            dgv_listadoEquipos.DataSource = listaEquipos;
+            Hardcodeo.HardcodearEquipos(Equipos);
+            dgv_listadoEquipos.DataSource = Equipos;
+            this.MaximizeBox = false;
         }
 
         private void btn_agregarEquipo_Click(object sender, EventArgs e)
         {
             FormAltaEquipo altaEquipo = new FormAltaEquipo();
+            bool esIgual = false;
             DialogResult resultado = altaEquipo.ShowDialog(); //para poner foco en el form alta equipo
             if (resultado == DialogResult.OK)
             {
                 Equipo equipoIngresado = altaEquipo.Equipo;
-                ListaEquipos.Add(equipoIngresado);
-                MessageBox.Show("equipo cargado con exito!!!!");
+                foreach (var item in Equipos)
+                {
+                    if (equipoIngresado == item)
+                    {
+                        esIgual = true;
+                    }
+                }
+                if (!esIgual)
+                {
+                    Equipos.Add(equipoIngresado);
+                    ActualizarDataGrid();
+                    MessageBox.Show("equipo cargado con exito!!!!");
+
+                }
+                else
+                {
+                    MessageBox.Show($"El equipo {equipoIngresado.Nombre} ya ha sido agregado");
+                }
             }
             else
             {
                 MessageBox.Show("Se canceló el alta de un equipo!!!!");
             }
         }
+
+        private void ActualizarDataGrid()
+        {
+            dgv_listadoEquipos.DataSource = null; // limpiar el DataSource para actualizar los datos
+            dgv_listadoEquipos.DataSource = Equipos; // volver a vincular con la lista de jugadores actualizada
+            dgv_listadoEquipos.Refresh(); // refrescar el datagrid
+        }
+
+        //public void OcultarControlMaximizar(Form formulario)
+        //{
+        //    formulario.MaximizeBox = false;
+        //}
+
+
+
     }
 }

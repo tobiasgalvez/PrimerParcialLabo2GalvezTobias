@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaDeClases.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -47,7 +48,7 @@ namespace BibliotecaDeClases
             
                 if (!(nombre.All(char.IsLetter) && apellido.All(char.IsLetter)))
                 {
-                    throw new ArgumentException("nombre y/o apellido deben ser letras");
+                    throw new StringLetrasException("nombre y/o apellido deben ser letras");
                     //argumentFormatException
                 }
             
@@ -60,7 +61,7 @@ namespace BibliotecaDeClases
 
             if(dniParser == -1)
             {
-                throw new ArgumentException("El campo DNI sólo acepta números");
+                throw new StringNumeroException("El campo DNI sólo acepta números");
             }
                 if (dniParser > 70000000 || dniParser < 1000000)
                 {

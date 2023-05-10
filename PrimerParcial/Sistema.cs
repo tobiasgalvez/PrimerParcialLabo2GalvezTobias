@@ -23,8 +23,9 @@ namespace BibliotecaDeClases
         public static Usuario VerificarUsuarioExcepciones(string usuario, string contraseña)
         {
             string mensaje = "Error, datos ingresados invalidos";
-            if (Validacion.ValidarString(usuario) && Validacion.ValidarString(contraseña))
-            {
+            Validacion.ValidarString(usuario);
+            Validacion.ValidarString(contraseña);
+            
                 foreach (Usuario item in _listaDeUsuarios)
                 {
                     if (item.User.Trim() == usuario.Trim())
@@ -37,9 +38,15 @@ namespace BibliotecaDeClases
                     }
                 }
                 throw new Exception(mensaje);
-            }
-            throw new Exception(mensaje);
         }
+
+
+        //public static void OcultarControlMinimizarMaximizar(Form formulario)
+        //{
+          
+        //    formulario.MaximizeBox = false;
+        //    formulario.MinimizeBox = false;
+        //}
 
     }
 }

@@ -28,12 +28,26 @@ namespace BibliotecaDeClases
         }
 
 
-        public static void HardcodearEquipos(List<Equipo> listaEquipos, List<Jugador> listaJugadores)
+        public static void HardcodearEquipos(List<Equipo> listaEquipos)
         {
             // Random random = new Random();
-            listaEquipos.Add(new Equipo("El Rejunte", listaJugadores, "Carabao"));
-            listaEquipos.Add(new Equipo("Los mismos de siempre", listaJugadores, "Carabao"));
+            listaEquipos.Add(new Equipo("El Rejunte", "Carabao"));
+            listaEquipos.Add(new Equipo("Los mismos de siempre","Carabao"));
+            listaEquipos.Add(new Equipo("Los mismos de siempre", "LPF"));
 
+
+        }
+
+        public static void HardcodearTorneos(List<Torneo> listaTorneos)
+        {
+            List<Equipo> listaEquipos = new List<Equipo>();
+            Torneo torneo1 = new Torneo("Carabao", 10);
+
+            HardcodearEquipos(listaEquipos);
+            torneo1.ListaDeEquipos = listaEquipos;
+            listaTorneos.Add(torneo1);
+
+            //listaTorneos.Add(new Torneo("LPF", 20, listaEquipos));
 
         }
 

@@ -66,5 +66,15 @@ namespace BibliotecaDeClases
         }
 
 
+        public static bool operator !=(Jugador j1, Jugador j2)
+        {
+            return j1.Dni != j2.Dni;
+        }
+
+        public static bool operator ==(Jugador j1, Jugador j2)
+        {
+            return j1.Dni == j2.Dni;
+        }
+
     }
 }

@@ -27,19 +27,36 @@ namespace Vista
             Hardcodeo.HardcodearJugadores(Jugadores);
             //jugadores.Add(jugador);
             dgv_listado.DataSource = Jugadores;
+            this.MaximizeBox = false;
 
         }
 
         private void btn_agregarProducto_Click(object sender, EventArgs e)
         {
+            bool esIgual = false;
             AltaJugador altaJugador = new AltaJugador();
             DialogResult resultado = altaJugador.ShowDialog(); //para poner foco en el form alta jugador
             if(resultado == DialogResult.OK)
             {
                 Jugador jugadorIngresado = altaJugador.Jugador;
-                Jugadores.Add(jugadorIngresado);
-                ActualizarDataGrid();
-                MessageBox.Show("jugador cargado con exito!!!!");
+                foreach (var item in Jugadores)
+                {
+                    if(jugadorIngresado == item)
+                    {
+                        esIgual = true; 
+                    }
+                }
+                if(!esIgual)
+                {
+                        Jugadores.Add(jugadorIngresado);
+                        ActualizarDataGrid();
+                        MessageBox.Show("jugador cargado con exito!!!!");
+
+                }
+                else
+                {
+                    MessageBox.Show($"El jugador con dni {jugadorIngresado.Dni} ya ha sido agregado");
+                }
             }
             else
             {

@@ -91,6 +91,7 @@
             this.verTorneosToolStripMenuItem1.Name = "verTorneosToolStripMenuItem1";
             this.verTorneosToolStripMenuItem1.Size = new System.Drawing.Size(193, 22);
             this.verTorneosToolStripMenuItem1.Text = "Ver Torneos";
+            this.verTorneosToolStripMenuItem1.Click += new System.EventHandler(this.verTorneosToolStripMenuItem1_Click);
             // 
             // verUsuariosToolStripMenuItem
             // 

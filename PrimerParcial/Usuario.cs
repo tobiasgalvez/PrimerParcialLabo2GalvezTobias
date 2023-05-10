@@ -25,5 +25,11 @@ namespace BibliotecaDeClases
         public string User { get => _user; set => _user = value; }
         public string Contraseña { get => _contraseña; set => _contraseña = value; }
         public ERol Rol { get => _rol;}
+
+
+        public override string ObtenerInformacion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -49,12 +49,18 @@ namespace Vista
         private void verEquiposToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormListaEquipos formListado = new FormListaEquipos();
-            formListado.Show();
+            formListado.ShowDialog();
         }
 
         private void verResultadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void verTorneosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormListaTorneos formListadoTorneos = new FormListaTorneos();
+            formListadoTorneos.ShowDialog();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Vista
         private void AltaProducto_Load(object sender, EventArgs e)
         {
 
-            Enum.GetValues(typeof(EPosiciones)).Cast<EPosiciones>().ToList();
+           cbo_posiciones.DataSource = Enum.GetValues(typeof(EPosiciones)).Cast<EPosiciones>().ToList();
 
             //var lista = new List<Enumerados.EPosiciones>();
             //lista = Enumerados.GetAll();
@@ -64,7 +64,7 @@ namespace Vista
                 Validacion.ValidarString(posicion);
 
                 jugador = new Jugador(auxNombre, auxApellido, fechaNacimiento, dni, posicion, equipo);
-                MessageBox.Show(jugador.ToString());
+                MessageBox.Show(jugador.ObtenerInformacion());
                 this.DialogResult = DialogResult.OK;
 
                 //FormListaJugadores formJugadores = new FormListaJugadores();

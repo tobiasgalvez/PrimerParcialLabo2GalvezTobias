@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class ListaTorneos
+    partial class FormListaTorneos
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.btn_agregarTorneo = new System.Windows.Forms.Button();
             this.lbl_listadoTorneos = new System.Windows.Forms.Label();
             this.dgv_listadoTorneos = new System.Windows.Forms.DataGridView();
+            this.btn_agregarResultado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoTorneos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,11 +65,23 @@
             this.dgv_listadoTorneos.Size = new System.Drawing.Size(769, 321);
             this.dgv_listadoTorneos.TabIndex = 3;
             // 
+            // btn_agregarResultado
+            // 
+            this.btn_agregarResultado.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_agregarResultado.Location = new System.Drawing.Point(394, 12);
+            this.btn_agregarResultado.Name = "btn_agregarResultado";
+            this.btn_agregarResultado.Size = new System.Drawing.Size(217, 33);
+            this.btn_agregarResultado.TabIndex = 6;
+            this.btn_agregarResultado.Text = "Agregar Resultado";
+            this.btn_agregarResultado.UseVisualStyleBackColor = true;
+            this.btn_agregarResultado.Click += new System.EventHandler(this.btn_agregarResultado_Click);
+            // 
             // ListaTorneos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_agregarResultado);
             this.Controls.Add(this.btn_agregarTorneo);
             this.Controls.Add(this.lbl_listadoTorneos);
             this.Controls.Add(this.dgv_listadoTorneos);
@@ -86,5 +99,6 @@
         private Button btn_agregarTorneo;
         private Label lbl_listadoTorneos;
         private DataGridView dgv_listadoTorneos;
+        private Button btn_agregarResultado;
     }
 }

@@ -10,6 +10,8 @@ namespace BibliotecaDeClases
     {
         private string _nombre;
         private List<Jugador> _listaJugadores;
+        private int _maxJugadores = 20;
+        private int _cantidadJugadores;
         private string _liga;
         private int _partidosJugados;
         private int _partidosGanados;
@@ -24,16 +26,24 @@ namespace BibliotecaDeClases
             _partidosPerdidos = 0;
         }
 
-        public Equipo(string nombre):base()
+        public Equipo(string nombre) : this()
         {
             _nombre = nombre;
+            _cantidadJugadores = 0;
         }
 
-        public Equipo(string nombre, List<Jugador> listaJugadores, string liga):this(nombre)
+
+
+        public Equipo(string nombre, string liga) : this(nombre)
+        {
+            _liga = liga;
+
+        }
+
+        public Equipo(string nombre, List<Jugador> listaJugadores, string liga) : this(nombre, liga)
         {
             _listaJugadores = listaJugadores;
-            _liga = liga;
-           
+
         }
 
         public string Nombre { get => _nombre; set => _nombre = value; }
@@ -43,5 +53,52 @@ namespace BibliotecaDeClases
         public int PartidosGanados { get => _partidosGanados; set => _partidosGanados = value; }
         public int PartidosEmpatados { get => _partidosEmpatados; set => _partidosEmpatados = value; }
         public int PartidosPerdidos { get => _partidosPerdidos; set => _partidosPerdidos = value; }
+        public int CantidadJugadores { get => _cantidadJugadores; private set => _cantidadJugadores = value; }
+
+        //public static bool operator +(Equipo e, Jugador j)
+        //{
+        //    bool retorno = true;
+
+        //    if (e.ListaJugadores.Count < e.CantidadJugadores)
+        //    {
+        //        foreach (var item in e.ListaJugadores)
+        //        {
+        //            if (item == j)
+        //            {
+        //                //retorno = false;
+        //                throw new ArgumentException("El jugador ya se encuentra en este equipo");
+        //            }
+        //        }
+        //        e.ListaJugadores.Add(j);
+        //    }
+        //    else
+        //    {
+        //        retorno = false;
+        //    }
+
+
+        //    return retorno;
+
+
+        //}
+
+
+        public static bool operator !=(Equipo e1, Equipo e2)
+        {
+            return e1.Nombre != e2.Nombre;
+        }
+
+        public static bool operator ==(Equipo e1, Equipo e2)
+        {
+            return e1.Nombre == e2.Nombre;
+        }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
+
+
+
     }
 }
