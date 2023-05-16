@@ -62,5 +62,22 @@ namespace Vista
             FormListaTorneos formListadoTorneos = new FormListaTorneos();
             formListadoTorneos.ShowDialog();
         }
+
+        private void verUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListaUsuarios formListaUsuarios = new FormListaUsuarios();
+            formListaUsuarios.ShowDialog();
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_usuarioIngresado.ObtenerInformacion());
+        }
+
+        private void verResultadosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormListaResultados formListaResultados = new FormListaResultados();
+            formListaResultados.ShowDialog();
+        }
     }
 }

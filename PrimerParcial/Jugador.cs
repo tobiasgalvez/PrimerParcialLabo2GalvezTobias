@@ -66,6 +66,20 @@ namespace BibliotecaDeClases
         }
 
 
+        public static int BuscarIndice(List<Jugador> jugadores, Jugador jugador)
+        {
+            int indice = -1;
+            for (int i = 0; i < jugadores.Count; i++)
+            {
+                if (jugadores[i] == jugador)
+                {
+                    indice = i;
+                }
+            }
+
+            return indice;
+        }
+
         public static bool operator !=(Jugador j1, Jugador j2)
         {
             return j1.Dni != j2.Dni;

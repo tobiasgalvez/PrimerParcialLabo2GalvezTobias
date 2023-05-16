@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,10 +41,6 @@ namespace BibliotecaDeClases
                 throw new Exception(mensaje);
         }
 
-
-        //public static void OcultarControlMinimizarMaximizar(Form formulario)
-        //{
-          
         //    formulario.MaximizeBox = false;
         //    formulario.MinimizeBox = false;
         //}

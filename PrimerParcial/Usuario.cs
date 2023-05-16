@@ -29,7 +29,26 @@ namespace BibliotecaDeClases
 
         public override string ObtenerInformacion()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Nombre:{Nombre}");
+            sb.AppendLine($"Apellido:{Apellido}");
+            sb.AppendLine($"Dni: {Dni.ToString()}");
+            sb.AppendLine($"Edad {CalcularEdad().ToString()}");
+            sb.AppendLine($"Nombre de usuario:{User}");
+            sb.AppendLine($"Rol:{Rol}");
+            return sb.ToString();
+        }
+
+
+        public static bool operator !=(Usuario u1, Usuario u2)
+        {
+            return u1.User != u2.User;
+        }
+
+        public static bool operator ==(Usuario u1, Usuario u2)
+        {
+            return u1.User == u2.User;
         }
     }
 }

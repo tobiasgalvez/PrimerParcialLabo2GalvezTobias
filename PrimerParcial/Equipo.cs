@@ -17,6 +17,9 @@ namespace BibliotecaDeClases
         private int _partidosGanados;
         private int _partidosEmpatados;
         private int _partidosPerdidos;
+        private int _goles;
+        private int _tarjetasAmarillas;
+        private int _tarjetasRojas;
 
         public Equipo()
         {
@@ -24,6 +27,9 @@ namespace BibliotecaDeClases
             _partidosGanados = 0;
             _partidosEmpatados = 0;
             _partidosPerdidos = 0;
+            _goles = 0;
+            _tarjetasAmarillas = 0;
+            _tarjetasRojas = 0;
         }
 
         public Equipo(string nombre) : this()
@@ -54,6 +60,9 @@ namespace BibliotecaDeClases
         public int PartidosEmpatados { get => _partidosEmpatados; set => _partidosEmpatados = value; }
         public int PartidosPerdidos { get => _partidosPerdidos; set => _partidosPerdidos = value; }
         public int CantidadJugadores { get => _cantidadJugadores; private set => _cantidadJugadores = value; }
+        public int Goles { get => _goles; set => _goles = value; }
+        public int TarjetasAmarillas { get => _tarjetasAmarillas; set => _tarjetasAmarillas = value; }
+        public int TarjetasRojas { get => _tarjetasRojas; set => _tarjetasRojas = value; }
 
         //public static bool operator +(Equipo e, Jugador j)
         //{

@@ -71,6 +71,7 @@ namespace Vista
         {
             //Partido nuevoPartido;
             Random random = new Random();
+            Partido partido = new Partido();
 
             EResultado ganador;
 
@@ -95,28 +96,19 @@ namespace Vista
                     if(item.Nombre == equipo1)
                     {
                         equipoLocal = item;
+                        partido.EquipoLocal = equipoLocal;
                     }                                   //BUSCO SI COINCIDE EL EQUIPO QUE INGRESÓ EN EL COMBOBOX
                     else if(item.Nombre == equipo2)
                     {
                         equipoVisitante = item;
+                        partido.EquipoVisitante = equipoVisitante;
                     }
                 }
 
-                    if(ganador == EResultado.Local)
-                    {
-                        MessageBox.Show($"GANADOR: {cbo_equipo1.Text}");
-                    }
-                    else if(ganador == EResultado.Visitante)
-                    {
-                        MessageBox.Show($"GANADOR: {cbo_equipo2.Text}");
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Hubo un EMPATEEE");
-                    }
+                partido.SimularPartido();
+                MessageBox.Show(partido.ResumenPartido());
 
-                   // Partido = new Partido(equipoLocal, equipoVisitante, ganador, 10, 5); //agregarle los parámetros después
-                    this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
             
 
             }catch(Exception ex)

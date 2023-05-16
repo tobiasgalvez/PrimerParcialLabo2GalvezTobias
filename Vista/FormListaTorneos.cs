@@ -28,21 +28,5 @@ namespace Vista
             this.MaximizeBox = false;
         }
 
-        private void btn_agregarResultado_Click(object sender, EventArgs e)
-        {
-            FormAgregarResultado formAgregarResultado = new FormAgregarResultado();
-
-            DialogResult resultado = formAgregarResultado.ShowDialog(); //para poner foco en el form alta equipo
-            if (resultado == DialogResult.OK)
-            {
-                //Equipo equipoIngresado = altaEquipo.Equipo;
-                //ListaEquipos.Add(equipoIngresado);
-                MessageBox.Show("Resultado cargado con exito!!!!");
-            }
-            else
-            {
-                MessageBox.Show("Se canceló el resultado!!!!");
-            }
-        }
     }
 }

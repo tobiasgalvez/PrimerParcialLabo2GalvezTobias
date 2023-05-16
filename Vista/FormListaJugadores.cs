@@ -24,8 +24,15 @@ namespace Vista
 
         private void FormListado_Load(object sender, EventArgs e)
         {
-            Hardcodeo.HardcodearJugadores(Jugadores);
+            //Hardcodeo.HardcodearJugadores(Jugadores);
             //jugadores.Add(jugador);
+
+
+            ManejadorCsv csv = new ManejadorCsv("jugadores.csv");
+            Jugadores = csv.LeerJugadores();
+            
+            //csv.AgregarJugador(Jugadores[1]);
+            //Jugadores = csv.LeerJugadores();
             dgv_listado.DataSource = Jugadores;
             this.MaximizeBox = false;
 
@@ -34,6 +41,7 @@ namespace Vista
         private void btn_agregarProducto_Click(object sender, EventArgs e)
         {
             bool esIgual = false;
+            ManejadorCsv csv = new ManejadorCsv("jugadores.csv");
             AltaJugador altaJugador = new AltaJugador();
             DialogResult resultado = altaJugador.ShowDialog(); //para poner foco en el form alta jugador
             if(resultado == DialogResult.OK)
@@ -49,6 +57,7 @@ namespace Vista
                 if(!esIgual)
                 {
                         Jugadores.Add(jugadorIngresado);
+                        csv.AgregarJugador(jugadorIngresado);
                         ActualizarDataGrid();
                         MessageBox.Show("jugador cargado con exito!!!!");
 
