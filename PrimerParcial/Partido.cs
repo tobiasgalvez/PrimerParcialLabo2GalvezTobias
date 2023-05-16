@@ -105,12 +105,31 @@ namespace BibliotecaDeClases
         {
             StringBuilder resumen = new StringBuilder();
             resumen.AppendLine($"Resultado final: {EquipoLocal.Nombre} {EquipoLocal.Goles} - {EquipoVisitante.Goles} {EquipoVisitante.Nombre}");
+            GolesLocal = EquipoLocal.Goles;
+            GolesVisitante = EquipoVisitante.Goles;
+            if (GolesLocal < GolesVisitante)
+                Resultado = Enumerados.EResultado.Visitante;
+            else if (GolesLocal == GolesVisitante)
+                Resultado = Enumerados.EResultado.Empate;
             resumen.AppendLine("Eventos importantes:");
             foreach (string evento in Eventos)
             {
                 resumen.AppendLine(evento);
             }
             return resumen.ToString();
+        }
+
+
+
+
+        public static bool operator !=(Partido p1, Partido p2)
+        {
+            return (p1.EquipoLocal != p2._equipoLocal && p1.EquipoVisitante != p2.EquipoVisitante);
+        }
+
+        public static bool operator ==(Partido p1, Partido p2)
+        {
+            return (p1.EquipoLocal == p2._equipoLocal && p1.EquipoVisitante == p2.EquipoVisitante);
         }
 
     }

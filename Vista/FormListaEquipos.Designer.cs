@@ -37,9 +37,9 @@
             // btn_agregarEquipo
             // 
             this.btn_agregarEquipo.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_agregarEquipo.Location = new System.Drawing.Point(131, 15);
+            this.btn_agregarEquipo.Location = new System.Drawing.Point(131, 14);
             this.btn_agregarEquipo.Name = "btn_agregarEquipo";
-            this.btn_agregarEquipo.Size = new System.Drawing.Size(217, 33);
+            this.btn_agregarEquipo.Size = new System.Drawing.Size(217, 31);
             this.btn_agregarEquipo.TabIndex = 5;
             this.btn_agregarEquipo.Text = "Agregar equipo";
             this.btn_agregarEquipo.UseVisualStyleBackColor = true;
@@ -49,7 +49,7 @@
             // 
             this.lbl_listadoEquipos.AutoSize = true;
             this.lbl_listadoEquipos.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_listadoEquipos.Location = new System.Drawing.Point(12, 27);
+            this.lbl_listadoEquipos.Location = new System.Drawing.Point(12, 25);
             this.lbl_listadoEquipos.Name = "lbl_listadoEquipos";
             this.lbl_listadoEquipos.Size = new System.Drawing.Size(111, 15);
             this.lbl_listadoEquipos.TabIndex = 4;
@@ -59,20 +59,21 @@
             // 
             this.dgv_listadoEquipos.BackgroundColor = System.Drawing.Color.Black;
             this.dgv_listadoEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_listadoEquipos.Location = new System.Drawing.Point(7, 56);
+            this.dgv_listadoEquipos.Location = new System.Drawing.Point(7, 52);
             this.dgv_listadoEquipos.Name = "dgv_listadoEquipos";
             this.dgv_listadoEquipos.RowTemplate.Height = 25;
-            this.dgv_listadoEquipos.Size = new System.Drawing.Size(769, 321);
+            this.dgv_listadoEquipos.Size = new System.Drawing.Size(769, 300);
             this.dgv_listadoEquipos.TabIndex = 3;
             // 
             // FormListaEquipos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 420);
             this.Controls.Add(this.btn_agregarEquipo);
             this.Controls.Add(this.lbl_listadoEquipos);
             this.Controls.Add(this.dgv_listadoEquipos);
+            this.Font = new System.Drawing.Font("Unispace", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.Name = "FormListaEquipos";
             this.Text = "FormListaEquipos";
             this.Load += new System.EventHandler(this.FormListaEquipos_Load);

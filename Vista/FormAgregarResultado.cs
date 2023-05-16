@@ -26,6 +26,7 @@ namespace Vista
             InitializeComponent();
             Equipos = new List<Equipo>();
             Torneos = new List<Torneo>();
+            Partido = new Partido();
         }
 
         private void FormAgregarResultado_Load(object sender, EventArgs e)
@@ -71,7 +72,7 @@ namespace Vista
         {
             //Partido nuevoPartido;
             Random random = new Random();
-            Partido partido = new Partido();
+            //Partido partido = new Partido();
 
             EResultado ganador;
 
@@ -96,17 +97,18 @@ namespace Vista
                     if(item.Nombre == equipo1)
                     {
                         equipoLocal = item;
-                        partido.EquipoLocal = equipoLocal;
+                        Partido.EquipoLocal = equipoLocal;
                     }                                   //BUSCO SI COINCIDE EL EQUIPO QUE INGRESÓ EN EL COMBOBOX
                     else if(item.Nombre == equipo2)
                     {
                         equipoVisitante = item;
-                        partido.EquipoVisitante = equipoVisitante;
+                        Partido.EquipoVisitante = equipoVisitante;
                     }
                 }
 
-                partido.SimularPartido();
-                MessageBox.Show(partido.ResumenPartido());
+                Partido.SimularPartido();
+                MessageBox.Show(Partido.ResumenPartido());
+                //Partido = partido;
 
                 this.DialogResult = DialogResult.OK;
             

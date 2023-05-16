@@ -30,8 +30,8 @@
         {
             this.btn_agregarResultado = new System.Windows.Forms.Button();
             this.lbl_listadoResultados = new System.Windows.Forms.Label();
-            this.dgv_listadoEquipos = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoEquipos)).BeginInit();
+            this.dgv_listadoResultados = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoResultados)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_agregarResultado
@@ -55,15 +55,15 @@
             this.lbl_listadoResultados.TabIndex = 7;
             this.lbl_listadoResultados.Text = "Lista Resultados";
             // 
-            // dgv_listadoEquipos
+            // dgv_listadoResultados
             // 
-            this.dgv_listadoEquipos.BackgroundColor = System.Drawing.Color.Black;
-            this.dgv_listadoEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_listadoEquipos.Location = new System.Drawing.Point(14, 63);
-            this.dgv_listadoEquipos.Name = "dgv_listadoEquipos";
-            this.dgv_listadoEquipos.RowTemplate.Height = 25;
-            this.dgv_listadoEquipos.Size = new System.Drawing.Size(765, 321);
-            this.dgv_listadoEquipos.TabIndex = 6;
+            this.dgv_listadoResultados.BackgroundColor = System.Drawing.Color.Black;
+            this.dgv_listadoResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_listadoResultados.Location = new System.Drawing.Point(14, 63);
+            this.dgv_listadoResultados.Name = "dgv_listadoResultados";
+            this.dgv_listadoResultados.RowTemplate.Height = 25;
+            this.dgv_listadoResultados.Size = new System.Drawing.Size(765, 321);
+            this.dgv_listadoResultados.TabIndex = 6;
             // 
             // FormListaResultados
             // 
@@ -72,11 +72,12 @@
             this.ClientSize = new System.Drawing.Size(821, 450);
             this.Controls.Add(this.btn_agregarResultado);
             this.Controls.Add(this.lbl_listadoResultados);
-            this.Controls.Add(this.dgv_listadoEquipos);
-            this.Font = new System.Drawing.Font("Unispace", 9.749999F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.Controls.Add(this.dgv_listadoResultados);
+            this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Name = "FormListaResultados";
             this.Text = "FormListaResultados";
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoEquipos)).EndInit();
+            this.Load += new System.EventHandler(this.FormListaResultados_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoResultados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,6 +87,6 @@
 
         private Button btn_agregarResultado;
         private Label lbl_listadoResultados;
-        private DataGridView dgv_listadoEquipos;
+        private DataGridView dgv_listadoResultados;
     }
 }
