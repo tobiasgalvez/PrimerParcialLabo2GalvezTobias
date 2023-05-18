@@ -6,18 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.ManejadorCsv
 {
-    public class ManejadorCsv
+    public class ManejadorCsvJugadores : ManejadorCsvBase<Jugador>
     {
-        private readonly string _csvFilePath;
 
-        public ManejadorCsv(string csvFilePath)
-        {
-            _csvFilePath = csvFilePath;
-        }
+        public ManejadorCsvJugadores(string csvFilePath) : base(csvFilePath) { }
 
-        public List<Jugador> LeerJugadores()
+        public override List<Jugador> LeerDatos()
         {
             List<Jugador> jugadores = new List<Jugador>();
             DateTime fechaNacimiento;
@@ -33,48 +29,47 @@ namespace BibliotecaDeClases
                     jugadores.Add(new Jugador(partes[0], partes[1], fechaNacimiento, int.Parse(partes[3]), partes[4], partes[5]));
                 }
             }
-
-            return jugadores;
+            return jugadores;//HACER INTERFAZ
         }
 
-        public void AgregarJugador(Jugador jugador)
+        public override void AgregarDato(Jugador jugador)
         {
-            using (var sw = new StreamWriter(_csvFilePath, true))
+            using (var sw = new StreamWriter(_csvFilePath, true)) // el using sería como un try-finally en donde el finally tira un dispose al archivo 
             {
                 sw.WriteLine($"{jugador.Nombre},{jugador.Apellido}, {jugador.FechaDeNacimiento}, {jugador.Dni},{jugador.Posicion},{jugador.Equipo}");
             }
         }
 
-        public void ModificarJugador(Jugador jugadorOriginal, Jugador jugadorModificado)
+        public override void ModificarDato(Jugador jugadorOriginal, Jugador jugadorModificado)
         {
-            var jugadores = LeerJugadores();
+            var jugadores = LeerDatos();
             int indice = Jugador.BuscarIndice(jugadores, jugadorOriginal);
 
-            
+
 
             if (indice != -1)
             {
                 jugadores[indice] = jugadorModificado;
-                GuardarJugadores(jugadores);
+                GuardarDatos(jugadores);
             }
         }
 
-        public void EliminarJugador(Jugador jugador)
+        public override void EliminarDato(Jugador jugador)
         {
-            var jugadores = LeerJugadores();
+            var jugadores = LeerDatos();
             foreach (var item in jugadores)
             {
-                if(jugador == item)
+                if (jugador == item)
                 {
                     jugadores.Remove(item);
                 }
             }
-            GuardarJugadores(jugadores);
+            GuardarDatos(jugadores);
         }
 
-        private void GuardarJugadores(List<Jugador> jugadores)
+        public override void GuardarDatos(List<Jugador> jugadores)
         {
-            using (var sw = new StreamWriter(_csvFilePath, false))
+            using (var sw = new StreamWriter(_csvFilePath, false)) //el false sobrescribe el archivo, mientras que el true agrega contenido al archivo existente
             {
                 //sw.WriteLine("Nombre,Apellido,FechaDeNacimiento,Dni,Posicion,Equipo");
                 foreach (var jugador in jugadores)

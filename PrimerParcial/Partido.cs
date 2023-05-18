@@ -46,7 +46,7 @@ namespace BibliotecaDeClases
         public int GolesLocal { get => _golesLocal; set => _golesLocal = value; }
         public int GolesVisitante { get => _golesVisitante; set => _golesVisitante = value; }
         public List<string> Eventos { get => _eventos; set => _eventos = value; }
-        public int MinutoActual { get => _minutoActual; set => _minutoActual = value; }
+        public int MinutoActual { private get => _minutoActual; set => _minutoActual = value; }
 
         public static void ValidarEnfrentamiento(string equipo1, string equipo2)
         {
@@ -73,7 +73,7 @@ namespace BibliotecaDeClases
                         equipoGol = EquipoLocal;
                     else
                         equipoGol = EquipoVisitante;
-                    equipoGol.Goles++;
+                        equipoGol.Goles++;
                     Eventos.Add($"Minuto {MinutoActual}: Gol de {equipoGol.Nombre}");
                 }
                 // Simular una tarjeta amarilla
@@ -108,9 +108,23 @@ namespace BibliotecaDeClases
             GolesLocal = EquipoLocal.Goles;
             GolesVisitante = EquipoVisitante.Goles;
             if (GolesLocal < GolesVisitante)
+            {
                 Resultado = Enumerados.EResultado.Visitante;
+                EquipoLocal.PartidosPerdidos++;
+                EquipoVisitante.PartidosGanados++;
+
+            }
             else if (GolesLocal == GolesVisitante)
+            {
                 Resultado = Enumerados.EResultado.Empate;
+                EquipoLocal.PartidosEmpatados++;
+                EquipoVisitante.PartidosEmpatados++;
+            }
+            else
+            {
+                EquipoLocal.PartidosGanados++;
+                EquipoVisitante.PartidosPerdidos++;
+            }
             resumen.AppendLine("Eventos importantes:");
             foreach (string evento in Eventos)
             {

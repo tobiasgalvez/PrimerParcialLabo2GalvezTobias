@@ -59,7 +59,7 @@ namespace BibliotecaDeClases
         public int PartidosGanados { get => _partidosGanados; set => _partidosGanados = value; }
         public int PartidosEmpatados { get => _partidosEmpatados; set => _partidosEmpatados = value; }
         public int PartidosPerdidos { get => _partidosPerdidos; set => _partidosPerdidos = value; }
-        public int CantidadJugadores { get => _cantidadJugadores; private set => _cantidadJugadores = value; }
+        public int CantidadJugadores { get => _cantidadJugadores; set => _cantidadJugadores = value; }
         public int Goles { get => _goles; set => _goles = value; }
         public int TarjetasAmarillas { get => _tarjetasAmarillas; set => _tarjetasAmarillas = value; }
         public int TarjetasRojas { get => _tarjetasRojas; set => _tarjetasRojas = value; }
@@ -90,6 +90,20 @@ namespace BibliotecaDeClases
 
 
         //}
+
+        public static int BuscarIndice(List<Equipo> equipos, Equipo equipo)
+        {
+            int indice = -1;
+            for (int i = 0; i < equipos.Count; i++)
+            {
+                if (equipos[i] == equipo)
+                {
+                    indice = i;
+                }
+            }
+
+            return indice;
+        }
 
 
         public static bool operator !=(Equipo e1, Equipo e2)

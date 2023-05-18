@@ -119,6 +119,7 @@
             // 
             // cbo_altaEquipo
             // 
+            this.cbo_altaEquipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_altaEquipo.FormattingEnabled = true;
             this.cbo_altaEquipo.Items.AddRange(new object[] {
             "El Rejunte",
@@ -140,6 +141,7 @@
             // 
             // cbo_posiciones
             // 
+            this.cbo_posiciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_posiciones.FormattingEnabled = true;
             this.cbo_posiciones.Location = new System.Drawing.Point(14, 262);
             this.cbo_posiciones.Name = "cbo_posiciones";

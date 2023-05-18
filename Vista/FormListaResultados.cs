@@ -65,9 +65,17 @@ namespace Vista
 
         private void ActualizarDataGrid()
         {
-            dgv_listadoResultados.DataSource = null; // limpiar el DataSource para actualizar los datos
-            dgv_listadoResultados.DataSource = Partidos; // volver a vincular con la lista de jugadores actualizada
-            dgv_listadoResultados.Refresh(); // refrescar el datagrid
+            if(Partidos.Count > 0)
+            {
+                dgv_listadoResultados.DataSource = null; // limpiar el DataSource para actualizar los datos
+                dgv_listadoResultados.DataSource = Partidos; // volver a vincular con la lista de jugadores actualizada
+                dgv_listadoResultados.Refresh(); // refrescar el datagrid
+            }
+            else
+            {
+                dgv_listadoResultados.Visible = false;
+                // lbl "sin datos"
+            }
         }
     }
 }

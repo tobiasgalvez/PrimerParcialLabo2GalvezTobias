@@ -1,5 +1,5 @@
 ﻿using BibliotecaDeClases;
-using PrimerParcial;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,8 +28,8 @@ namespace Vista
             //jugadores.Add(jugador);
 
 
-            ManejadorCsv csv = new ManejadorCsv("jugadores.csv");
-            Jugadores = csv.LeerJugadores();
+            ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
+            Jugadores = csvJugadores.LeerDatos();
             
             //csv.AgregarJugador(Jugadores[1]);
             //Jugadores = csv.LeerJugadores();
@@ -41,7 +41,7 @@ namespace Vista
         private void btn_agregarProducto_Click(object sender, EventArgs e)
         {
             bool esIgual = false;
-            ManejadorCsv csv = new ManejadorCsv("jugadores.csv");
+            ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
             AltaJugador altaJugador = new AltaJugador();
             DialogResult resultado = altaJugador.ShowDialog(); //para poner foco en el form alta jugador
             if(resultado == DialogResult.OK)
@@ -57,7 +57,7 @@ namespace Vista
                 if(!esIgual)
                 {
                         Jugadores.Add(jugadorIngresado);
-                        csv.AgregarJugador(jugadorIngresado);
+                    csvJugadores.AgregarDato(jugadorIngresado);
                         ActualizarDataGrid();
                         MessageBox.Show("jugador cargado con exito!!!!");
 

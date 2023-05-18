@@ -98,5 +98,7 @@ namespace Vista
         {
             this.DialogResult=DialogResult.Cancel;
         }
+
+  
     }
 }
