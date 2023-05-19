@@ -10,7 +10,7 @@ namespace BibliotecaDeClases
     {
         private string _nombre;
         private List<Jugador> _listaJugadores;
-        private int _maxJugadores = 20;
+        //private int _maxJugadores = 20;
         private int _cantidadJugadores;
         private string _liga;
         private int _partidosJugados;
@@ -30,6 +30,7 @@ namespace BibliotecaDeClases
             _goles = 0;
             _tarjetasAmarillas = 0;
             _tarjetasRojas = 0;
+            _listaJugadores = new List<Jugador>();
         }
 
         public Equipo(string nombre) : this()
@@ -48,7 +49,6 @@ namespace BibliotecaDeClases
 
         public Equipo(string nombre, List<Jugador> listaJugadores, string liga) : this(nombre, liga)
         {
-            _listaJugadores = listaJugadores;
 
         }
 
@@ -59,38 +59,12 @@ namespace BibliotecaDeClases
         public int PartidosGanados { get => _partidosGanados; set => _partidosGanados = value; }
         public int PartidosEmpatados { get => _partidosEmpatados; set => _partidosEmpatados = value; }
         public int PartidosPerdidos { get => _partidosPerdidos; set => _partidosPerdidos = value; }
-        public int CantidadJugadores { get => _cantidadJugadores; set => _cantidadJugadores = value; }
+        public int CantidadJugadores { get => _cantidadJugadores;  set => _cantidadJugadores = value; }
         public int Goles { get => _goles; set => _goles = value; }
         public int TarjetasAmarillas { get => _tarjetasAmarillas; set => _tarjetasAmarillas = value; }
         public int TarjetasRojas { get => _tarjetasRojas; set => _tarjetasRojas = value; }
 
-        //public static bool operator +(Equipo e, Jugador j)
-        //{
-        //    bool retorno = true;
-
-        //    if (e.ListaJugadores.Count < e.CantidadJugadores)
-        //    {
-        //        foreach (var item in e.ListaJugadores)
-        //        {
-        //            if (item == j)
-        //            {
-        //                //retorno = false;
-        //                throw new ArgumentException("El jugador ya se encuentra en este equipo");
-        //            }
-        //        }
-        //        e.ListaJugadores.Add(j);
-        //    }
-        //    else
-        //    {
-        //        retorno = false;
-        //    }
-
-
-        //    return retorno;
-
-
-        //}
-
+ 
         public static int BuscarIndice(List<Equipo> equipos, Equipo equipo)
         {
             int indice = -1;
@@ -113,7 +87,7 @@ namespace BibliotecaDeClases
 
         public static bool operator ==(Equipo e1, Equipo e2)
         {
-            return e1.Nombre == e2.Nombre;
+            return e1.Nombre.ToLower() == e2.Nombre.ToLower();
         }
 
         public override string ToString()

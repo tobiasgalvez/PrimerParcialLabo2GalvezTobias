@@ -50,14 +50,14 @@
             this.lbl_listado.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_listado.Location = new System.Drawing.Point(12, 22);
             this.lbl_listado.Name = "lbl_listado";
-            this.lbl_listado.Size = new System.Drawing.Size(47, 15);
+            this.lbl_listado.Size = new System.Drawing.Size(127, 15);
             this.lbl_listado.TabIndex = 1;
-            this.lbl_listado.Text = "Lista";
+            this.lbl_listado.Text = "Lista Jugadores";
             // 
             // btn_agregarProducto
             // 
             this.btn_agregarProducto.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_agregarProducto.Location = new System.Drawing.Point(131, 11);
+            this.btn_agregarProducto.Location = new System.Drawing.Point(161, 13);
             this.btn_agregarProducto.Name = "btn_agregarProducto";
             this.btn_agregarProducto.Size = new System.Drawing.Size(217, 31);
             this.btn_agregarProducto.TabIndex = 2;
@@ -69,6 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Lime;
             this.ClientSize = new System.Drawing.Size(800, 420);
             this.Controls.Add(this.btn_agregarProducto);
             this.Controls.Add(this.lbl_listado);

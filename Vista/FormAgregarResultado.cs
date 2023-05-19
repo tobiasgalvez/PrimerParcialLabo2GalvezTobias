@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace Vista
         public List<Equipo> Equipos { get; set; }
         public List<Torneo> Torneos { get; set; }
         public Partido Partido { get; set; }
+        ManejadorCsvTorneos csvTorneos;
 
         public FormAgregarResultado()
         {
@@ -27,18 +29,22 @@ namespace Vista
             Equipos = new List<Equipo>();
             Torneos = new List<Torneo>();
             Partido = new Partido();
+            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
         }
 
         private void FormAgregarResultado_Load(object sender, EventArgs e)
         {
+            
             lbl_mensajeError.Visible = false;
+            Torneo torneoSeleccionado;
             //Hardcodeo.HardcodearEquipos(Equipos);
-            Hardcodeo.HardcodearTorneos(Torneos);
-
-            Torneos[0].ListaDeEquipos.Add(new Equipo("Boca"));
-            CargarComboBoxEquipos(Torneos[0]);
+            
+            Torneos = csvTorneos.LeerDatos();
 
             cbo_torneo.DataSource = Torneos;
+            torneoSeleccionado = (Torneo)cbo_torneo.SelectedItem;   
+            CargarComboBoxEquipos(torneoSeleccionado);
+            
 
             //for (int i = 0; i < Torneos.Count; i++)
             //{
@@ -84,15 +90,19 @@ namespace Vista
             Equipo equipoLocal;
             Equipo equipoVisitante;
 
+            Torneo torneoElegido;
+
             try
             {
                 Validacion.ValidarString(cbo_equipo1.Text);
                 Validacion.ValidarString(cbo_equipo2.Text);
                 equipo1 = cbo_equipo1.Text;
                 equipo2 = cbo_equipo2.Text;
+                torneoElegido = (Torneo)cbo_torneo.SelectedItem;
                 Partido.ValidarEnfrentamiento(equipo1, equipo2);
+                Partido.Torneo = cbo_torneo.Text;
 
-                foreach (var item in Torneos[0].ListaDeEquipos)
+                foreach (var item in torneoElegido.ListaDeEquipos)
                 {
                     if(item.Nombre == equipo1)
                     {
@@ -108,6 +118,9 @@ namespace Vista
 
                 Partido.SimularPartido();
                 MessageBox.Show(Partido.ResumenPartido());
+
+
+                //TENGO QUE AGREGAR EL CSV DE EQUIPOS Y ACTUALIZAR A LOS EQUIPOS QUE JUGARON PARA QUE FIGUREN SUS GOLES Y QUE FIGUREN SUS PARTIDOS JUGADOS, GANADOS, PERDIDOS, EMPATADOS, ETC
                 //Partido = partido;
 
                 this.DialogResult = DialogResult.OK;
@@ -134,13 +147,34 @@ namespace Vista
 
         private void CargarComboBoxEquipos(Torneo torneoSeleccionado)
         {
-            cbo_equipo1.DataSource = new List<Equipo>(torneoSeleccionado.ListaDeEquipos);
-            cbo_equipo2.DataSource = new List<Equipo>(torneoSeleccionado.ListaDeEquipos);
+            if(torneoSeleccionado.ListaDeEquipos.Count > 0)
+            {
+                //Creo estas dos listas diferentes porque cuando cambio la selección en uno de los combobox, también se cambia en el otro debido a que ambos están enlazados a la misma lista de equipos.
+                List<Equipo> listaEquipos1 = new List<Equipo>(torneoSeleccionado.ListaDeEquipos);
+                List<Equipo> listaEquipos2 = new List<Equipo>(torneoSeleccionado.ListaDeEquipos);
+
+                // Asignar las listas a los ComboBox
+                cbo_equipo1.DataSource = listaEquipos1;
+                cbo_equipo2.DataSource = listaEquipos2;
+            }
+            else
+            {
+                throw new SinEquiposCargadosException("El torneo no tiene equipos cargados!!!");
+            }
+
         }
 
         private void cbo_torneo_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            CargarComboBoxEquipos((Torneo)cbo_torneo.SelectedItem);
+            try
+            {
+                CargarComboBoxEquipos((Torneo)cbo_torneo.SelectedItem);
+
+            }catch(Exception ex)
+            {
+                lbl_mensajeError.Visible = true;
+                lbl_mensajeError.Text = ex.Message;
+            }
         }
     }
 }

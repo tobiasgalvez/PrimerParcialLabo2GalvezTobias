@@ -37,7 +37,7 @@
             // btn_agregarUsuario
             // 
             this.btn_agregarUsuario.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_agregarUsuario.Location = new System.Drawing.Point(141, 19);
+            this.btn_agregarUsuario.Location = new System.Drawing.Point(164, 22);
             this.btn_agregarUsuario.Name = "btn_agregarUsuario";
             this.btn_agregarUsuario.Size = new System.Drawing.Size(217, 31);
             this.btn_agregarUsuario.TabIndex = 5;
@@ -51,9 +51,9 @@
             this.lbl_listado.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_listado.Location = new System.Drawing.Point(22, 31);
             this.lbl_listado.Name = "lbl_listado";
-            this.lbl_listado.Size = new System.Drawing.Size(47, 15);
+            this.lbl_listado.Size = new System.Drawing.Size(119, 15);
             this.lbl_listado.TabIndex = 4;
-            this.lbl_listado.Text = "Lista";
+            this.lbl_listado.Text = "Lista Usuarios";
             // 
             // dgv_listado
             // 
@@ -69,6 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Lime;
             this.ClientSize = new System.Drawing.Size(800, 420);
             this.Controls.Add(this.btn_agregarUsuario);
             this.Controls.Add(this.lbl_listado);
@@ -76,6 +77,7 @@
             this.Font = new System.Drawing.Font("Unispace", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.Name = "FormListaUsuarios";
             this.Text = "FormListaUsuarios";
+            this.Load += new System.EventHandler(this.FormListaUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

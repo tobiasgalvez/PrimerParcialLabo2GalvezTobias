@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaDeClases.ManejadorCsv;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace BibliotecaDeClases
         static Sistema()
         {
             _listaDeUsuarios = new List<Usuario>();
-            Hardcodeo.HardcodearUsuarios(_listaDeUsuarios);
+            //Hardcodeo.HardcodearUsuarios(_listaDeUsuarios);
+            ManejadorCsvUsuarios csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
+            _listaDeUsuarios = csvUsuarios.LeerDatos();
         }
 
         public static List<Usuario> ListaDeUsuarios { get => _listaDeUsuarios; set => _listaDeUsuarios = value; }

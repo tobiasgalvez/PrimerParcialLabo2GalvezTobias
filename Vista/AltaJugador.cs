@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,19 +15,23 @@ namespace Vista
 {
     public partial class AltaJugador : Form
     {
-        Jugador jugador;
-
-
+        
+        public Jugador Jugador { get; set; }
+        public List<Equipo> Equipos { get; set; }
+        public ManejadorCsvEquipos csvEquipos;
         public AltaJugador()
         {
             InitializeComponent();
+            Equipos = new List<Equipo>();
+            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+
         }
-        public Jugador Jugador { get => jugador;}
 
        
         private void AltaProducto_Load(object sender, EventArgs e)
         {
-
+           Equipos = csvEquipos.LeerDatos();
+           cbo_altaEquipo.DataSource = Equipos;
            cbo_posiciones.DataSource = Enum.GetValues(typeof(EPosiciones)).Cast<EPosiciones>().ToList();
 
             //var lista = new List<Enumerados.EPosiciones>();
@@ -63,8 +68,8 @@ namespace Vista
                 Validacion.ValidarString(equipo);
                 Validacion.ValidarString(posicion);
 
-                jugador = new Jugador(auxNombre, auxApellido, fechaNacimiento, dni, posicion, equipo);
-                MessageBox.Show(jugador.ObtenerInformacion());
+                Jugador = new Jugador(auxNombre, auxApellido, fechaNacimiento, dni, posicion, equipo);
+                MessageBox.Show(Jugador.ObtenerInformacion());
                 this.DialogResult = DialogResult.OK;
 
                 //FormListaJugadores formJugadores = new FormListaJugadores();

@@ -1,5 +1,4 @@
 ﻿using BibliotecaDeClases;
-using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,26 +11,12 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FormAltaEquipo : Form
+    public partial class FormAltaTorneo : Form
     {
-        Equipo _equipo;
-        List<Torneo> Torneos { get; set; }
-        ManejadorCsvTorneos csvTorneos;
-        public FormAltaEquipo()
+        public Torneo Torneo { get; set; }
+        public FormAltaTorneo()
         {
             InitializeComponent();
-            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
-        }
-
-        public Equipo Equipo { get => _equipo;}
-
-
-        private void FormAltaEquipo_Load(object sender, EventArgs e)
-        {
-
-            Torneos = csvTorneos.LeerDatos();
-
-            cbo_torneos.DataSource = Torneos;
         }
 
         private void btn_confirmar_Click(object sender, EventArgs e)
@@ -39,20 +24,17 @@ namespace Vista
             try
             {
                 string auxNombre;
-                string auxTorneo;
 
-                auxNombre = txt_altaNombre.Text;
-                auxTorneo = cbo_torneos.Text;
-
+                auxNombre = txt_altaNombreTorneo.Text;
                 Validacion.ValidarString(auxNombre);
 
-                _equipo = new Equipo(auxNombre, auxTorneo);
+                Torneo = new Torneo(auxNombre);
 
                 this.DialogResult = DialogResult.OK;
 
 
             }
-            catch(Exception excepcion)
+            catch (Exception excepcion)
             {
                 lbl_msjError.Text = excepcion.Message;
             }
@@ -62,7 +44,5 @@ namespace Vista
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
-       
     }
 }

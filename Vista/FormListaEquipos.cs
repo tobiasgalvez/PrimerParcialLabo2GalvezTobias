@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Vista
     public partial class FormListaEquipos : Form
     {
         List<Equipo> Equipos { get; set; }
+        ManejadorCsvEquipos csvEquipos;
         //List<Jugador> listaJugadores;
 
 
@@ -21,12 +23,21 @@ namespace Vista
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
+            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
             //listaJugadores = new List<Jugador>();
         }
 
         private void FormListaEquipos_Load(object sender, EventArgs e)
         {
-            Hardcodeo.HardcodearEquipos(Equipos);
+            //Hardcodeo.HardcodearEquipos(Equipos);
+
+            //csvEquipos.AgregarDato(Equipos[0]);
+            //csvEquipos.AgregarDato(Equipos[1]);
+            Equipos = csvEquipos.LeerDatos();
+            //csvEquipos.EliminarDato(Equipos[1]);
+            //csvEquipos.EliminarDato(Equipos[2]);
+            //csvEquipos.EliminarDato(Equipos[2]);
+
             dgv_listadoEquipos.DataSource = Equipos;
             this.MaximizeBox = false;
         }
@@ -34,11 +45,13 @@ namespace Vista
         private void btn_agregarEquipo_Click(object sender, EventArgs e)
         {
             FormAltaEquipo altaEquipo = new FormAltaEquipo();
+            
             bool esIgual = false;
             DialogResult resultado = altaEquipo.ShowDialog(); //para poner foco en el form alta equipo
             if (resultado == DialogResult.OK)
             {
                 Equipo equipoIngresado = altaEquipo.Equipo;
+                //equipoIngresado.Nombre.ToLower(); // por si ingresa el mismo equipo pero sin mayusculas
                 foreach (var item in Equipos)
                 {
                     if (equipoIngresado == item)
@@ -49,6 +62,7 @@ namespace Vista
                 if (!esIgual)
                 {
                     Equipos.Add(equipoIngresado);
+                    csvEquipos.AgregarDato(equipoIngresado);
                     ActualizarDataGrid();
                     MessageBox.Show("equipo cargado con exito!!!!");
 

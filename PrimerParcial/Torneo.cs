@@ -10,21 +10,24 @@ namespace BibliotecaDeClases
     {
         private string _nombre;
         private int _cantidadEquipos;
+        private int _cantidadPartidos;
         private List<Equipo> _listaDeEquipos;
         private List<Partido> _listaDePartidos;
-        private List<Equipo> listaEquipos;
 
         //lista de partidos y q un partido sea clase e/ 2 equipos
 
-
-
-        public Torneo(string nombre, int cantidadEquipos)
+        public Torneo(string nombre)
         {
-
             _nombre = nombre;
-            _cantidadEquipos = cantidadEquipos;
+            _cantidadEquipos = 0;
+            _cantidadPartidos = 0;
             _listaDeEquipos = new List<Equipo>();
             _listaDePartidos = new List<Partido>();
+        }
+
+        public Torneo(string nombre, int cantidadEquipos):this(nombre)
+        {
+            _cantidadEquipos = cantidadEquipos;
         }
 
         public Torneo(string nombre, int cantidadEquipos, List<Equipo> listaDeEquipos, List<Partido> listaDePartidos):this(nombre, cantidadEquipos)
@@ -34,15 +37,30 @@ namespace BibliotecaDeClases
         }
 
         public string Nombre { get => _nombre; set => _nombre = value; }
-        public int CantidadEquipos { get => _cantidadEquipos;}
+        public int CantidadEquipos { get => _cantidadEquipos; set => _cantidadEquipos = value; }
         public List<Equipo> ListaDeEquipos { get => _listaDeEquipos; set => _listaDeEquipos = value; }
         public List<Partido> ListaDePartidos { get => _listaDePartidos; set => _listaDePartidos = value; }
+        public int CantidadPartidos { get => _cantidadPartidos; set => _cantidadPartidos = value; }
 
         public override string ToString()
         {
             return Nombre;
         }
 
+
+        public static int BuscarIndice(List<Torneo> torneos, Torneo torneo)
+        {
+            int indice = -1;
+            for (int i = 0; i < torneos.Count; i++)
+            {
+                if (torneos[i] == torneo)
+                {
+                    indice = i;
+                }
+            }
+
+            return indice;
+        }
 
 
 

@@ -59,17 +59,18 @@
             // 
             this.dgv_listadoResultados.BackgroundColor = System.Drawing.Color.Black;
             this.dgv_listadoResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_listadoResultados.Location = new System.Drawing.Point(14, 63);
+            this.dgv_listadoResultados.Location = new System.Drawing.Point(19, 80);
             this.dgv_listadoResultados.Name = "dgv_listadoResultados";
             this.dgv_listadoResultados.RowTemplate.Height = 25;
-            this.dgv_listadoResultados.Size = new System.Drawing.Size(765, 321);
+            this.dgv_listadoResultados.Size = new System.Drawing.Size(762, 239);
             this.dgv_listadoResultados.TabIndex = 6;
             // 
             // FormListaResultados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 450);
+            this.BackColor = System.Drawing.Color.Lime;
+            this.ClientSize = new System.Drawing.Size(820, 351);
             this.Controls.Add(this.btn_agregarResultado);
             this.Controls.Add(this.lbl_listadoResultados);
             this.Controls.Add(this.dgv_listadoResultados);

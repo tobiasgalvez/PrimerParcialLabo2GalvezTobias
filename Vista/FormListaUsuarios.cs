@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,12 @@ namespace Vista
 {
     public partial class FormListaUsuarios : Form
     {
-        List<Usuario> Usuarios { get => Usuarios; set => Usuarios = value; }
+        List<Usuario> Usuarios { get; set; }
+        ManejadorCsvUsuarios csvUsuarios;
         public FormListaUsuarios()
         {
             InitializeComponent();
+            csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
         }
 
         private void btn_agregarUsuario_Click(object sender, EventArgs e)
@@ -59,6 +62,12 @@ namespace Vista
             dgv_listado.DataSource = null; // limpiar el DataSource para actualizar los datos
             dgv_listado.DataSource = Usuarios; // volver a vincular con la lista de usuarios actualizada
             dgv_listado.Refresh(); // refrescar el datagrid
+        }
+
+        private void FormListaUsuarios_Load(object sender, EventArgs e)
+        {
+            Usuarios = csvUsuarios.LeerDatos();
+            dgv_listado.DataSource = Usuarios;
         }
     }
 }

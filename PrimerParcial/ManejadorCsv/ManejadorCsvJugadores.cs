@@ -29,7 +29,7 @@ namespace BibliotecaDeClases.ManejadorCsv
                     jugadores.Add(new Jugador(partes[0], partes[1], fechaNacimiento, int.Parse(partes[3]), partes[4], partes[5]));
                 }
             }
-            return jugadores;//HACER INTERFAZ
+            return jugadores;
         }
 
         public override void AgregarDato(Jugador jugador)

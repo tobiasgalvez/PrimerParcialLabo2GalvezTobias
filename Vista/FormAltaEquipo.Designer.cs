@@ -33,6 +33,8 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_confirmar = new System.Windows.Forms.Button();
             this.lbl_msjError = new System.Windows.Forms.Label();
+            this.lbl_torneoAJugar = new System.Windows.Forms.Label();
+            this.cbo_torneos = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbl_nombre
@@ -55,7 +57,7 @@
             // btn_cancelar
             // 
             this.btn_cancelar.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_cancelar.Location = new System.Drawing.Point(189, 96);
+            this.btn_cancelar.Location = new System.Drawing.Point(191, 192);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(171, 35);
             this.btn_cancelar.TabIndex = 17;
@@ -66,7 +68,7 @@
             // btn_confirmar
             // 
             this.btn_confirmar.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_confirmar.Location = new System.Drawing.Point(12, 96);
+            this.btn_confirmar.Location = new System.Drawing.Point(12, 192);
             this.btn_confirmar.Name = "btn_confirmar";
             this.btn_confirmar.Size = new System.Drawing.Size(171, 35);
             this.btn_confirmar.TabIndex = 16;
@@ -84,13 +86,34 @@
             this.lbl_msjError.Size = new System.Drawing.Size(0, 19);
             this.lbl_msjError.TabIndex = 18;
             // 
+            // lbl_torneoAJugar
+            // 
+            this.lbl_torneoAJugar.AutoSize = true;
+            this.lbl_torneoAJugar.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_torneoAJugar.Location = new System.Drawing.Point(23, 90);
+            this.lbl_torneoAJugar.Name = "lbl_torneoAJugar";
+            this.lbl_torneoAJugar.Size = new System.Drawing.Size(127, 15);
+            this.lbl_torneoAJugar.TabIndex = 20;
+            this.lbl_torneoAJugar.Text = "Torneo a jugar:";
+            // 
+            // cbo_torneos
+            // 
+            this.cbo_torneos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_torneos.FormattingEnabled = true;
+            this.cbo_torneos.Location = new System.Drawing.Point(25, 120);
+            this.cbo_torneos.Name = "cbo_torneos";
+            this.cbo_torneos.Size = new System.Drawing.Size(329, 22);
+            this.cbo_torneos.TabIndex = 21;
+            // 
             // FormAltaEquipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lime;
-            this.ClientSize = new System.Drawing.Size(366, 193);
+            this.ClientSize = new System.Drawing.Size(374, 256);
             this.ControlBox = false;
+            this.Controls.Add(this.cbo_torneos);
+            this.Controls.Add(this.lbl_torneoAJugar);
             this.Controls.Add(this.lbl_msjError);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_confirmar);
@@ -99,6 +122,7 @@
             this.Font = new System.Drawing.Font("Unispace", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Name = "FormAltaEquipo";
             this.Text = "FormAltaEquipo";
+            this.Load += new System.EventHandler(this.FormAltaEquipo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,5 +135,7 @@
         private Button btn_cancelar;
         private Button btn_confirmar;
         private Label lbl_msjError;
+        private Label lbl_torneoAJugar;
+        private ComboBox cbo_torneos;
     }
 }

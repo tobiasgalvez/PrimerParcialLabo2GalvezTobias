@@ -40,6 +40,20 @@ namespace BibliotecaDeClases
             return sb.ToString();
         }
 
+        public static int BuscarIndice(List<Usuario> usuarios, Usuario usuario)
+        {
+            int indice = -1;
+            for (int i = 0; i < usuarios.Count; i++)
+            {
+                if (usuarios[i] == usuario)
+                {
+                    indice = i;
+                }
+            }
+
+            return indice;
+        }
+
 
         public static bool operator !=(Usuario u1, Usuario u2)
         {

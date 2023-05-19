@@ -121,9 +121,6 @@
             // 
             this.cbo_altaEquipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_altaEquipo.FormattingEnabled = true;
-            this.cbo_altaEquipo.Items.AddRange(new object[] {
-            "El Rejunte",
-            "Los mismos de siempre"});
             this.cbo_altaEquipo.Location = new System.Drawing.Point(14, 201);
             this.cbo_altaEquipo.Name = "cbo_altaEquipo";
             this.cbo_altaEquipo.Size = new System.Drawing.Size(138, 23);

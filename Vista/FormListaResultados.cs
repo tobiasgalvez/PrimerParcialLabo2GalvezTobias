@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,25 @@ namespace Vista
     public partial class FormListaResultados : Form
     {
         List<Partido> Partidos { get; set; }
+        List<Equipo> Equipos { get; set; }
+        ManejadorCsvPartidos csvPartidos;
+        ManejadorCsvEquipos csvEquipos;
+
         public FormListaResultados()
         {
             InitializeComponent();
-            Partidos = new List<Partido>(); 
+            Partidos = new List<Partido>();
+            Equipos = new List<Equipo>();
+            csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
         }
 
         private void FormListaResultados_Load(object sender, EventArgs e)
         {
+            Partidos = csvPartidos.LeerDatos();
+            Equipos = csvEquipos.LeerDatos();
+            //csvPartidos.EliminarDato(Partidos[0]);
+            //csvPartidos.EliminarDato(Partidos[1]);
             dgv_listadoResultados.DataSource = Partidos;
             this.MaximizeBox = false;
         }
@@ -47,8 +59,10 @@ namespace Vista
                 if (!esIgual)
                 {
                     Partidos.Add(partidoIngresado);
+                    csvPartidos.AgregarDato(partidoIngresado);
+
                     ActualizarDataGrid();
-                    MessageBox.Show("partido cargado con exito!!!!");
+                    MessageBox.Show("Resultado cargado con exito!!!!");
 
                 }
                 else
@@ -65,17 +79,21 @@ namespace Vista
 
         private void ActualizarDataGrid()
         {
-            if(Partidos.Count > 0)
-            {
-                dgv_listadoResultados.DataSource = null; // limpiar el DataSource para actualizar los datos
-                dgv_listadoResultados.DataSource = Partidos; // volver a vincular con la lista de jugadores actualizada
-                dgv_listadoResultados.Refresh(); // refrescar el datagrid
-            }
-            else
-            {
-                dgv_listadoResultados.Visible = false;
-                // lbl "sin datos"
-            }
+            //if(Partidos.Count > 0)
+            //{
+            //    dgv_listadoResultados.DataSource = null; // limpiar el DataSource para actualizar los datos
+            //    dgv_listadoResultados.DataSource = Partidos; // volver a vincular con la lista de jugadores actualizada
+            //    dgv_listadoResultados.Refresh(); // refrescar el datagrid
+            //}
+            //else
+            //{
+            //    dgv_listadoResultados.Visible = false;
+            //    // lbl "sin datos"
+            //}
+
+            dgv_listadoResultados.DataSource = null; // limpiar el DataSource para actualizar los datos
+            dgv_listadoResultados.DataSource = Partidos; // volver a vincular con la lista de jugadores actualizada
+            dgv_listadoResultados.Refresh(); // refrescar el datagrid
         }
     }
 }

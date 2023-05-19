@@ -62,6 +62,11 @@ namespace Vista
                 lbl_msjError.Text = ex.Message;
             }
         }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
     }
 }
 
