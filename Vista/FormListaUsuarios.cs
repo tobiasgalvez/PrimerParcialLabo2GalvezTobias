@@ -22,6 +22,13 @@ namespace Vista
             csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
         }
 
+
+        private void FormListaUsuarios_Load(object sender, EventArgs e)
+        {
+            Usuarios = csvUsuarios.LeerDatos();
+            dgv_listado.DataSource = Usuarios;
+        }
+
         private void btn_agregarUsuario_Click(object sender, EventArgs e)
         {
             bool esIgual = false;
@@ -64,10 +71,6 @@ namespace Vista
             dgv_listado.Refresh(); // refrescar el datagrid
         }
 
-        private void FormListaUsuarios_Load(object sender, EventArgs e)
-        {
-            Usuarios = csvUsuarios.LeerDatos();
-            dgv_listado.DataSource = Usuarios;
-        }
+        
     }
 }

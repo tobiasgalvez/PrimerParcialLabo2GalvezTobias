@@ -30,6 +30,7 @@ namespace Vista
 
         private void FormListaResultados_Load(object sender, EventArgs e)
         {
+
             Partidos = csvPartidos.LeerDatos();
             Equipos = csvEquipos.LeerDatos();
             //csvPartidos.EliminarDato(Partidos[0]);

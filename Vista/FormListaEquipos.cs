@@ -29,14 +29,8 @@ namespace Vista
 
         private void FormListaEquipos_Load(object sender, EventArgs e)
         {
-            //Hardcodeo.HardcodearEquipos(Equipos);
-
-            //csvEquipos.AgregarDato(Equipos[0]);
-            //csvEquipos.AgregarDato(Equipos[1]);
+ 
             Equipos = csvEquipos.LeerDatos();
-            //csvEquipos.EliminarDato(Equipos[1]);
-            //csvEquipos.EliminarDato(Equipos[2]);
-            //csvEquipos.EliminarDato(Equipos[2]);
 
             dgv_listadoEquipos.DataSource = Equipos;
             this.MaximizeBox = false;

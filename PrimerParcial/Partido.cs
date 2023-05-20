@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaDeClases.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,10 @@ namespace BibliotecaDeClases
         private Enumerados.EResultado _resultado;
         private int _golesLocal;
         private int _golesVisitante;
-        //private int _tarjetasAmarillasLocal;
-        //private int _tarjetasAmarillasVisitante;
-        //private int _tarjetasRojasLocal;
-        //private int _tarjetasRojasVisitante;
+        private int _tarjetasAmarillasLocal;
+        private int _tarjetasAmarillasVisitante;
+        private int _tarjetasRojasLocal;
+        private int _tarjetasRojasVisitante;
         private List<string> _eventos;
         private string _torneo;
         private int _minutoActual;
@@ -31,10 +32,24 @@ namespace BibliotecaDeClases
             //_ultimoId++;
             //_idPartido = _ultimoId;
             _eventos = new List<string>();
+            //_equipoLocal = new Equipo();
+            //_equipoVisitante = new Equipo();
         }
 
+        //public Partido(/*DateTime fechaPartido,*/ Equipo equipoLocal, Equipo equipoVisitante, Enumerados.EResultado resultado, int golesLocal, int golesVisitante, string torneo) : this()
+        //{
+        //    //_fechaPartido = fechaPartido;
+        //    _equipoLocal = equipoLocal;
+        //    _equipoVisitante = equipoVisitante;
+        //    _resultado = resultado;
+        //    _golesLocal = golesLocal;
+        //    _golesVisitante = golesVisitante;
+        //    _torneo = torneo;
+ 
+        //}
 
-        public Partido(/*DateTime fechaPartido,*/ Equipo equipoLocal, Equipo equipoVisitante, Enumerados.EResultado resultado, int golesLocal, int golesVisitante, string torneo) : this()
+
+        public Partido(/*DateTime fechaPartido,*/ Equipo equipoLocal, Equipo equipoVisitante, Enumerados.EResultado resultado, int golesLocal, int golesVisitante, string torneo, int tarjetasAmarillasLocal, int tarjetasAmarillasVisitante, int tarjetasRojasLocal, int tarjetasRojasVisitante) : this()
         {
             //_fechaPartido = fechaPartido;
             _equipoLocal = equipoLocal;
@@ -43,6 +58,10 @@ namespace BibliotecaDeClases
             _golesLocal = golesLocal;
             _golesVisitante = golesVisitante;
             _torneo = torneo;
+            _tarjetasAmarillasLocal = tarjetasAmarillasLocal;
+            _tarjetasAmarillasVisitante = tarjetasAmarillasVisitante;
+            _tarjetasRojasLocal = tarjetasRojasLocal;
+            _tarjetasRojasVisitante = tarjetasRojasVisitante;
         }
 
         //public DateTime FechaPartido { get => _fechaPartido; set => _fechaPartido = value; }
@@ -55,12 +74,20 @@ namespace BibliotecaDeClases
         public List<string> Eventos { get => _eventos; set => _eventos = value; }
         public int MinutoActual { private get => _minutoActual; set => _minutoActual = value; }
         public string Torneo { get => _torneo; set => _torneo = value; }
+        public int TarjetasAmarillasLocal { get => _tarjetasAmarillasLocal; set => _tarjetasAmarillasLocal = value; }
+        public int TarjetasAmarillasVisitante { get => _tarjetasAmarillasVisitante; set => _tarjetasAmarillasVisitante = value; }
+        public int TarjetasRojasLocal { get => _tarjetasRojasLocal; set => _tarjetasRojasLocal = value; }
+        public int TarjetasRojasVisitante { get => _tarjetasRojasVisitante; set => _tarjetasRojasVisitante = value; }
 
-        public static void ValidarEnfrentamiento(string equipo1, string equipo2)
+        public static void ValidarEnfrentamiento(Equipo equipo1, Equipo equipo2)
         {
             if(equipo1 == equipo2)
             {
-                throw new Exception("Un equipo no puede jugar consigo mismo!!!");
+                throw new partidoException("Un equipo no puede jugar consigo mismo!!!");
+            }
+            if (equipo1.ListaJugadores.Count < 11 || equipo2.ListaJugadores.Count < 11)
+            {
+                throw new partidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
             }
         }
 
@@ -140,11 +167,16 @@ namespace BibliotecaDeClases
             resumen.AppendLine($"Resultado final: {EquipoLocal.Nombre} {EquipoLocal.Goles} - {EquipoVisitante.Goles} {EquipoVisitante.Nombre}");
             GolesLocal = EquipoLocal.Goles;
             GolesVisitante = EquipoVisitante.Goles;
+            TarjetasAmarillasLocal = EquipoLocal.TarjetasAmarillas;
+            TarjetasRojasLocal = EquipoLocal.TarjetasRojas;
+            TarjetasAmarillasVisitante = EquipoVisitante.TarjetasAmarillas;
+            TarjetasRojasVisitante = EquipoVisitante.TarjetasRojas;
+
 
             //int hola = EquipoLocal.TarjetasAmarillas;
             //int hola2 = EquipoVisitante.TarjetasAmarillas;
 
-            ActualizarEstadisticas();
+            //ActualizarEstadisticas();
 
             resumen.AppendLine("Eventos importantes:");
             foreach (string evento in Eventos)
@@ -154,26 +186,26 @@ namespace BibliotecaDeClases
             return resumen.ToString();
         }
 
-        private void ActualizarEstadisticas()
-        {
-            if (GolesLocal < GolesVisitante)
-            {
-                Resultado = Enumerados.EResultado.Visitante;
-                EquipoLocal.PartidosPerdidos++;
-                EquipoVisitante.PartidosGanados++;
-            }
-            else if (GolesLocal == GolesVisitante)
-            {
-                Resultado = Enumerados.EResultado.Empate;
-                EquipoLocal.PartidosEmpatados++;
-                EquipoVisitante.PartidosEmpatados++;
-            }
-            else
-            {
-                EquipoLocal.PartidosGanados++;
-                EquipoVisitante.PartidosPerdidos++;
-            }
-        }
+        //private void ActualizarEstadisticas()
+        //{
+        //    if (GolesLocal < GolesVisitante)
+        //    {
+        //        Resultado = Enumerados.EResultado.Visitante;
+        //        EquipoLocal.PartidosPerdidos++;
+        //        EquipoVisitante.PartidosGanados++;
+        //    }
+        //    else if (GolesLocal == GolesVisitante)
+        //    {
+        //        Resultado = Enumerados.EResultado.Empate;
+        //        EquipoLocal.PartidosEmpatados++;
+        //        EquipoVisitante.PartidosEmpatados++;
+        //    }
+        //    else
+        //    {
+        //        EquipoLocal.PartidosGanados++;
+        //        EquipoVisitante.PartidosPerdidos++;
+        //    }
+        //}
 
 
 

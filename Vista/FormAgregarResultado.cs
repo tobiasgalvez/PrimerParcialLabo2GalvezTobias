@@ -84,8 +84,8 @@ namespace Vista
 
             ganador = (EResultado)random.Next(0, 2+1);
 
-            string equipo1;
-            string equipo2;
+            //Equipo equipo1Ingresado;
+            //Equipo equipo2Ingresado;
 
             Equipo equipoLocal;
             Equipo equipoVisitante;
@@ -96,20 +96,20 @@ namespace Vista
             {
                 Validacion.ValidarString(cbo_equipo1.Text);
                 Validacion.ValidarString(cbo_equipo2.Text);
-                equipo1 = cbo_equipo1.Text;
-                equipo2 = cbo_equipo2.Text;
+                equipoLocal = (Equipo)cbo_equipo1.SelectedItem;
+                equipoVisitante = (Equipo)cbo_equipo2.SelectedItem;
                 torneoElegido = (Torneo)cbo_torneo.SelectedItem;
-                Partido.ValidarEnfrentamiento(equipo1, equipo2);
+                Partido.ValidarEnfrentamiento(equipoLocal, equipoVisitante);
                 Partido.Torneo = cbo_torneo.Text;
 
                 foreach (var item in torneoElegido.ListaDeEquipos)
                 {
-                    if(item.Nombre == equipo1)
+                    if(equipoLocal == item)
                     {
                         equipoLocal = item;
                         Partido.EquipoLocal = equipoLocal;
                     }                                   //BUSCO SI COINCIDE EL EQUIPO QUE INGRESÓ EN EL COMBOBOX
-                    else if(item.Nombre == equipo2)
+                    else if(equipoVisitante == item)
                     {
                         equipoVisitante = item;
                         Partido.EquipoVisitante = equipoVisitante;

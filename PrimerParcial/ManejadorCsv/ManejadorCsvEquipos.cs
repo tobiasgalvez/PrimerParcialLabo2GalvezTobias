@@ -83,7 +83,7 @@ namespace BibliotecaDeClases.ManejadorCsv
             //GuardarDatos(equipos);
 
             var equipos = LeerDatos();
-            var equiposAEliminar = new List<Equipo>();
+            var equiposAEliminar = new List<Equipo>(); 
 
             foreach (var item in equipos)
             {
@@ -131,14 +131,6 @@ namespace BibliotecaDeClases.ManejadorCsv
 
         private void AsignarResultadosAEquipos(List<Equipo> equipos, List<Partido> partidos)
         {
-            //foreach (var jugador in jugadores)
-            //{
-            //    Equipo equipo = equipos.FirstOrDefault(e => e.Nombre == jugador.Equipo);
-            //    if (equipo is not null)
-            //    {
-            //        equipo.ListaJugadores.Add(jugador);
-            //    }
-            //}
             foreach (var partido in partidos)
             {
                 foreach (var equipo in equipos)
@@ -147,8 +139,9 @@ namespace BibliotecaDeClases.ManejadorCsv
                     {
                         equipo.PartidosJugados++;
                         equipo.Goles += partido.GolesLocal;
-                        equipo.TarjetasAmarillas += partido.EquipoLocal.TarjetasAmarillas;
-                        equipo.TarjetasRojas += partido.EquipoLocal.TarjetasRojas;
+                        //equipo.Goles += partido.EquipoLocal.Goles;
+                        equipo.TarjetasAmarillas += partido.TarjetasAmarillasLocal;
+                        equipo.TarjetasRojas += partido.TarjetasRojasLocal;
                         if (partido.Resultado == Enumerados.EResultado.Local)
                             equipo.PartidosGanados++;
                         else if (partido.Resultado == Enumerados.EResultado.Empate)
@@ -160,8 +153,9 @@ namespace BibliotecaDeClases.ManejadorCsv
                     {
                         equipo.PartidosJugados++;
                         equipo.Goles += partido.GolesVisitante;
-                        equipo.TarjetasAmarillas += partido.EquipoVisitante.TarjetasAmarillas;
-                        equipo.TarjetasRojas += partido.EquipoVisitante.TarjetasRojas;
+                        //equipo.Goles += partido.EquipoVisitante.Goles; POR QUÉ NO FUNCIONA?
+                        equipo.TarjetasAmarillas += partido.TarjetasAmarillasVisitante;
+                        equipo.TarjetasRojas += partido.TarjetasRojasVisitante;
                         if (partido.Resultado == Enumerados.EResultado.Visitante)
                             equipo.PartidosGanados++;
                         else if (partido.Resultado == Enumerados.EResultado.Empate)

@@ -18,6 +18,7 @@ namespace BibliotecaDeClases.ManejadorCsv
             List<Partido> partidos = new List<Partido>();
             Equipo equipo1;
             Equipo equipo2;
+       
             EResultado resultado;
 
             using (StreamReader reader = new StreamReader(_csvFilePath))
@@ -28,9 +29,12 @@ namespace BibliotecaDeClases.ManejadorCsv
                     string[] partes = linea.Split(',');
                     equipo1 = new Equipo(partes[0]);
                     equipo2 = new Equipo(partes[1]);
+
+                    //equipo1.Goles = int.Parse(partes[3]);
+                    //equipo2.Goles = int.Parse(partes[4]);
                     resultado = Enum.Parse<EResultado>(partes[2]);
 
-                    partidos.Add(new Partido(equipo1, equipo2, resultado, int.Parse(partes[3]), int.Parse(partes[4]), partes[5]));
+                    partidos.Add(new Partido(equipo1, equipo2, resultado, int.Parse(partes[3]), int.Parse(partes[4]), partes[5], int.Parse(partes[6]), int.Parse(partes[7]), int.Parse(partes[8]), int.Parse(partes[9])));
                 }
             }
             return partidos;
@@ -40,7 +44,7 @@ namespace BibliotecaDeClases.ManejadorCsv
         {
             using (var sw = new StreamWriter(_csvFilePath, true)) // el using sería como un try-finally en donde el finally tira un dispose al archivo 
             {
-                sw.WriteLine($"{partido.EquipoLocal},{partido.EquipoVisitante},{partido.Resultado},{partido.GolesLocal},{partido.GolesVisitante},{partido.Torneo}");
+                sw.WriteLine($"{partido.EquipoLocal},{partido.EquipoVisitante},{partido.Resultado},{partido.EquipoLocal.Goles},{partido.EquipoVisitante.Goles},{partido.Torneo},{partido.TarjetasAmarillasLocal},{partido.TarjetasRojasLocal},{partido.TarjetasAmarillasVisitante},{partido.TarjetasRojasVisitante}");
             }
         }
 
@@ -95,7 +99,7 @@ namespace BibliotecaDeClases.ManejadorCsv
             {
                 foreach (var partido in partidos)
                 {
-                    sw.WriteLine($"{partido.EquipoLocal},{partido.EquipoVisitante},{partido.Resultado},{partido.GolesLocal},{partido.GolesVisitante},{partido.Torneo}");
+                    sw.WriteLine($"{partido.EquipoLocal},{partido.EquipoVisitante},{partido.Resultado},{partido.EquipoLocal.Goles},{partido.EquipoVisitante.Goles},{partido.Torneo},{partido.TarjetasAmarillasLocal},{partido.TarjetasRojasLocal},{partido.TarjetasAmarillasVisitante},{partido.TarjetasRojasVisitante}");
                 }
             }
         }

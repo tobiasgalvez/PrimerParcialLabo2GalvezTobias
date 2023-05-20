@@ -79,5 +79,11 @@ namespace Vista
             FormListaResultados formListaResultados = new FormListaResultados();
             formListaResultados.ShowDialog();
         }
+
+        private void verRankingHistoricoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRankingHistórico formRankingHistórico = new FormRankingHistórico();
+            formRankingHistórico.ShowDialog();
+        }
     }
 }

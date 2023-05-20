@@ -42,7 +42,7 @@
             // lbl_equipo1
             // 
             this.lbl_equipo1.AutoSize = true;
-            this.lbl_equipo1.Location = new System.Drawing.Point(117, 109);
+            this.lbl_equipo1.Location = new System.Drawing.Point(177, 116);
             this.lbl_equipo1.Name = "lbl_equipo1";
             this.lbl_equipo1.Size = new System.Drawing.Size(179, 19);
             this.lbl_equipo1.TabIndex = 0;
@@ -51,7 +51,7 @@
             // lbl_equipo2
             // 
             this.lbl_equipo2.AutoSize = true;
-            this.lbl_equipo2.Location = new System.Drawing.Point(403, 109);
+            this.lbl_equipo2.Location = new System.Drawing.Point(463, 116);
             this.lbl_equipo2.Name = "lbl_equipo2";
             this.lbl_equipo2.Size = new System.Drawing.Size(219, 19);
             this.lbl_equipo2.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             this.cbo_equipo1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_equipo1.FormattingEnabled = true;
-            this.cbo_equipo1.Location = new System.Drawing.Point(117, 142);
+            this.cbo_equipo1.Location = new System.Drawing.Point(177, 149);
             this.cbo_equipo1.Name = "cbo_equipo1";
             this.cbo_equipo1.Size = new System.Drawing.Size(223, 27);
             this.cbo_equipo1.TabIndex = 2;
@@ -70,14 +70,14 @@
             // 
             this.cbo_equipo2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_equipo2.FormattingEnabled = true;
-            this.cbo_equipo2.Location = new System.Drawing.Point(403, 142);
+            this.cbo_equipo2.Location = new System.Drawing.Point(463, 149);
             this.cbo_equipo2.Name = "cbo_equipo2";
             this.cbo_equipo2.Size = new System.Drawing.Size(217, 27);
             this.cbo_equipo2.TabIndex = 3;
             // 
             // btn_generarResultado
             // 
-            this.btn_generarResultado.Location = new System.Drawing.Point(166, 210);
+            this.btn_generarResultado.Location = new System.Drawing.Point(226, 217);
             this.btn_generarResultado.Name = "btn_generarResultado";
             this.btn_generarResultado.Size = new System.Drawing.Size(187, 48);
             this.btn_generarResultado.TabIndex = 4;
@@ -87,7 +87,7 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(403, 212);
+            this.btn_cancel.Location = new System.Drawing.Point(463, 219);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(187, 46);
             this.btn_cancel.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             this.cbo_torneo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_torneo.FormattingEnabled = true;
-            this.cbo_torneo.Location = new System.Drawing.Point(269, 43);
+            this.cbo_torneo.Location = new System.Drawing.Point(329, 50);
             this.cbo_torneo.Name = "cbo_torneo";
             this.cbo_torneo.Size = new System.Drawing.Size(223, 27);
             this.cbo_torneo.TabIndex = 7;
@@ -108,7 +108,7 @@
             // lbl_torneo
             // 
             this.lbl_torneo.AutoSize = true;
-            this.lbl_torneo.Location = new System.Drawing.Point(269, 9);
+            this.lbl_torneo.Location = new System.Drawing.Point(329, 16);
             this.lbl_torneo.Name = "lbl_torneo";
             this.lbl_torneo.Size = new System.Drawing.Size(79, 19);
             this.lbl_torneo.TabIndex = 6;
@@ -118,7 +118,7 @@
             // 
             this.lbl_mensajeError.AutoSize = true;
             this.lbl_mensajeError.ForeColor = System.Drawing.Color.Red;
-            this.lbl_mensajeError.Location = new System.Drawing.Point(155, 291);
+            this.lbl_mensajeError.Location = new System.Drawing.Point(12, 301);
             this.lbl_mensajeError.Name = "lbl_mensajeError";
             this.lbl_mensajeError.Size = new System.Drawing.Size(0, 19);
             this.lbl_mensajeError.TabIndex = 8;
@@ -128,7 +128,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lime;
-            this.ClientSize = new System.Drawing.Size(780, 329);
+            this.ClientSize = new System.Drawing.Size(881, 329);
             this.ControlBox = false;
             this.Controls.Add(this.lbl_mensajeError);
             this.Controls.Add(this.cbo_torneo);
