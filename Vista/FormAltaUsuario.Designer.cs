@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaUsuario));
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.monthCalendar_fechaNacimiento = new System.Windows.Forms.MonthCalendar();
             this.lbl_fechaDeNacimiento = new System.Windows.Forms.Label();
@@ -45,6 +46,8 @@
             this.txt_altaContraseña = new System.Windows.Forms.TextBox();
             this.lbl_contraseña = new System.Windows.Forms.Label();
             this.lbl_msjError = new System.Windows.Forms.Label();
+            this.cbo_usuariosModificar = new System.Windows.Forms.ComboBox();
+            this.lbl_usuarioAModificar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_cancelar
@@ -200,6 +203,28 @@
             this.lbl_msjError.Text = "...";
             this.lbl_msjError.Visible = false;
             // 
+            // cbo_usuariosModificar
+            // 
+            this.cbo_usuariosModificar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_usuariosModificar.FormattingEnabled = true;
+            this.cbo_usuariosModificar.Location = new System.Drawing.Point(210, 289);
+            this.cbo_usuariosModificar.Name = "cbo_usuariosModificar";
+            this.cbo_usuariosModificar.Size = new System.Drawing.Size(258, 26);
+            this.cbo_usuariosModificar.TabIndex = 35;
+            this.cbo_usuariosModificar.Visible = false;
+            this.cbo_usuariosModificar.SelectionChangeCommitted += new System.EventHandler(this.cbo_usuariosModificar_SelectionChangeCommitted);
+            // 
+            // lbl_usuarioAModificar
+            // 
+            this.lbl_usuarioAModificar.AutoSize = true;
+            this.lbl_usuarioAModificar.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_usuarioAModificar.Location = new System.Drawing.Point(210, 260);
+            this.lbl_usuarioAModificar.Name = "lbl_usuarioAModificar";
+            this.lbl_usuarioAModificar.Size = new System.Drawing.Size(167, 15);
+            this.lbl_usuarioAModificar.TabIndex = 34;
+            this.lbl_usuarioAModificar.Text = "Usuario a modificar:";
+            this.lbl_usuarioAModificar.Visible = false;
+            // 
             // FormAltaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -207,6 +232,8 @@
             this.BackColor = System.Drawing.Color.Lime;
             this.ClientSize = new System.Drawing.Size(515, 540);
             this.ControlBox = false;
+            this.Controls.Add(this.cbo_usuariosModificar);
+            this.Controls.Add(this.lbl_usuarioAModificar);
             this.Controls.Add(this.lbl_msjError);
             this.Controls.Add(this.txt_altaContraseña);
             this.Controls.Add(this.lbl_contraseña);
@@ -224,7 +251,8 @@
             this.Controls.Add(this.txt_altaApellido);
             this.Controls.Add(this.txt_altaNombre);
             this.Controls.Add(this.btn_confirmar);
-            this.Font = new System.Drawing.Font("Unispace", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Unispace", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAltaUsuario";
             this.Text = "FormAltaUsuario";
@@ -253,5 +281,7 @@
         private TextBox txt_altaContraseña;
         private Label lbl_contraseña;
         private Label lbl_msjError;
+        private ComboBox cbo_usuariosModificar;
+        private Label lbl_usuarioAModificar;
     }
 }

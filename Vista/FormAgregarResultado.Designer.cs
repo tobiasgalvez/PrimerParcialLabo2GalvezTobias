@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAgregarResultado));
             this.lbl_equipo1 = new System.Windows.Forms.Label();
             this.lbl_equipo2 = new System.Windows.Forms.Label();
             this.cbo_equipo1 = new System.Windows.Forms.ComboBox();
@@ -141,8 +142,10 @@
             this.Controls.Add(this.lbl_equipo1);
             this.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAgregarResultado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormAgregarResultado";
             this.Load += new System.EventHandler(this.FormAgregarResultado_Load);
             this.ResumeLayout(false);

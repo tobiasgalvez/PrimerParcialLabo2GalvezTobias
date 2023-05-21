@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListaResultados));
             this.btn_agregarResultado = new System.Windows.Forms.Button();
             this.lbl_listadoResultados = new System.Windows.Forms.Label();
             this.dgv_listadoResultados = new System.Windows.Forms.DataGridView();
@@ -75,7 +76,9 @@
             this.Controls.Add(this.lbl_listadoResultados);
             this.Controls.Add(this.dgv_listadoResultados);
             this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormListaResultados";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormListaResultados";
             this.Load += new System.EventHandler(this.FormListaResultados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoResultados)).EndInit();

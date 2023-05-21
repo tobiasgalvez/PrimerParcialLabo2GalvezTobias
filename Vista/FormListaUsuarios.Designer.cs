@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListaUsuarios));
             this.btn_agregarUsuario = new System.Windows.Forms.Button();
             this.lbl_listado = new System.Windows.Forms.Label();
             this.dgv_listado = new System.Windows.Forms.DataGridView();
@@ -75,7 +76,9 @@
             this.Controls.Add(this.lbl_listado);
             this.Controls.Add(this.dgv_listado);
             this.Font = new System.Drawing.Font("Unispace", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormListaUsuarios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormListaUsuarios";
             this.Load += new System.EventHandler(this.FormListaUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).EndInit();

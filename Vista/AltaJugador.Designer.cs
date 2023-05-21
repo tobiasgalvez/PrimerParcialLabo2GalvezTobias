@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaJugador));
             this.btn_confirmar = new System.Windows.Forms.Button();
             this.txt_altaNombre = new System.Windows.Forms.TextBox();
             this.txt_altaApellido = new System.Windows.Forms.TextBox();
@@ -43,6 +44,8 @@
             this.monthCalendar_fechaNacimiento = new System.Windows.Forms.MonthCalendar();
             this.lbl_msjError = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
+            this.lbl_jugadorAModificar = new System.Windows.Forms.Label();
+            this.cbo_jugadoresModificar = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btn_confirmar
@@ -184,6 +187,27 @@
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
+            // lbl_jugadorAModificar
+            // 
+            this.lbl_jugadorAModificar.AutoSize = true;
+            this.lbl_jugadorAModificar.Location = new System.Drawing.Point(185, 233);
+            this.lbl_jugadorAModificar.Name = "lbl_jugadorAModificar";
+            this.lbl_jugadorAModificar.Size = new System.Drawing.Size(167, 15);
+            this.lbl_jugadorAModificar.TabIndex = 16;
+            this.lbl_jugadorAModificar.Text = "Jugador a modificar:";
+            this.lbl_jugadorAModificar.Visible = false;
+            // 
+            // cbo_jugadoresModificar
+            // 
+            this.cbo_jugadoresModificar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_jugadoresModificar.FormattingEnabled = true;
+            this.cbo_jugadoresModificar.Location = new System.Drawing.Point(185, 262);
+            this.cbo_jugadoresModificar.Name = "cbo_jugadoresModificar";
+            this.cbo_jugadoresModificar.Size = new System.Drawing.Size(258, 23);
+            this.cbo_jugadoresModificar.TabIndex = 17;
+            this.cbo_jugadoresModificar.Visible = false;
+            this.cbo_jugadoresModificar.SelectionChangeCommitted += new System.EventHandler(this.cbo_jugadoresModificar_SelectionChangeCommitted);
+            // 
             // AltaJugador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -192,6 +216,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(501, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.cbo_jugadoresModificar);
+            this.Controls.Add(this.lbl_jugadorAModificar);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.lbl_msjError);
             this.Controls.Add(this.monthCalendar_fechaNacimiento);
@@ -208,7 +234,9 @@
             this.Controls.Add(this.txt_altaNombre);
             this.Controls.Add(this.btn_confirmar);
             this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AltaJugador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AltaProducto";
             this.Load += new System.EventHandler(this.AltaProducto_Load);
             this.ResumeLayout(false);
@@ -233,5 +261,7 @@
         private MonthCalendar monthCalendar_fechaNacimiento;
         private Label lbl_msjError;
         private Button btn_cancelar;
+        private Label lbl_jugadorAModificar;
+        private ComboBox cbo_jugadoresModificar;
     }
 }

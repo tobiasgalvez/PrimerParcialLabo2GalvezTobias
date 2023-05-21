@@ -64,5 +64,10 @@ namespace BibliotecaDeClases
         {
             return u1.User == u2.User;
         }
+
+        public override string ToString()
+        {
+            return User;
+        }
     }
 }

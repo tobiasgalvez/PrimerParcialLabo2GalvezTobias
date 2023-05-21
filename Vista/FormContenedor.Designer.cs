@@ -36,16 +36,12 @@
             this.verTorneosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verResultadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verRankingHistoricoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jugadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equiposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.torneosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplicaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verRankingHistoricoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +56,7 @@
             this.desconectarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1184, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1061, 26);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -112,40 +108,19 @@
             this.verUsuariosToolStripMenuItem.Text = "Ver Usuarios";
             this.verUsuariosToolStripMenuItem.Click += new System.EventHandler(this.verUsuariosToolStripMenuItem_Click);
             // 
+            // verRankingHistoricoToolStripMenuItem
+            // 
+            this.verRankingHistoricoToolStripMenuItem.Name = "verRankingHistoricoToolStripMenuItem";
+            this.verRankingHistoricoToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.verRankingHistoricoToolStripMenuItem.Text = "Ver Ranking Historico";
+            this.verRankingHistoricoToolStripMenuItem.Click += new System.EventHandler(this.verRankingHistoricoToolStripMenuItem_Click);
+            // 
             // modificarToolStripMenuItem
             // 
-            this.modificarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jugadoresToolStripMenuItem,
-            this.equiposToolStripMenuItem,
-            this.torneosToolStripMenuItem,
-            this.usuariosToolStripMenuItem});
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
             this.modificarToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
-            // 
-            // jugadoresToolStripMenuItem
-            // 
-            this.jugadoresToolStripMenuItem.Name = "jugadoresToolStripMenuItem";
-            this.jugadoresToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.jugadoresToolStripMenuItem.Text = "Jugadores";
-            // 
-            // equiposToolStripMenuItem
-            // 
-            this.equiposToolStripMenuItem.Name = "equiposToolStripMenuItem";
-            this.equiposToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.equiposToolStripMenuItem.Text = "Equipos";
-            // 
-            // torneosToolStripMenuItem
-            // 
-            this.torneosToolStripMenuItem.Name = "torneosToolStripMenuItem";
-            this.torneosToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.torneosToolStripMenuItem.Text = "Torneos";
-            // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // informaciónToolStripMenuItem
             // 
@@ -176,13 +151,6 @@
             this.desconectarToolStripMenuItem.Text = "Desconectar";
             this.desconectarToolStripMenuItem.Click += new System.EventHandler(this.desconectarToolStripMenuItem_Click);
             // 
-            // verRankingHistoricoToolStripMenuItem
-            // 
-            this.verRankingHistoricoToolStripMenuItem.Name = "verRankingHistoricoToolStripMenuItem";
-            this.verRankingHistoricoToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
-            this.verRankingHistoricoToolStripMenuItem.Text = "Ver Ranking Historico";
-            this.verRankingHistoricoToolStripMenuItem.Click += new System.EventHandler(this.verRankingHistoricoToolStripMenuItem_Click);
-            // 
             // FormContenedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -190,14 +158,14 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::Vista.Properties.Resources._566722;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.ClientSize = new System.Drawing.Size(1061, 510);
             this.ControlBox = false;
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormContenedor";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormContenedor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -215,11 +183,7 @@
         private ToolStripMenuItem verEquiposToolStripMenuItem;
         private ToolStripMenuItem verTorneosToolStripMenuItem1;
         private ToolStripMenuItem modificarToolStripMenuItem;
-        private ToolStripMenuItem jugadoresToolStripMenuItem;
-        private ToolStripMenuItem equiposToolStripMenuItem;
-        private ToolStripMenuItem torneosToolStripMenuItem;
         private ToolStripMenuItem verUsuariosToolStripMenuItem;
-        private ToolStripMenuItem usuariosToolStripMenuItem;
         private ToolStripMenuItem informaciónToolStripMenuItem;
         private ToolStripMenuItem verResultadosToolStripMenuItem1;
         private ToolStripMenuItem usuarioToolStripMenuItem;

@@ -78,6 +78,7 @@
             this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormListaTorneos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ListaTorneos";
             this.Load += new System.EventHandler(this.ListaTorneos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listadoTorneos)).EndInit();

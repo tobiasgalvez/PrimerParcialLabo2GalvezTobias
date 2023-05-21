@@ -85,5 +85,11 @@ namespace Vista
             FormRankingHistórico formRankingHistórico = new FormRankingHistórico();
             formRankingHistórico.ShowDialog();
         }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormModificar formModificar = new FormModificar();
+            formModificar.ShowDialog();
+        }
     }
 }

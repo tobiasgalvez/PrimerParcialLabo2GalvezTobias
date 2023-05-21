@@ -85,10 +85,10 @@ namespace BibliotecaDeClases
             {
                 throw new partidoException("Un equipo no puede jugar consigo mismo!!!");
             }
-            if (equipo1.ListaJugadores.Count < 11 || equipo2.ListaJugadores.Count < 11)
-            {
-                throw new partidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
-            }
+            //if (equipo1.ListaJugadores.Count < 11 || equipo2.ListaJugadores.Count < 11)
+            //{
+            //    throw new partidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
+            //}
         }
 
 

@@ -62,6 +62,17 @@ namespace BibliotecaDeClases
             return indice;
         }
 
+        public static bool operator !=(Torneo t1, Torneo t2)
+        {
+            return t1.Nombre != t2.Nombre;
+        }
+
+        public static bool operator ==(Torneo t1, Torneo t2)
+        {
+            return t1.Nombre == t2.Nombre;
+        }
+
+
 
 
     }

@@ -14,8 +14,12 @@ namespace Vista
 {
     public partial class FormAltaEquipo : Form
     {
-        Equipo _equipo;
+        public Equipo Equipo { get; set; }
         List<Torneo> Torneos { get; set; }
+        List<Equipo> Equipos { get; set; }
+        private string _nombreAnterior;
+
+
         ManejadorCsvTorneos csvTorneos;
         public FormAltaEquipo()
         {
@@ -23,8 +27,16 @@ namespace Vista
             csvTorneos = new ManejadorCsvTorneos("torneos.csv");
         }
 
-        public Equipo Equipo { get => _equipo;}
+        public FormAltaEquipo(List<Equipo> listaEquipos):this()
+        {
+            Equipos = new List<Equipo>();
+            Equipos = listaEquipos;
 
+            CambiarHerramientasParaModificar();
+        }
+
+        public string NombreAnterior { get => _nombreAnterior; set => _nombreAnterior = value; }
+        
 
         private void FormAltaEquipo_Load(object sender, EventArgs e)
         {
@@ -32,6 +44,21 @@ namespace Vista
             Torneos = csvTorneos.LeerDatos();
 
             cbo_torneos.DataSource = Torneos;
+            comboBox1.DataSource = Equipos;
+
+            if(Equipos is not null)
+            {
+                Equipo = (Equipo)comboBox1.SelectedItem;
+                CargarDatosEquipo(Equipo);
+            }
+        }
+
+        private void CargarDatosEquipo(Equipo equipo)
+        {
+            this.cbo_torneos.Text = equipo.Liga;
+            this.txt_altaNombre.Text = equipo.Nombre;
+            NombreAnterior = equipo.Nombre;
+
         }
 
         private void btn_confirmar_Click(object sender, EventArgs e)
@@ -46,7 +73,7 @@ namespace Vista
 
                 Validacion.ValidarString(auxNombre);
 
-                _equipo = new Equipo(auxNombre, auxTorneo);
+                Equipo = new Equipo(auxNombre, auxTorneo);
 
                 this.DialogResult = DialogResult.OK;
 
@@ -63,6 +90,21 @@ namespace Vista
             this.DialogResult = DialogResult.Cancel;
         }
 
-       
+
+        private void CambiarHerramientasParaModificar()
+        {
+            this.lbl_equipoModificar.Visible = true;
+            this.comboBox1.Visible = true;
+            this.lbl_nombre.Text = "Nuevo Nombre:";
+            this.btn_confirmar.Text = "Modificar";
+            //this.cbo_torneos.Visible = false;
+            //this.lbl_torneoAJugar.Visible = false;
+            //this.cbo_torneos.SelectedItem = Equipo.Liga;
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CargarDatosEquipo((Equipo)comboBox1.SelectedItem);
+        }
     }
 }

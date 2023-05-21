@@ -90,5 +90,11 @@ namespace BibliotecaDeClases
             return j1.Dni == j2.Dni;
         }
 
+
+        public override string ToString()
+        {
+            return $"{Apellido}, {Nombre}, {Dni.ToString()}";
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,29 @@ namespace Vista
     public partial class FormAltaUsuario : Form
     {
         public Usuario Usuario { get; set; }
+        public List<Usuario> Usuarios { get; set; }
+
         public FormAltaUsuario()
         {
             InitializeComponent();
+            Usuarios = new List<Usuario>();
+        }
+        public FormAltaUsuario(List<Usuario> listaUsuarios) : this()
+        {
+            Usuarios = listaUsuarios;
+            CambiarHerramientasParaModificar();
         }
 
         private void FormAltaUsuario_Load(object sender, EventArgs e)
         {
             cbo_roles.DataSource = Enum.GetValues(typeof(ERol)).Cast<ERol>().ToList();
+            cbo_usuariosModificar.DataSource = Usuarios;
+
+            if (Usuarios is not null)
+            {
+                Usuario = (Usuario)cbo_usuariosModificar.SelectedItem;
+                CargarDatosUsuario(Usuario);    
+            }
         }
 
         private void btn_confirmar_Click(object sender, EventArgs e)
@@ -66,6 +82,30 @@ namespace Vista
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void CambiarHerramientasParaModificar()
+        {
+            this.lbl_fechaDeNacimiento.Visible = false;
+            this.monthCalendar_fechaNacimiento.Visible = false;
+            this.lbl_usuarioAModificar.Visible = true;
+            this.cbo_usuariosModificar.Visible = true;
+            this.btn_confirmar.Text = "Modificar";
+        }
+
+        private void CargarDatosUsuario(Usuario usuario)
+        {
+            txt_altaNombre.Text = usuario.Nombre;
+            txt_altaApellido.Text = usuario.Apellido;
+            txt_altaDni.Text = usuario.Dni.ToString();
+            txt_altaNombreUsuario.Text = usuario.User;
+            txt_altaContraseña.Text = usuario.Contraseña;
+            cbo_roles.Text = usuario.Rol.ToString();
+        }
+
+        private void cbo_usuariosModificar_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CargarDatosUsuario((Usuario)cbo_usuariosModificar.SelectedItem);
         }
     }
 }

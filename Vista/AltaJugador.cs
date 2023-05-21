@@ -19,21 +19,49 @@ namespace Vista
         public Jugador Jugador { get; set; }
         public List<Equipo> Equipos { get; set; }
         public ManejadorCsvEquipos csvEquipos;
+        public List<Jugador> Jugadores { get; set; }
         public AltaJugador()
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
             csvEquipos = new ManejadorCsvEquipos("equipos.csv");
 
+
+        }
+
+        public AltaJugador(List<Jugador> jugadores):this()
+        {
+            Jugadores = new List<Jugador>();
+            Jugadores = jugadores;
+
+            CambiarHerramientasParaModificar();
         }
 
        
+
         private void AltaProducto_Load(object sender, EventArgs e)
         {
+
+
+            //if(Jugador != null)
+            //{
+            //    txt_altaNombre.Text = Jugador.Nombre;
+            //    txt_altaApellido.Text = Jugador.Apellido;
+            //    txt
+            //}
            Equipos = csvEquipos.LeerDatos();
            cbo_altaEquipo.DataSource = Equipos;
            cbo_posiciones.DataSource = Enum.GetValues(typeof(EPosiciones)).Cast<EPosiciones>().ToList();
 
+            cbo_jugadoresModificar.DataSource = Jugadores;
+
+            if(Jugadores is not null)
+            {
+               Jugador = (Jugador)cbo_jugadoresModificar.SelectedItem;
+
+                CargarDatosJugador(Jugador);
+
+            }
             //var lista = new List<Enumerados.EPosiciones>();
             //lista = Enumerados.GetAll();
 
@@ -72,10 +100,6 @@ namespace Vista
                 MessageBox.Show(Jugador.ObtenerInformacion());
                 this.DialogResult = DialogResult.OK;
 
-                //FormListaJugadores formJugadores = new FormListaJugadores();
-
-                //formJugadores.Jugadores.Add(jugador);
-                //formJugadores.Show();
                 this.Hide();
             }
             catch (Exception excepcion)
@@ -85,17 +109,16 @@ namespace Vista
                 lbl_msjError.Text = excepcion.Message;
 
             }
-
-                //FormListaJugadores formListaJugadores = new FormListaJugadores(jugador);
-                //formListaJugadores.Show();
-                //this.Hide();
-            
         }
 
 
-        private void CargarJugador()
-        { 
-            //tendría q pasarme el codigo de "agregar" acá 
+        private void CargarDatosJugador(Jugador jugador)
+        {
+            txt_altaNombre.Text = jugador.Nombre;
+            txt_altaApellido.Text = jugador.Apellido;
+            txt_altaDni.Text = jugador.Dni.ToString();
+            cbo_altaEquipo.Text = jugador.Equipo;
+            cbo_posiciones.Text = jugador.Posicion;
         }
 
 
@@ -104,6 +127,18 @@ namespace Vista
             this.DialogResult=DialogResult.Cancel;
         }
 
-  
+        private void cbo_jugadoresModificar_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CargarDatosJugador((Jugador)cbo_jugadoresModificar.SelectedItem);
+        }
+
+        private void CambiarHerramientasParaModificar()
+        {
+            this.btn_confirmar.Text = "Modificar";
+            this.cbo_jugadoresModificar.Visible = true;
+            this.lbl_jugadorAModificar.Visible = true;
+            this.monthCalendar_fechaNacimiento.Visible = false;
+            this.lbl_fechaDeNacimiento.Visible = false;
+        }
     }
 }
