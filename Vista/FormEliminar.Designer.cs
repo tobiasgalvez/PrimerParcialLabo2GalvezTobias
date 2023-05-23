@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEliminar));
             this.btn_eliminarJugador = new System.Windows.Forms.Button();
             this.cbo_jugadores = new System.Windows.Forms.ComboBox();
             this.cbo_equipos = new System.Windows.Forms.ComboBox();
@@ -63,7 +64,6 @@
             this.cbo_jugadores.Name = "cbo_jugadores";
             this.cbo_jugadores.Size = new System.Drawing.Size(342, 23);
             this.cbo_jugadores.TabIndex = 1;
-            
             // 
             // cbo_equipos
             // 
@@ -213,6 +213,7 @@
             this.Controls.Add(this.cbo_jugadores);
             this.Controls.Add(this.btn_eliminarJugador);
             this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEliminar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormEliminar";

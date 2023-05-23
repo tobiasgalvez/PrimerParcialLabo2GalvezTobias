@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FormRankingHistórico
+    partial class FormRanking
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRankingHistórico));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRanking));
             this.btn_másGoles = new System.Windows.Forms.Button();
             this.btn_masPartidos = new System.Windows.Forms.Button();
             this.btn_masTarjetasAmarillas = new System.Windows.Forms.Button();

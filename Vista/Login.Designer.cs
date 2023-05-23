@@ -194,7 +194,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
+            //this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mostrarContraseña)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_ocultarContraseña)).EndInit();
             this.ResumeLayout(false);

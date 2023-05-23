@@ -53,11 +53,6 @@ namespace Vista
             formListado.ShowDialog();
         }
 
-        private void verResultadosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void verTorneosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormListaTorneos formListadoTorneos = new FormListaTorneos();
@@ -83,7 +78,7 @@ namespace Vista
 
         private void verRankingHistoricoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormRankingHistórico formRankingHistórico = new FormRankingHistórico();
+            FormRanking formRankingHistórico = new FormRanking();
             formRankingHistórico.ShowDialog();
         }
 

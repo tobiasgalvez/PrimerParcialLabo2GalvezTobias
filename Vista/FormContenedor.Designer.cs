@@ -78,43 +78,43 @@
             // verEquiposToolStripMenuItem
             // 
             this.verEquiposToolStripMenuItem.Name = "verEquiposToolStripMenuItem";
-            this.verEquiposToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.verEquiposToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.verEquiposToolStripMenuItem.Text = "Ver equipos";
             this.verEquiposToolStripMenuItem.Click += new System.EventHandler(this.verEquiposToolStripMenuItem_Click);
             // 
             // verPersonasToolStripMenuItem
             // 
             this.verPersonasToolStripMenuItem.Name = "verPersonasToolStripMenuItem";
-            this.verPersonasToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.verPersonasToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.verPersonasToolStripMenuItem.Text = "Ver Jugadores";
             this.verPersonasToolStripMenuItem.Click += new System.EventHandler(this.verPersonasToolStripMenuItem_Click);
             // 
             // verTorneosToolStripMenuItem1
             // 
             this.verTorneosToolStripMenuItem1.Name = "verTorneosToolStripMenuItem1";
-            this.verTorneosToolStripMenuItem1.Size = new System.Drawing.Size(265, 22);
+            this.verTorneosToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
             this.verTorneosToolStripMenuItem1.Text = "Ver Torneos";
             this.verTorneosToolStripMenuItem1.Click += new System.EventHandler(this.verTorneosToolStripMenuItem1_Click);
             // 
             // verResultadosToolStripMenuItem1
             // 
             this.verResultadosToolStripMenuItem1.Name = "verResultadosToolStripMenuItem1";
-            this.verResultadosToolStripMenuItem1.Size = new System.Drawing.Size(265, 22);
+            this.verResultadosToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
             this.verResultadosToolStripMenuItem1.Text = "Ver Resultados";
             this.verResultadosToolStripMenuItem1.Click += new System.EventHandler(this.verResultadosToolStripMenuItem1_Click);
             // 
             // verUsuariosToolStripMenuItem
             // 
             this.verUsuariosToolStripMenuItem.Name = "verUsuariosToolStripMenuItem";
-            this.verUsuariosToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.verUsuariosToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.verUsuariosToolStripMenuItem.Text = "Ver Usuarios";
             this.verUsuariosToolStripMenuItem.Click += new System.EventHandler(this.verUsuariosToolStripMenuItem_Click);
             // 
             // verRankingHistoricoToolStripMenuItem
             // 
             this.verRankingHistoricoToolStripMenuItem.Name = "verRankingHistoricoToolStripMenuItem";
-            this.verRankingHistoricoToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
-            this.verRankingHistoricoToolStripMenuItem.Text = "Ver Ranking Historico";
+            this.verRankingHistoricoToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.verRankingHistoricoToolStripMenuItem.Text = "Ver Ranking Equipos";
             this.verRankingHistoricoToolStripMenuItem.Click += new System.EventHandler(this.verRankingHistoricoToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
@@ -143,14 +143,14 @@
             // usuarioToolStripMenuItem
             // 
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.usuarioToolStripMenuItem.Text = "Usuario";
             this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
             // aplicaciónToolStripMenuItem
             // 
             this.aplicaciónToolStripMenuItem.Name = "aplicaciónToolStripMenuItem";
-            this.aplicaciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aplicaciónToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.aplicaciónToolStripMenuItem.Text = "Aplicación";
             this.aplicaciónToolStripMenuItem.Click += new System.EventHandler(this.aplicaciónToolStripMenuItem_Click);
             // 

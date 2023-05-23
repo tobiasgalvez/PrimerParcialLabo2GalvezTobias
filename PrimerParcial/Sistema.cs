@@ -60,7 +60,7 @@ namespace BibliotecaDeClases
             sb.AppendLine();
             sb.AppendLine("Acá se van a poder agregar jugadores, equipos, torneos y resultados");
             sb.AppendLine();
-            sb.AppendLine("También vas a poder consultar nuestro ránking histórico, en el cual tenemos los equipos con más partidos jugados, los equipos con más goles y mucho más!!!");
+            sb.AppendLine("También vas a poder consultar nuestro ránking de equipos, en el cual tenemos los equipos con más partidos jugados, los equipos con más goles y mucho más!!!");
         
             return sb.ToString();
         }

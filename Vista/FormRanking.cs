@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FormRankingHistórico : Form
+    public partial class FormRanking : Form
     {
         List<Equipo> Equipos { get; set; }
         ManejadorCsvEquipos csvEquipos;
-        public FormRankingHistórico()
+        public FormRanking()
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
