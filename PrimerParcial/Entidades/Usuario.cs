@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static BibliotecaDeClases.Enumerados;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Entidades
 {
     public class Usuario : Persona
     {
@@ -24,7 +24,7 @@ namespace BibliotecaDeClases
 
         public string User { get => _user; set => _user = value; }
         public string Contraseña { get => _contraseña; set => _contraseña = value; }
-        public ERol Rol { get => _rol;}
+        public ERol Rol { get => _rol; }
 
         /// <summary>
         /// Implementación de método de clase Persona, el cual permite obtener la información de una persona

@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.ManejadorCsv;
+﻿using BibliotecaDeClases.Entidades;
+using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

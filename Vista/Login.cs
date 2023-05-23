@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

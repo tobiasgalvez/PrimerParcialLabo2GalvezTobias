@@ -1,4 +1,4 @@
-﻿using BibliotecaDeClases;
+﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;

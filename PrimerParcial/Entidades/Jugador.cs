@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Entidades
 {
     public class Jugador : Persona
     {
         private string _posicion;
         private string _equipo;
 
-       
 
 
-        public Jugador(string nombre, string apellido, DateTime edad, int dni, string posicion, string equipo):base(nombre, apellido, edad, dni)
+
+        public Jugador(string nombre, string apellido, DateTime edad, int dni, string posicion, string equipo) : base(nombre, apellido, edad, dni)
         {
             _posicion = posicion;
             _equipo = equipo;
@@ -38,10 +38,10 @@ namespace BibliotecaDeClases
             sb.AppendLine($"Equipo:{Equipo}");
             sb.AppendLine($"Posicion:{Posicion}");
             return sb.ToString();
-            
+
         }
 
-  
+
         /// <summary>
         /// Método por el cual validamos nombre, apellido y dni de un jugador
         /// </summary>

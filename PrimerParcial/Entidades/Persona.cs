@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Entidades
 {
     public abstract class Persona
     {
@@ -23,7 +23,7 @@ namespace BibliotecaDeClases
             _dni = dni;
         }
 
-       
+
 
         public string Nombre { get => _nombre; set => _nombre = value; }
         public string Apellido { get => _apellido; set => _apellido = value; }
@@ -55,13 +55,13 @@ namespace BibliotecaDeClases
         {
             Validacion.ValidarString(nombre);
             Validacion.ValidarString(apellido);
-            
-                if (!(nombre.All(char.IsLetter) && apellido.All(char.IsLetter)))
-                {
-                    throw new StringLetrasException("nombre y/o apellido deben ser letras");
-                    //argumentFormatException
-                }
-            
+
+            if (!(nombre.All(char.IsLetter) && apellido.All(char.IsLetter)))
+            {
+                throw new StringLetrasException("nombre y/o apellido deben ser letras");
+                //argumentFormatException
+            }
+
         }
 
         /// <summary>
@@ -75,15 +75,15 @@ namespace BibliotecaDeClases
             int dniParser;
             dniParser = Validacion.DevolverCadenaParseadaInt(dni);
 
-            if(dniParser == -1)
+            if (dniParser == -1)
             {
                 throw new StringNumeroException("El campo DNI sólo acepta números");
             }
-                if (dniParser > 70000000 || dniParser < 1000000)
-                {
-                    throw new ArgumentException("Numero de DNI invalido");
-                }
-            
+            if (dniParser > 70000000 || dniParser < 1000000)
+            {
+                throw new ArgumentException("Numero de DNI invalido");
+            }
+
         }
     }
 }

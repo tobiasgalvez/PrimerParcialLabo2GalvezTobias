@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Entidades
 {
     public class Equipo
     {
@@ -58,7 +58,7 @@ namespace BibliotecaDeClases
         public int PartidosGanados { get => _partidosGanados; set => _partidosGanados = value; }
         public int PartidosEmpatados { get => _partidosEmpatados; set => _partidosEmpatados = value; }
         public int PartidosPerdidos { get => _partidosPerdidos; set => _partidosPerdidos = value; }
-        public int CantidadJugadores { get => _cantidadJugadores;  set => _cantidadJugadores = value; }
+        public int CantidadJugadores { get => _cantidadJugadores; set => _cantidadJugadores = value; }
         public int Goles { get => _goles; set => _goles = value; }
         public int TarjetasAmarillas { get => _tarjetasAmarillas; set => _tarjetasAmarillas = value; }
         public int TarjetasRojas { get => _tarjetasRojas; set => _tarjetasRojas = value; }

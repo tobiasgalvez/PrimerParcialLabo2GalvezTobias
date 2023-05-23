@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Entidades
 {
     public class Partido
     {
@@ -228,7 +228,7 @@ namespace BibliotecaDeClases
         /// <returns>retorna true si el partido es distinto de otro, sino false</returns>
         public static bool operator !=(Partido p1, Partido p2)
         {
-            return (p1.EquipoLocal != p2.EquipoLocal && p1.EquipoVisitante != p2.EquipoVisitante) || (p1.EquipoVisitante != p2.EquipoLocal && p1.EquipoLocal != p2.EquipoVisitante);
+            return p1.EquipoLocal != p2.EquipoLocal && p1.EquipoVisitante != p2.EquipoVisitante || p1.EquipoVisitante != p2.EquipoLocal && p1.EquipoLocal != p2.EquipoVisitante;
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace BibliotecaDeClases
         /// <returns>retorna true si el partido es igual a otro, sino false</returns>
         public static bool operator ==(Partido p1, Partido p2)
         {
-            return (p1.EquipoLocal == p2.EquipoLocal && p1.EquipoVisitante == p2.EquipoVisitante) || (p1.EquipoVisitante == p2.EquipoLocal && p1.EquipoLocal == p2.EquipoVisitante);
+            return p1.EquipoLocal == p2.EquipoLocal && p1.EquipoVisitante == p2.EquipoVisitante || p1.EquipoVisitante == p2.EquipoLocal && p1.EquipoLocal == p2.EquipoVisitante;
         }
 
         /// <summary>

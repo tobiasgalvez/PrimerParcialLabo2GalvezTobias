@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Entidades
 {
     public class Torneo
     {
@@ -23,12 +23,12 @@ namespace BibliotecaDeClases
             _listaDePartidos = new List<Partido>();
         }
 
-        public Torneo(string nombre, int cantidadEquipos):this(nombre)
+        public Torneo(string nombre, int cantidadEquipos) : this(nombre)
         {
             _cantidadEquipos = cantidadEquipos;
         }
 
-        public Torneo(string nombre, int cantidadEquipos, List<Equipo> listaDeEquipos, List<Partido> listaDePartidos):this(nombre, cantidadEquipos)
+        public Torneo(string nombre, int cantidadEquipos, List<Equipo> listaDeEquipos, List<Partido> listaDePartidos) : this(nombre, cantidadEquipos)
         {
             _listaDeEquipos = listaDeEquipos;
             _listaDePartidos = listaDePartidos;

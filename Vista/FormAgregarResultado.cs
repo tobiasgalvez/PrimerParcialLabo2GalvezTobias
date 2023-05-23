@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.Excepciones;
 using BibliotecaDeClases.ManejadorCsv;
 using System;
