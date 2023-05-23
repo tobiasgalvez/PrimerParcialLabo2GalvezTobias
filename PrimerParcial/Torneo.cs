@@ -41,7 +41,7 @@ namespace BibliotecaDeClases
         public int CantidadPartidos { get => _cantidadPartidos; set => _cantidadPartidos = value; }
 
         /// <summary>
-        /// Sobrecarga del método ToString() para retornar nombre del torneo
+        /// Modifico el método ToString() para retornar nombre del torneo
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -52,8 +52,8 @@ namespace BibliotecaDeClases
         /// <summary>
         /// Método que permite buscar el indice de un torneo
         /// </summary>
-        /// <param name="torneos"></param>
-        /// <param name="torneo"></param>
+        /// <param name="torneos">lista de torneos</param>
+        /// <param name="torneo">torneo a buscar</param>
         /// <returns>si encontró el torneo, su posición. Sino -1</returns>
         public static int BuscarIndice(List<Torneo> torneos, Torneo torneo)
         {
@@ -70,11 +70,23 @@ namespace BibliotecaDeClases
             return indice;
         }
 
+        /// <summary>
+        /// Sobrecarga del operador != para verificar si un torneo es distinto de otro
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
         public static bool operator !=(Torneo t1, Torneo t2)
         {
             return t1.Nombre != t2.Nombre;
         }
 
+        /// <summary>
+        /// Sobrecarga del operador == para verificar si un torneo es igual a otro
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
         public static bool operator ==(Torneo t1, Torneo t2)
         {
             return t1.Nombre == t2.Nombre;

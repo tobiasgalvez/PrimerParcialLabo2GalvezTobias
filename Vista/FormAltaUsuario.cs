@@ -21,10 +21,10 @@ namespace Vista
         public FormAltaUsuario()
         {
             InitializeComponent();
-            Usuarios = new List<Usuario>();
         }
         public FormAltaUsuario(List<Usuario> listaUsuarios) : this()
         {
+            Usuarios = new List<Usuario>();
             Usuarios = listaUsuarios;
             CambiarHerramientasParaModificar();
         }

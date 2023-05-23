@@ -64,7 +64,12 @@ namespace BibliotecaDeClases
         public int TarjetasAmarillas { get => _tarjetasAmarillas; set => _tarjetasAmarillas = value; }
         public int TarjetasRojas { get => _tarjetasRojas; set => _tarjetasRojas = value; }
 
- 
+        /// <summary>
+        /// Método que permite buscar el indice de un equipo
+        /// </summary>
+        /// <param name="equipos"></param>
+        /// <param name="equipo"></param>
+        /// <returns></returns>
         public static int BuscarIndice(List<Equipo> equipos, Equipo equipo)
         {
             int indice = -1;
