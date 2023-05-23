@@ -101,31 +101,8 @@ namespace Vista
 
                 if(flag)
                 {
-                    foreach (var item in Jugadores)
-                    {
-                        Jugador jugadorNombreEquipoModificado;
-                        if(nombreAnteriorEquipo == item.Equipo)
-                        {
-                            jugadorNombreEquipoModificado = item;
-                            jugadorNombreEquipoModificado.Equipo = equipoModificado.Nombre;
-                            csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
-                        }
-                    }
-
-                    foreach (var item in Partidos)
-                    {
-                        Partido partidoNombreEquipoModificado = item;
-                        if (nombreAnteriorEquipo == item.EquipoLocal.Nombre)
-                        {
-                            partidoNombreEquipoModificado.EquipoLocal.Nombre = equipoModificado.Nombre;
-                            csvPartidos.ModificarPartido(item, partidoNombreEquipoModificado, nombreAnteriorEquipo);
-                        }
-                        if (nombreAnteriorEquipo == item.EquipoVisitante.Nombre)
-                        {
-                            partidoNombreEquipoModificado.EquipoVisitante.Nombre = equipoModificado.Nombre;
-                            csvPartidos.ModificarPartido(item, partidoNombreEquipoModificado, nombreAnteriorEquipo);
-                        }
-                    }
+                    ModificarEquipoEnListaDeJugadores(nombreAnteriorEquipo, equipoModificado);
+                    ModificarEquipoEnListaDePartidos(nombreAnteriorEquipo, equipoModificado);
                 }
             }
             else
@@ -156,18 +133,8 @@ namespace Vista
 
                 if(flag)
                 {
-                    foreach (var item in Equipos)
-                    {
-                        Equipo equipoNombreTorneoModificado;
-                        if(nombreAnteriorTorneo == item.Liga)
-                        {
-                            equipoNombreTorneoModificado = item;
-                            equipoNombreTorneoModificado.Liga = torneoModificado.Nombre;
-                            csvEquipos.ModificarDato(item, equipoNombreTorneoModificado);
-                        }
-                    }
+                    ModificarTorneoEnListaDeEquipos(nombreAnteriorTorneo, torneoModificado);
                 }
-
 
             }
             else
@@ -200,5 +167,69 @@ namespace Vista
                 MessageBox.Show("Se canceló la modificación de un usuario!!!");
             }
         }
+
+        /// <summary>
+        /// Método por el cual se actualiza el nombre del equipo  en la lista de jugadores
+        /// </summary>
+        /// <param name="nombreAnteriorEquipo">nombre anterior del equipo</param>
+        /// <param name="equipoModificado">equipo con nombre modificado</param>
+        private void ModificarEquipoEnListaDeJugadores(string nombreAnteriorEquipo, Equipo equipoModificado)
+        {
+            foreach (var item in Jugadores)
+            {
+                if (nombreAnteriorEquipo == item.Equipo)
+                {
+                    Jugador jugadorNombreEquipoModificado = item;
+                    jugadorNombreEquipoModificado.Equipo = equipoModificado.Nombre;
+                    csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método por el cual se actualiza el nombre del equipo en la lista de partidos
+        /// </summary>
+        /// <param name="nombreAnteriorEquipo">nombre anterior del equipo</param>
+        /// <param name="equipoModificado">equipo con nombre modificado</param>
+        private void ModificarEquipoEnListaDePartidos(string nombreAnteriorEquipo, Equipo equipoModificado)
+        {
+            foreach (var item in Partidos)
+            {
+                Partido partidoNombreEquipoModificado = item;
+                if (nombreAnteriorEquipo == item.EquipoLocal.Nombre)
+                {
+                    partidoNombreEquipoModificado.EquipoLocal.Nombre = equipoModificado.Nombre;
+                    csvPartidos.ModificarPartido(item, partidoNombreEquipoModificado, nombreAnteriorEquipo);
+                }
+                if (nombreAnteriorEquipo == item.EquipoVisitante.Nombre)
+                {
+                    partidoNombreEquipoModificado.EquipoVisitante.Nombre = equipoModificado.Nombre;
+                    csvPartidos.ModificarPartido(item, partidoNombreEquipoModificado, nombreAnteriorEquipo);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método por el cual se actualiza el nombre del torneo en la lista de equipos
+        /// </summary>
+        /// <param name="nombreAnteriorTorneo">nombre anterior del torneo</param>
+        /// <param name="torneoModificado">torneo con nombre modificado</param>
+        private void ModificarTorneoEnListaDeEquipos(string nombreAnteriorTorneo, Torneo torneoModificado)
+        {
+            foreach (var item in Equipos)
+            {
+                Equipo equipoNombreTorneoModificado;
+                if (nombreAnteriorTorneo == item.Liga)
+                {
+                    equipoNombreTorneoModificado = item;
+                    equipoNombreTorneoModificado.Liga = torneoModificado.Nombre;
+                    csvEquipos.ModificarDato(item, equipoNombreTorneoModificado);
+                }
+            }
+        }
+
+
+
+
     }
 }

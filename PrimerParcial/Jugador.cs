@@ -26,7 +26,7 @@ namespace BibliotecaDeClases
         /// <summary>
         /// Método por el cual obtenemos la información de un jugador
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Datos del jugador</returns>
         public override string ObtenerInformacion()
         {
             StringBuilder sb = new StringBuilder();
@@ -45,9 +45,9 @@ namespace BibliotecaDeClases
         /// <summary>
         /// Método por el cual validamos nombre, apellido y dni de un jugador
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <param name="apellido"></param>
-        /// <param name="dni"></param>
+        /// <param name="nombre">nombre ingresado</param>
+        /// <param name="apellido">apellido ingresado</param>
+        /// <param name="dni">dni ingresado</param>
         public static void ValidarJugador(string nombre, string apellido, string dni)
         {
             ValidarDni(dni);
@@ -57,9 +57,9 @@ namespace BibliotecaDeClases
         /// <summary>
         /// Método que permite buscar el índice de un jugador
         /// </summary>
-        /// <param name="jugadores"></param>
-        /// <param name="jugador"></param>
-        /// <returns></returns>
+        /// <param name="jugadores">lista de jugadores</param>
+        /// <param name="jugador">jugador a buscar</param>
+        /// <returns> si encontró el jugador, su índice, sino -1</returns>
         public static int BuscarIndice(List<Jugador> jugadores, Jugador jugador)
         {
             int indice = -1;
@@ -76,31 +76,31 @@ namespace BibliotecaDeClases
         }
 
         /// <summary>
-        /// Sobrecarga del operador != para verificar si un jugador es distinto de otro
+        /// Sobrecarga del operador !=
         /// </summary>
-        /// <param name="j1"></param>
-        /// <param name="j2"></param>
-        /// <returns></returns>
+        /// <param name="j1">jugador 1</param>
+        /// <param name="j2">jugador 2</param>
+        /// <returns>retorna true si no coincide el Dni de los jugadores, sino false</returns>
         public static bool operator !=(Jugador j1, Jugador j2)
         {
             return j1.Dni != j2.Dni;
         }
 
         /// <summary>
-        /// Sobrecarga del operador == para verificar si un jugador es igual al otro
+        /// Sobrecarga del operador ==
         /// </summary>
-        /// <param name="j1"></param>
-        /// <param name="j2"></param>
-        /// <returns></returns>
+        /// <param name="j1">jugador 1</param>
+        /// <param name="j2">jugador 2</param>
+        /// <returns>retorna true si coincide el Dni de los jugadores, sino false</returns>
         public static bool operator ==(Jugador j1, Jugador j2)
         {
             return j1.Dni == j2.Dni;
         }
 
         /// <summary>
-        /// 
+        /// Modificación del método ToString()
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna apellido, nombre y dni del jugador</returns>
         public override string ToString()
         {
             return $"{Apellido}, {Nombre}, {Dni.ToString()}";

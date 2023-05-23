@@ -71,22 +71,22 @@ namespace BibliotecaDeClases
         }
 
         /// <summary>
-        /// Sobrecarga del operador != para verificar si un torneo es distinto de otro
+        /// Sobrecarga del operador !=
         /// </summary>
-        /// <param name="t1"></param>
-        /// <param name="t2"></param>
-        /// <returns></returns>
+        /// <param name="t1">torneo 1</param>
+        /// <param name="t2">torneo 2</param>
+        /// <returns>retorna true si un torneo es distinto de otro, sino false</returns>
         public static bool operator !=(Torneo t1, Torneo t2)
         {
             return t1.Nombre != t2.Nombre;
         }
 
         /// <summary>
-        /// Sobrecarga del operador == para verificar si un torneo es igual a otro
+        /// Sobrecarga del operador ==
         /// </summary>
-        /// <param name="t1"></param>
-        /// <param name="t2"></param>
-        /// <returns></returns>
+        /// <param name="t1">torneo 1</param>
+        /// <param name="t2">torneo 2</param>
+        /// <returns>retorna true si un torneo es igual a otro, sino false</returns>
         public static bool operator ==(Torneo t1, Torneo t2)
         {
             return t1.Nombre == t2.Nombre;

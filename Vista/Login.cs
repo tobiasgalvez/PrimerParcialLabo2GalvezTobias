@@ -59,7 +59,6 @@ namespace Vista
 
         private void Pic_mostrarContraseña_Click(object sender, EventArgs e)
         {
-            //pic_mostrarContraseña.Image = Resources.ocultarContraseña;
             pic_ocultarContraseña.BringToFront();
             txt_contraseña.PasswordChar = '\0';
 
@@ -71,11 +70,7 @@ namespace Vista
             txt_contraseña.PasswordChar = '*';
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
+ 
         private void Btn_salir_Click(object sender, EventArgs e)
         {
             Application.Exit();

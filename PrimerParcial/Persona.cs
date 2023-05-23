@@ -30,17 +30,27 @@ namespace BibliotecaDeClases
         public DateTime FechaDeNacimiento { get => _fechaDeNacimiento; set => _fechaDeNacimiento = value; }
         public int Dni { get => _dni; set => _dni = value; }
 
-
+        /// <summary>
+        /// Método que permite obtener la informacion de una persona
+        /// </summary>
+        /// <returns>Datos de la persona</returns>
         public abstract string ObtenerInformacion();
 
-
+        /// <summary>
+        /// Método que permite calcular la edad de una persona
+        /// </summary>
+        /// <returns>edad de la persona</returns>
         public int CalcularEdad()
         {
-            int edad;
-            return edad = DateTime.Today.AddTicks(-FechaDeNacimiento.Ticks).Year - 1;
+            return DateTime.Today.AddTicks(-FechaDeNacimiento.Ticks).Year - 1;
         }
 
-
+        /// <summary>
+        /// Método por el cual se valida el nombre y apellido de una persona
+        /// </summary>
+        /// <param name="nombre">nombre ingresado</param>
+        /// <param name="apellido">apellido ingresado</param>
+        /// <exception cref="StringLetrasException"></exception>
         public static void ValidarNombreYApellido(string nombre, string apellido)
         {
             Validacion.ValidarString(nombre);
@@ -54,6 +64,12 @@ namespace BibliotecaDeClases
             
         }
 
+        /// <summary>
+        /// Método por el cual se valida el dni de una persona
+        /// </summary>
+        /// <param name="dni">dni ingresado</param>
+        /// <exception cref="StringNumeroException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static void ValidarDni(string dni)
         {
             int dniParser;

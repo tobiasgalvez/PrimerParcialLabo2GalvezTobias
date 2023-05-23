@@ -38,8 +38,8 @@ namespace BibliotecaDeClases.ManejadorCsv
             equiposDelTorneo = manejadorCsvEquipos.LeerDatos();
             partidosDelTorneo = manejadorCsvPartidos.LeerDatos();
 
-            AsignarEquiposATorneo(torneos, equiposDelTorneo);
-            AsignarPartidosATorneo(torneos, partidosDelTorneo);
+            AsignarEquiposATorneos(torneos, equiposDelTorneo);
+            AsignarPartidosATorneos(torneos, partidosDelTorneo);
 
             GuardarDatos(torneos);
 
@@ -109,8 +109,12 @@ namespace BibliotecaDeClases.ManejadorCsv
         }
 
 
-
-        private void AsignarEquiposATorneo(List<Torneo> torneos, List<Equipo> equipos)
+        /// <summary>
+        /// Método por el cual se le asignan los equipos a los torneos
+        /// </summary>
+        /// <param name="torneos">lista de torneos</param>
+        /// <param name="equipos">lista de equipos</param>
+        private void AsignarEquiposATorneos(List<Torneo> torneos, List<Equipo> equipos)
         {
             foreach (var equipo in equipos)
             {
@@ -125,7 +129,12 @@ namespace BibliotecaDeClases.ManejadorCsv
             }
         }
 
-        private void AsignarPartidosATorneo(List<Torneo> torneos, List<Partido> partidos)
+        /// <summary>
+        /// Método por el cual se le asignan los partidos a los torneos
+        /// </summary>
+        /// <param name="torneos"></param>
+        /// <param name="partidos"></param>
+        private void AsignarPartidosATorneos(List<Torneo> torneos, List<Partido> partidos)
         {
             foreach (var partido in partidos)
             {

@@ -164,20 +164,5 @@ namespace Vista
                 MessageBox.Show("Se canceló la eliminación");
             }
         }
-
-        //private void cbo_jugadores_SelectionChangeCommitted(object sender, EventArgs e)
-        //{
-        //    cbo_jugadores.SelectedItem = csvJugadores.LeerDatos();
-        //}
-
-        //private void cbo_jugadores_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-            
-        //}
-
-        //private void cbo_jugadores_SelectedValueChanged(object sender, EventArgs e)
-        //{
-        //    cbo_jugadores.DataSource = csvJugadores.LeerDatos();
-        //}
     }
 }

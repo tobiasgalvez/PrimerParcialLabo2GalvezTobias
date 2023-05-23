@@ -113,7 +113,11 @@ namespace BibliotecaDeClases.ManejadorCsv
             }
         }
 
-
+        /// <summary>
+        /// Método por el cual se asignan jugadores a los equiposs
+        /// </summary>
+        /// <param name="equipos">lista de equipos</param>
+        /// <param name="jugadores">lista de jugadores</param>
         private static void AsignarJugadoresAEquipos(List<Equipo> equipos, List<Jugador> jugadores)
         {
             foreach (var jugador in jugadores)
@@ -129,6 +133,11 @@ namespace BibliotecaDeClases.ManejadorCsv
             }
         }
 
+        /// <summary>
+        /// Método por el cual se asignan los resultados a los equipos
+        /// </summary>
+        /// <param name="equipos">lista de equipos</param>
+        /// <param name="partidos">lista de partidos</param>
         private static void AsignarResultadosAEquipos(List<Equipo> equipos, List<Partido> partidos)
         {
             foreach (var partido in partidos)

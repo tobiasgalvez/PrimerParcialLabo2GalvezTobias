@@ -10,7 +10,6 @@ namespace BibliotecaDeClases
     {
         private string _nombre;
         private List<Jugador> _listaJugadores;
-        //private int _maxJugadores = 20;
         private int _cantidadJugadores;
         private string _liga;
         private int _partidosJugados;
@@ -67,8 +66,8 @@ namespace BibliotecaDeClases
         /// <summary>
         /// Método que permite buscar el indice de un equipo
         /// </summary>
-        /// <param name="equipos"></param>
-        /// <param name="equipo"></param>
+        /// <param name="equipos">lista de equipos</param>
+        /// <param name="equipo">equipo a buscar</param>
         /// <returns></returns>
         public static int BuscarIndice(List<Equipo> equipos, Equipo equipo)
         {
@@ -85,17 +84,32 @@ namespace BibliotecaDeClases
             return indice;
         }
 
-
+        /// <summary>
+        /// Sobrecarga del operador !=
+        /// </summary>
+        /// <param name="e1">equipo 1</param>
+        /// <param name="e2">equipo 2</param>
+        /// <returns>retorna true si los nombres son diferentes, sino false</returns>
         public static bool operator !=(Equipo e1, Equipo e2)
         {
             return e1.Nombre != e2.Nombre;
         }
 
+        /// <summary>
+        /// Sobrecarga del operador ==
+        /// </summary>
+        /// <param name="e1">equipo 1</param>
+        /// <param name="e2">equipo 2</param>
+        /// <returns>retorna true si los nombres son iguales, sino false</returns>
         public static bool operator ==(Equipo e1, Equipo e2)
         {
             return e1.Nombre.ToLower() == e2.Nombre.ToLower();
         }
 
+        /// <summary>
+        /// Modificación del método ToString()
+        /// </summary>
+        /// <returns>Retorna el nombre del equipo</returns>
         public override string ToString()
         {
             return Nombre;

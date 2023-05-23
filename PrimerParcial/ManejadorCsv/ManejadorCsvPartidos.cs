@@ -60,6 +60,12 @@ namespace BibliotecaDeClases.ManejadorCsv
             //}
         }
 
+        /// <summary>
+        /// Método por el cual se modifica un partido
+        /// </summary>
+        /// <param name="partidoOriginal">partido original</param>
+        /// <param name="partidoModificado">partido modificado</param>
+        /// <param name="nombreAnterior">nombre anterior del equipo del partido original</param>
         public void ModificarPartido(Partido partidoOriginal, Partido partidoModificado, string nombreAnterior)
         {
             var partidos = LeerDatos();

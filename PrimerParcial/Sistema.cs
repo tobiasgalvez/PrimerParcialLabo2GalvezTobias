@@ -15,13 +15,20 @@ namespace BibliotecaDeClases
         static Sistema()
         {
             _listaDeUsuarios = new List<Usuario>();
-            //Hardcodeo.HardcodearUsuarios(_listaDeUsuarios);
             ManejadorCsvUsuarios csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
             _listaDeUsuarios = csvUsuarios.LeerDatos();
         }
 
         public static List<Usuario> ListaDeUsuarios { get => _listaDeUsuarios; set => _listaDeUsuarios = value; }
 
+
+        /// <summary>
+        /// Método por el cual se verifica si un usuario es válido o no
+        /// </summary>
+        /// <param name="usuario">usuario ingresado</param>
+        /// <param name="contraseña">contraseña ingresada</param>
+        /// <returns>un usuario</returns>
+        /// <exception cref="Exception"></exception>
         public static Usuario VerificarUsuarioExcepciones(string usuario, string contraseña)
         {
             string mensaje = "Error, datos ingresados invalidos";
@@ -42,6 +49,10 @@ namespace BibliotecaDeClases
                 throw new Exception(mensaje);
         }
 
+        /// <summary>
+        /// Método por el cual se da un resumen de la aplicación
+        /// </summary>
+        /// <returns>resumen</returns>
         public static string InformacionAplicacion()
         {
             StringBuilder sb = new StringBuilder();
