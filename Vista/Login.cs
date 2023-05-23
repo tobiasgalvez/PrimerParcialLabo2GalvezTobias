@@ -21,9 +21,8 @@ namespace Vista
             txt_contraseña.PasswordChar = '*';
         }
 
-        private void btn_ingresar_Click(object sender, EventArgs e)
+        private void Btn_ingresar_Click(object sender, EventArgs e)
         {
-            
             //abstraccion (el boton se abstrae de cómo hace el sistema para verificar el usuario. Le importa que le devuelva un usuario NADA MÁS)
             try
             {
@@ -37,7 +36,6 @@ namespace Vista
                     formContenedor.Show();
                     this.Hide();
                 }
-
             }
             catch (Exception excepcion)
             {
@@ -47,7 +45,7 @@ namespace Vista
             }
         }
 
-        private void btn_autocompletar_Click(object sender, EventArgs e)
+        private void Btn_autocompletar_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
 
@@ -59,7 +57,7 @@ namespace Vista
             this.txt_contraseña.Text = Sistema.ListaDeUsuarios[indice].Contraseña;
         }
 
-        private void pic_mostrarContraseña_Click(object sender, EventArgs e)
+        private void Pic_mostrarContraseña_Click(object sender, EventArgs e)
         {
             //pic_mostrarContraseña.Image = Resources.ocultarContraseña;
             pic_ocultarContraseña.BringToFront();
@@ -67,7 +65,7 @@ namespace Vista
 
         }
 
-        private void pic_ocultarContraseña_Click(object sender, EventArgs e)
+        private void Pic_ocultarContraseña_Click(object sender, EventArgs e)
         {
             pic_mostrarContraseña.BringToFront();
             txt_contraseña.PasswordChar = '*';
@@ -78,7 +76,7 @@ namespace Vista
 
         }
 
-        private void btn_salir_Click(object sender, EventArgs e)
+        private void Btn_salir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }

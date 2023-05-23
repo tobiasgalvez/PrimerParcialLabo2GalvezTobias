@@ -18,11 +18,13 @@ namespace Vista
         ManejadorCsvTorneos csvTorneos;
         ManejadorCsvUsuarios csvUsuarios;
         ManejadorCsvEquipos csvEquipos;
+        ManejadorCsvPartidos csvPartidos;
 
         List<Jugador> Jugadores { get; set; }
         List<Torneo> Torneos { get; set; }
         List<Usuario> Usuarios { get; set; }  
         List<Equipo> Equipos { get; set; }
+        List<Partido> Partidos { get; set; }
 
 
         public FormModificar()
@@ -32,11 +34,13 @@ namespace Vista
             csvTorneos = new ManejadorCsvTorneos("torneos.csv");
             csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
             csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            csvPartidos = new ManejadorCsvPartidos("partidos.csv");
 
             Jugadores = new List<Jugador>();
             Torneos = new List<Torneo>();
             Usuarios = new List<Usuario>();
             Equipos = new List<Equipo>();
+            Partidos = new List<Partido>();
 
         }
 
@@ -46,11 +50,12 @@ namespace Vista
             Torneos = csvTorneos.LeerDatos();
             Usuarios = csvUsuarios.LeerDatos();
             Equipos = csvEquipos.LeerDatos();
+            Partidos = csvPartidos.LeerDatos();
         }
 
         private void btn_modificarJugador_Click(object sender, EventArgs e)
         {
-            AltaJugador altaJugador = new AltaJugador(Jugadores);
+            FormAltaJugador altaJugador = new FormAltaJugador(Jugadores);
             //int indiceJugador;
             DialogResult resultado = altaJugador.ShowDialog();
             if(resultado == DialogResult.OK)
@@ -77,6 +82,7 @@ namespace Vista
         {
             FormAltaEquipo formAltaEquipo = new FormAltaEquipo(Equipos);
             DialogResult resultado = formAltaEquipo.ShowDialog();
+            bool flag = false;
             if (resultado == DialogResult.OK)
             {
                 Equipo equipoModificado = formAltaEquipo.Equipo;
@@ -88,6 +94,37 @@ namespace Vista
                     {
                         csvEquipos.ModificarDato(item, equipoModificado);
                         MessageBox.Show("Equipo modificado con exito!!!");
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if(flag)
+                {
+                    foreach (var item in Jugadores)
+                    {
+                        Jugador jugadorNombreEquipoModificado;
+                        if(nombreAnteriorEquipo == item.Equipo)
+                        {
+                            jugadorNombreEquipoModificado = item;
+                            jugadorNombreEquipoModificado.Equipo = equipoModificado.Nombre;
+                            csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
+                        }
+                    }
+
+                    foreach (var item in Partidos)
+                    {
+                        Partido partidoNombreEquipoModificado = item;
+                        if (nombreAnteriorEquipo == item.EquipoLocal.Nombre)
+                        {
+                            partidoNombreEquipoModificado.EquipoLocal.Nombre = equipoModificado.Nombre;
+                            csvPartidos.ModificarPartido(item, partidoNombreEquipoModificado, nombreAnteriorEquipo);
+                        }
+                        if (nombreAnteriorEquipo == item.EquipoVisitante.Nombre)
+                        {
+                            partidoNombreEquipoModificado.EquipoVisitante.Nombre = equipoModificado.Nombre;
+                            csvPartidos.ModificarPartido(item, partidoNombreEquipoModificado, nombreAnteriorEquipo);
+                        }
                     }
                 }
             }
@@ -101,6 +138,7 @@ namespace Vista
         {
             FormAltaTorneo formAltaTorneo = new FormAltaTorneo(Torneos);
             DialogResult resultado = formAltaTorneo.ShowDialog();
+            bool flag = false;
             if (resultado == DialogResult.OK)
             {
                 Torneo torneoModificado = formAltaTorneo.Torneo;
@@ -112,8 +150,25 @@ namespace Vista
                     {
                         csvTorneos.ModificarDato(item, torneoModificado);
                         MessageBox.Show("Torneo modificado con exito!!!");
+                        flag = true;
                     }
                 }
+
+                if(flag)
+                {
+                    foreach (var item in Equipos)
+                    {
+                        Equipo equipoNombreTorneoModificado;
+                        if(nombreAnteriorTorneo == item.Liga)
+                        {
+                            equipoNombreTorneoModificado = item;
+                            equipoNombreTorneoModificado.Liga = torneoModificado.Nombre;
+                            csvEquipos.ModificarDato(item, equipoNombreTorneoModificado);
+                        }
+                    }
+                }
+
+
             }
             else
             {
@@ -123,7 +178,7 @@ namespace Vista
 
         private void btn_modificarUsuario_Click(object sender, EventArgs e)
         {
-            FormAltaUsuario formAltaUsuario = new FormAltaUsuario(Usuarios);
+            FormAltaUsuario formAltaUsuario = new(Usuarios);
             //int indiceJugador;
             DialogResult resultado = formAltaUsuario.ShowDialog();
             if (resultado == DialogResult.OK)

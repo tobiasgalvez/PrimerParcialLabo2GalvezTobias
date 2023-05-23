@@ -35,6 +35,12 @@ namespace Vista
             Equipos = csvEquipos.LeerDatos();
             //csvPartidos.EliminarDato(Partidos[0]);
             //csvPartidos.EliminarDato(Partidos[1]);
+            //csvPartidos.EliminarDato(Partidos[2]);
+            //csvPartidos.EliminarDato(Partidos[3]);
+            //csvPartidos.EliminarDato(Partidos[4]);
+            //csvPartidos.EliminarDato(Partidos[5]);
+            //csvPartidos.EliminarDato(Partidos[6]);
+
             dgv_listadoResultados.DataSource = Partidos;
             this.MaximizeBox = false;
         }
@@ -43,33 +49,17 @@ namespace Vista
         private void btn_agregarResultado_Click(object sender, EventArgs e)
         {
             FormAgregarResultado formAgregarResultado = new FormAgregarResultado();
-            bool esIgual = false;
-
+            
             DialogResult resultado = formAgregarResultado.ShowDialog(); //para poner foco en el form alta equipo
             if (resultado == DialogResult.OK)
             {
                 Partido partidoIngresado = formAgregarResultado.Partido;
-                //MessageBox.Show("Resultado cargado con exito!!!!");
-                foreach (var item in Partidos)
-                {
-                    if (partidoIngresado == item)
-                    {
-                        esIgual = true;
-                    }
-                }
-                if (!esIgual)
-                {
-                    Partidos.Add(partidoIngresado);
-                    csvPartidos.AgregarDato(partidoIngresado);
+               
+                Partidos.Add(partidoIngresado);
+                csvPartidos.AgregarDato(partidoIngresado);
 
-                    ActualizarDataGrid();
-                    MessageBox.Show("Resultado cargado con exito!!!!");
-
-                }
-                else
-                {
-                    MessageBox.Show($"El partido '{partidoIngresado.EquipoLocal}' vs '{partidoIngresado.EquipoVisitante}' ya ha sido jugado");
-                }
+                ActualizarDataGrid();
+                MessageBox.Show("Resultado cargado con exito!!!!");
             }
             else
             {

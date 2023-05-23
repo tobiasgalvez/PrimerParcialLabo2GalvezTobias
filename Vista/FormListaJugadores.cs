@@ -38,11 +38,11 @@ namespace Vista
 
         }
 
-        private void btn_agregarProducto_Click(object sender, EventArgs e)
+        private void Btn_agregarProducto_Click(object sender, EventArgs e)
         {
             bool esIgual = false;
             ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
-            AltaJugador altaJugador = new AltaJugador();
+            FormAltaJugador altaJugador = new FormAltaJugador();
             DialogResult resultado = altaJugador.ShowDialog(); //para poner foco en el form alta jugador
             if(resultado == DialogResult.OK)
             {

@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class AltaJugador
+    partial class FormAltaJugador
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaJugador));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaJugador));
             this.btn_confirmar = new System.Windows.Forms.Button();
             this.txt_altaNombre = new System.Windows.Forms.TextBox();
             this.txt_altaApellido = new System.Windows.Forms.TextBox();
@@ -237,7 +237,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AltaJugador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AltaProducto";
+            this.Text = "FormAltaJugador";
             this.Load += new System.EventHandler(this.AltaProducto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

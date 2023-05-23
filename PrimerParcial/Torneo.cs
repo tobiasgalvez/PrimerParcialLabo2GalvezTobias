@@ -56,6 +56,7 @@ namespace BibliotecaDeClases
                 if (torneos[i] == torneo)
                 {
                     indice = i;
+                    break;
                 }
             }
 

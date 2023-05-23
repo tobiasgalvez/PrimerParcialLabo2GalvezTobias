@@ -3,21 +3,21 @@
 namespace BibliotecaDeClases.Excepciones
 {
     [Serializable]
-    internal class partidoException : Exception
+    public class PartidoException : Exception
     {
-        public partidoException()
+        public PartidoException()
         {
         }
 
-        public partidoException(string? message) : base(message)
+        public PartidoException(string? message) : base(message)
         {
         }
 
-        public partidoException(string? message, Exception? innerException) : base(message, innerException)
+        public PartidoException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
 
-        protected partidoException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected PartidoException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

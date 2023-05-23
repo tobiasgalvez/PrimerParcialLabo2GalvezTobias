@@ -11,7 +11,7 @@ namespace BibliotecaDeClases
     {
         private string _user;
         private string _contraseña;
-        private ERol _rol;
+        private readonly ERol _rol;
 
 
 
@@ -29,7 +29,7 @@ namespace BibliotecaDeClases
 
         public override string ObtenerInformacion()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             sb.AppendLine($"Nombre:{Nombre}");
             sb.AppendLine($"Apellido:{Apellido}");

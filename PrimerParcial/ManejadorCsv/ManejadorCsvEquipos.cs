@@ -114,7 +114,7 @@ namespace BibliotecaDeClases.ManejadorCsv
         }
 
 
-        private void AsignarJugadoresAEquipos(List<Equipo> equipos, List<Jugador> jugadores)
+        private static void AsignarJugadoresAEquipos(List<Equipo> equipos, List<Jugador> jugadores)
         {
             foreach (var jugador in jugadores)
             {
@@ -129,7 +129,7 @@ namespace BibliotecaDeClases.ManejadorCsv
             }
         }
 
-        private void AsignarResultadosAEquipos(List<Equipo> equipos, List<Partido> partidos)
+        private static void AsignarResultadosAEquipos(List<Equipo> equipos, List<Partido> partidos)
         {
             foreach (var partido in partidos)
             {

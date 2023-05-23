@@ -1,4 +1,5 @@
 ﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Excepciones;
 using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,8 @@ namespace Vista
         public List<Equipo> Equipos { get; set; }
         public List<Torneo> Torneos { get; set; }
         public Partido Partido { get; set; }
-        ManejadorCsvTorneos csvTorneos;
+
+        readonly ManejadorCsvTorneos csvTorneos;
 
         public FormAgregarResultado()
         {
@@ -74,19 +76,8 @@ namespace Vista
             
         }
 
-        private void btn_generarResultado_Click(object sender, EventArgs e)
+        private void Btn_generarResultado_Click(object sender, EventArgs e)
         {
-            //Partido nuevoPartido;
-            Random random = new Random();
-            //Partido partido = new Partido();
-
-            EResultado ganador;
-
-            ganador = (EResultado)random.Next(0, 2+1);
-
-            //Equipo equipo1Ingresado;
-            //Equipo equipo2Ingresado;
-
             Equipo equipoLocal;
             Equipo equipoVisitante;
 
@@ -116,12 +107,10 @@ namespace Vista
                     }
                 }
 
+                Partido.ValidarPartidoJugado(Partido, torneoElegido.ListaDePartidos);
+
                 Partido.SimularPartido();
                 MessageBox.Show(Partido.ResumenPartido());
-
-
-                //TENGO QUE AGREGAR EL CSV DE EQUIPOS Y ACTUALIZAR A LOS EQUIPOS QUE JUGARON PARA QUE FIGUREN SUS GOLES Y QUE FIGUREN SUS PARTIDOS JUGADOS, GANADOS, PERDIDOS, EMPATADOS, ETC
-                //Partido = partido;
 
                 this.DialogResult = DialogResult.OK;
             
@@ -131,15 +120,9 @@ namespace Vista
                 lbl_mensajeError.Visible = true;
                 lbl_mensajeError.Text = ex.Message;
             }
-
-                //throw new Exception("Un equipo no puede jugar consigo mismo!!!");
-                //MessageBox.Show("Un equipo no puede jugar consigo mismo!!!");
-                
-           
-
         }
 
-        private void btn_cancel_Click(object sender, EventArgs e)
+        private void Btn_cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
@@ -150,8 +133,8 @@ namespace Vista
             if(torneoSeleccionado.ListaDeEquipos.Count > 0)
             {
                 //Creo estas dos listas diferentes porque cuando cambio la selección en uno de los combobox, también se cambia en el otro debido a que ambos están enlazados a la misma lista de equipos.
-                List<Equipo> listaEquipos1 = new List<Equipo>(torneoSeleccionado.ListaDeEquipos);
-                List<Equipo> listaEquipos2 = new List<Equipo>(torneoSeleccionado.ListaDeEquipos);
+                List<Equipo> listaEquipos1 = new(torneoSeleccionado.ListaDeEquipos);
+                List<Equipo> listaEquipos2 = new(torneoSeleccionado.ListaDeEquipos);
 
                 // Asignar las listas a los ComboBox
                 cbo_equipo1.DataSource = listaEquipos1;
@@ -164,7 +147,7 @@ namespace Vista
 
         }
 
-        private void cbo_torneo_SelectionChangeCommitted(object sender, EventArgs e)
+        private void Cbo_torneo_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
@@ -174,6 +157,12 @@ namespace Vista
             {
                 lbl_mensajeError.Visible = true;
                 lbl_mensajeError.Text = ex.Message;
+                cbo_equipo1.DataSource = null;
+                cbo_equipo2.DataSource = null;
+                cbo_equipo1.Items.Clear(); //elimina items del combobox
+                cbo_equipo2.Items.Clear(); //elimina items del combobox
+                //cbo_equipo1.Text = "";
+                //cbo_equipo2.Text = "";
             }
         }
     }

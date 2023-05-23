@@ -73,6 +73,7 @@ namespace BibliotecaDeClases
                 if (equipos[i] == equipo)
                 {
                     indice = i;
+                    break;
                 }
             }
 

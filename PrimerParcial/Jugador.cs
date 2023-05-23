@@ -74,6 +74,7 @@ namespace BibliotecaDeClases
                 if (jugadores[i] == jugador)
                 {
                     indice = i;
+                    break;
                 }
             }
 

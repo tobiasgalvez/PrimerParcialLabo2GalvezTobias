@@ -13,14 +13,14 @@ using static BibliotecaDeClases.Enumerados;
 
 namespace Vista
 {
-    public partial class AltaJugador : Form
+    public partial class FormAltaJugador : Form
     {
         
         public Jugador Jugador { get; set; }
         public List<Equipo> Equipos { get; set; }
         public ManejadorCsvEquipos csvEquipos;
         public List<Jugador> Jugadores { get; set; }
-        public AltaJugador()
+        public FormAltaJugador()
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
@@ -29,7 +29,7 @@ namespace Vista
 
         }
 
-        public AltaJugador(List<Jugador> jugadores):this()
+        public FormAltaJugador(List<Jugador> jugadores):this()
         {
             Jugadores = new List<Jugador>();
             Jugadores = jugadores;
@@ -119,6 +119,7 @@ namespace Vista
             txt_altaDni.Text = jugador.Dni.ToString();
             cbo_altaEquipo.Text = jugador.Equipo;
             cbo_posiciones.Text = jugador.Posicion;
+            monthCalendar_fechaNacimiento.SelectionStart = jugador.FechaDeNacimiento;
         }
 
 

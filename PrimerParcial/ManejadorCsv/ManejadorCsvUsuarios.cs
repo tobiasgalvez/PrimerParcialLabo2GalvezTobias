@@ -59,13 +59,21 @@ namespace BibliotecaDeClases.ManejadorCsv
         public override void EliminarDato(Usuario usuario)
         {
             var usuarios = LeerDatos();
+            var usuariosAEliminar = new List<Usuario>();
+
             foreach (var item in usuarios)
             {
                 if (usuario == item)
                 {
-                    usuarios.Remove(item);
+                    usuariosAEliminar.Add(item);
                 }
             }
+
+            foreach (var item in usuariosAEliminar)
+            {
+                usuarios.Remove(item);
+            }
+
             GuardarDatos(usuarios);
         }
 

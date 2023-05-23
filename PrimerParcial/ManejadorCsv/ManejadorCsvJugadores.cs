@@ -57,13 +57,21 @@ namespace BibliotecaDeClases.ManejadorCsv
         public override void EliminarDato(Jugador jugador)
         {
             var jugadores = LeerDatos();
+            var jugadoresAEliminar = new List<Jugador>();
+
             foreach (var item in jugadores)
             {
                 if (jugador == item)
                 {
-                    jugadores.Remove(item);
+                    jugadoresAEliminar.Add(item);
                 }
             }
+
+            foreach (var item in jugadoresAEliminar)
+            {
+                jugadores.Remove(item);
+            }
+
             GuardarDatos(jugadores);
         }
 

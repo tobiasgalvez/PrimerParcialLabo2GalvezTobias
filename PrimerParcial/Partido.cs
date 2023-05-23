@@ -9,7 +9,7 @@ namespace BibliotecaDeClases
 {
     public class Partido
     {
-       // Dictionary<int, string> _partido; //string para ver quien ganó?
+        // Dictionary<int, string> _partido; //string para ver quien ganó?
         //private static int _ultimoId = 0;
         //private int _idPartido;
         //private DateTime _fechaPartido;
@@ -27,7 +27,7 @@ namespace BibliotecaDeClases
         private int _minutoActual;
 
 
-        public Partido() 
+        public Partido()
         {
             //_ultimoId++;
             //_idPartido = _ultimoId;
@@ -45,7 +45,7 @@ namespace BibliotecaDeClases
         //    _golesLocal = golesLocal;
         //    _golesVisitante = golesVisitante;
         //    _torneo = torneo;
- 
+
         //}
 
 
@@ -79,34 +79,61 @@ namespace BibliotecaDeClases
         public int TarjetasRojasLocal { get => _tarjetasRojasLocal; set => _tarjetasRojasLocal = value; }
         public int TarjetasRojasVisitante { get => _tarjetasRojasVisitante; set => _tarjetasRojasVisitante = value; }
 
+        /// <summary>
+        /// Método en el cual se valida el enfrentamiento entre dos equipos. Debe ser distinto uno 
+        /// de otro y deben contener por lo menos 11 jugadores cada uno
+        /// </summary>
+        /// <param name="equipo1"></param>
+        /// <param name="equipo2"></param>
+        /// <exception cref="PartidoException"></exception>
         public static void ValidarEnfrentamiento(Equipo equipo1, Equipo equipo2)
         {
-            if(equipo1 == equipo2)
+            if (equipo1 == equipo2)
             {
-                throw new partidoException("Un equipo no puede jugar consigo mismo!!!");
+                throw new PartidoException("Un equipo no puede jugar consigo mismo!!!");
             }
             //if (equipo1.ListaJugadores.Count < 11 || equipo2.ListaJugadores.Count < 11)
             //{
-            //    throw new partidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
+            //    throw new PartidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
             //}
         }
 
+        public static void ValidarPartidoJugado(Partido partido, List<Partido> partidosJugados)
+        {
+            foreach (var item in partidosJugados)
+            {
+                if (partido == item)
+                {
+                    throw new PartidoException("El partido ya ha sido jugado");
+                }
+            }
+        }
 
-        public static int BuscarIndice(List<Partido> partidos, Partido partido)
+        /// <summary>
+        /// Método por el cual se busca el índice de un partido
+        /// </summary>
+        /// <param name="partidos"></param>
+        /// <param name="partido"></param>
+        /// <returns></returns>
+        public static int BuscarIndice(List<Partido> partidos, Partido partido, string nombreAnterior)
         {
             int indice = -1;
             for (int i = 0; i < partidos.Count; i++)
             {
-                if (partidos[i] == partido)
+                if (nombreAnterior == partidos[i].EquipoLocal.Nombre || nombreAnterior == partidos[i].EquipoVisitante.Nombre)
                 {
                     indice = i;
+                    break;
                 }
             }
 
             return indice;
         }
 
-
+        /// <summary>
+        /// Método por el cual se puede simular un partido entre dos equipos. Genera eventos 
+        /// mediante un random 
+        /// </summary>
         public void SimularPartido()
         {
             Random random = new Random();
@@ -161,22 +188,17 @@ namespace BibliotecaDeClases
             }
         }
 
+        /// <summary>
+        /// Método por el cual se genera un resumen del partido con los acontecimientos importantes
+        /// : goles, tarjetas amarillas y tarjetas rojas
+        /// </summary>
+        /// <returns></returns>
         public string ResumenPartido()
         {
             StringBuilder resumen = new StringBuilder();
             resumen.AppendLine($"Resultado final: {EquipoLocal.Nombre} {EquipoLocal.Goles} - {EquipoVisitante.Goles} {EquipoVisitante.Nombre}");
-            GolesLocal = EquipoLocal.Goles;
-            GolesVisitante = EquipoVisitante.Goles;
-            TarjetasAmarillasLocal = EquipoLocal.TarjetasAmarillas;
-            TarjetasRojasLocal = EquipoLocal.TarjetasRojas;
-            TarjetasAmarillasVisitante = EquipoVisitante.TarjetasAmarillas;
-            TarjetasRojasVisitante = EquipoVisitante.TarjetasRojas;
 
-
-            //int hola = EquipoLocal.TarjetasAmarillas;
-            //int hola2 = EquipoVisitante.TarjetasAmarillas;
-
-            //ActualizarEstadisticas();
+            ActualizarEstadisticasPartido();
 
             resumen.AppendLine("Eventos importantes:");
             foreach (string evento in Eventos)
@@ -186,37 +208,86 @@ namespace BibliotecaDeClases
             return resumen.ToString();
         }
 
-        //private void ActualizarEstadisticas()
-        //{
-        //    if (GolesLocal < GolesVisitante)
-        //    {
-        //        Resultado = Enumerados.EResultado.Visitante;
-        //        EquipoLocal.PartidosPerdidos++;
-        //        EquipoVisitante.PartidosGanados++;
-        //    }
-        //    else if (GolesLocal == GolesVisitante)
-        //    {
-        //        Resultado = Enumerados.EResultado.Empate;
-        //        EquipoLocal.PartidosEmpatados++;
-        //        EquipoVisitante.PartidosEmpatados++;
-        //    }
-        //    else
-        //    {
-        //        EquipoLocal.PartidosGanados++;
-        //        EquipoVisitante.PartidosPerdidos++;
-        //    }
-        //}
 
+        public void ActualizarEstadisticasPartido()
+        {
+            GolesLocal = EquipoLocal.Goles;
+            GolesVisitante = EquipoVisitante.Goles;
+            TarjetasAmarillasLocal = EquipoLocal.TarjetasAmarillas;
+            TarjetasRojasLocal = EquipoLocal.TarjetasRojas;
+            TarjetasAmarillasVisitante = EquipoVisitante.TarjetasAmarillas;
+            TarjetasRojasVisitante = EquipoVisitante.TarjetasRojas;
 
+            if (GolesLocal > GolesVisitante)
+            {
+                Resultado = Enumerados.EResultado.Local;
+            }
+            else if (GolesVisitante > GolesLocal)
+            {
+                Resultado = Enumerados.EResultado.Visitante;
+            }
+            else
+            {
+                Resultado = Enumerados.EResultado.Empate;
+            }
 
+        }
+
+        /// <summary>
+        /// Sobrecarga del operador != para verificar si un partido es distinto de otro
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public static bool operator !=(Partido p1, Partido p2)
         {
-            return (p1.EquipoLocal != p2.EquipoLocal && p1.EquipoVisitante != p2.EquipoVisitante);
+            return (p1.EquipoLocal != p2.EquipoLocal && p1.EquipoVisitante != p2.EquipoVisitante) || (p1.EquipoVisitante != p2.EquipoLocal && p1.EquipoLocal != p2.EquipoVisitante);
         }
 
+        /// <summary>
+        /// Sobrecarga del operador == para verificar si un partido es igual al otro
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public static bool operator ==(Partido p1, Partido p2)
         {
-            return (p1.EquipoLocal == p2.EquipoLocal && p1.EquipoVisitante == p2.EquipoVisitante);
+            return (p1.EquipoLocal == p2.EquipoLocal && p1.EquipoVisitante == p2.EquipoVisitante) || (p1.EquipoVisitante == p2.EquipoLocal && p1.EquipoLocal == p2.EquipoVisitante);
         }
+
+
+        public override string ToString()
+        {
+            return $"{EquipoLocal} vs {EquipoVisitante} : {GolesLocal} - {GolesVisitante}";
+        }
+
+        public Partido Copiar()
+        {
+             Partido copia = new Partido(
+             this.EquipoLocal,
+             this.EquipoVisitante,
+             this.Resultado,
+             this.GolesLocal,
+             this.GolesVisitante,
+             this.Torneo,
+             this.TarjetasAmarillasLocal,
+             this.TarjetasAmarillasVisitante,
+             this.TarjetasRojasLocal,
+             this.TarjetasRojasVisitante);
+
+                return copia;
+        }
+
+        public static bool SonPartidosIguales(Partido partido1, Partido partido2)
+        {
+            return partido1.GolesLocal == partido2.GolesLocal &&
+                   partido1.GolesVisitante == partido2.GolesVisitante &&
+                   partido1.TarjetasAmarillasLocal == partido2.TarjetasAmarillasLocal &&
+                   partido1.TarjetasRojasLocal == partido2.TarjetasRojasLocal &&
+                   partido1.TarjetasAmarillasVisitante == partido2.TarjetasAmarillasVisitante &&
+                   partido1.TarjetasRojasVisitante == partido2.TarjetasRojasVisitante;
+        }
+
+
     }
 }

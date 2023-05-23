@@ -84,7 +84,7 @@
             this.btn_generarResultado.TabIndex = 4;
             this.btn_generarResultado.Text = "Generar Resultado";
             this.btn_generarResultado.UseVisualStyleBackColor = true;
-            this.btn_generarResultado.Click += new System.EventHandler(this.btn_generarResultado_Click);
+            this.btn_generarResultado.Click += new System.EventHandler(this.Btn_generarResultado_Click);
             // 
             // btn_cancel
             // 
@@ -94,7 +94,7 @@
             this.btn_cancel.TabIndex = 5;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = true;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // cbo_torneo
             // 
@@ -104,7 +104,7 @@
             this.cbo_torneo.Name = "cbo_torneo";
             this.cbo_torneo.Size = new System.Drawing.Size(223, 27);
             this.cbo_torneo.TabIndex = 7;
-            this.cbo_torneo.SelectionChangeCommitted += new System.EventHandler(this.cbo_torneo_SelectionChangeCommitted);
+            this.cbo_torneo.SelectionChangeCommitted += new System.EventHandler(this.Cbo_torneo_SelectionChangeCommitted);
             // 
             // lbl_torneo
             // 

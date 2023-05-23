@@ -101,6 +101,7 @@ namespace Vista
             txt_altaNombreUsuario.Text = usuario.User;
             txt_altaContraseña.Text = usuario.Contraseña;
             cbo_roles.Text = usuario.Rol.ToString();
+            monthCalendar_fechaNacimiento.SelectionStart = usuario.FechaDeNacimiento;
         }
 
         private void cbo_usuariosModificar_SelectionChangeCommitted(object sender, EventArgs e)

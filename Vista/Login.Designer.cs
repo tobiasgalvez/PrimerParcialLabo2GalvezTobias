@@ -97,7 +97,7 @@
             this.btn_ingresar.TabIndex = 4;
             this.btn_ingresar.Text = "Ingresar";
             this.btn_ingresar.UseVisualStyleBackColor = true;
-            this.btn_ingresar.Click += new System.EventHandler(this.btn_ingresar_Click);
+            this.btn_ingresar.Click += new System.EventHandler(this.Btn_ingresar_Click);
             // 
             // lbl_bienvenido
             // 
@@ -133,7 +133,7 @@
             this.btn_autocompletar.TabIndex = 7;
             this.btn_autocompletar.Text = "Autocompletar";
             this.btn_autocompletar.UseVisualStyleBackColor = true;
-            this.btn_autocompletar.Click += new System.EventHandler(this.btn_autocompletar_Click);
+            this.btn_autocompletar.Click += new System.EventHandler(this.Btn_autocompletar_Click);
             // 
             // pic_mostrarContraseña
             // 
@@ -145,7 +145,7 @@
             this.pic_mostrarContraseña.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_mostrarContraseña.TabIndex = 8;
             this.pic_mostrarContraseña.TabStop = false;
-            this.pic_mostrarContraseña.Click += new System.EventHandler(this.pic_mostrarContraseña_Click);
+            this.pic_mostrarContraseña.Click += new System.EventHandler(this.Pic_mostrarContraseña_Click);
             // 
             // pic_ocultarContraseña
             // 
@@ -157,7 +157,7 @@
             this.pic_ocultarContraseña.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_ocultarContraseña.TabIndex = 9;
             this.pic_ocultarContraseña.TabStop = false;
-            this.pic_ocultarContraseña.Click += new System.EventHandler(this.pic_ocultarContraseña_Click);
+            this.pic_ocultarContraseña.Click += new System.EventHandler(this.Pic_ocultarContraseña_Click);
             // 
             // btn_salir
             // 
@@ -167,7 +167,7 @@
             this.btn_salir.TabIndex = 10;
             this.btn_salir.Text = "Salir";
             this.btn_salir.UseVisualStyleBackColor = true;
-            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            this.btn_salir.Click += new System.EventHandler(this.Btn_salir_Click);
             // 
             // Login
             // 

@@ -64,7 +64,7 @@
             this.btn_agregarProducto.TabIndex = 2;
             this.btn_agregarProducto.Text = "Agregar jugador";
             this.btn_agregarProducto.UseVisualStyleBackColor = true;
-            this.btn_agregarProducto.Click += new System.EventHandler(this.btn_agregarProducto_Click);
+            this.btn_agregarProducto.Click += new System.EventHandler(this.Btn_agregarProducto_Click);
             // 
             // FormListaJugadores
             // 

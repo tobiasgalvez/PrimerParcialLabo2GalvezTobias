@@ -34,8 +34,9 @@ namespace Vista
             IsMdiContainer = true;
             if(_usuarioIngresado.Rol == Enumerados.ERol.Visitante)
             {
-                modificarToolStripMenuItem.Visible = false;    //CAMBIAR ESTO
+                modificarToolStripMenuItem.Visible = false;
                 verUsuariosToolStripMenuItem.Visible = false;
+                eliminarToolStripMenuItem.Visible = false;
             }
         }
 
@@ -90,6 +91,12 @@ namespace Vista
         {
             FormModificar formModificar = new FormModificar();
             formModificar.ShowDialog();
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEliminar formEliminar = new FormEliminar();
+            formEliminar.ShowDialog();
         }
     }
 }

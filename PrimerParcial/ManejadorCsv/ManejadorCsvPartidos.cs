@@ -50,8 +50,20 @@ namespace BibliotecaDeClases.ManejadorCsv
 
         public override void ModificarDato(Partido partidoOriginal, Partido partidoModificado)
         {
+            //var partidos = LeerDatos();
+            //int indice = Partido.BuscarIndice(partidos, partidoOriginal,);
+
+            //if (indice != -1)
+            //{
+            //    partidos[indice] = partidoModificado;
+            //    GuardarDatos(partidos);
+            //}
+        }
+
+        public void ModificarPartido(Partido partidoOriginal, Partido partidoModificado, string nombreAnterior)
+        {
             var partidos = LeerDatos();
-            int indice = Partido.BuscarIndice(partidos, partidoOriginal);
+            int indice = Partido.BuscarIndice(partidos, partidoOriginal, nombreAnterior);
 
             if (indice != -1)
             {
@@ -99,7 +111,7 @@ namespace BibliotecaDeClases.ManejadorCsv
             {
                 foreach (var partido in partidos)
                 {
-                    sw.WriteLine($"{partido.EquipoLocal},{partido.EquipoVisitante},{partido.Resultado},{partido.EquipoLocal.Goles},{partido.EquipoVisitante.Goles},{partido.Torneo},{partido.TarjetasAmarillasLocal},{partido.TarjetasRojasLocal},{partido.TarjetasAmarillasVisitante},{partido.TarjetasRojasVisitante}");
+                    sw.WriteLine($"{partido.EquipoLocal},{partido.EquipoVisitante},{partido.Resultado},{partido.GolesLocal},{partido.GolesVisitante},{partido.Torneo},{partido.TarjetasAmarillasLocal},{partido.TarjetasRojasLocal},{partido.TarjetasAmarillasVisitante},{partido.TarjetasRojasVisitante}");
                 }
             }
         }
