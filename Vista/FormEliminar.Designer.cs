@@ -63,6 +63,7 @@
             this.cbo_jugadores.Name = "cbo_jugadores";
             this.cbo_jugadores.Size = new System.Drawing.Size(342, 23);
             this.cbo_jugadores.TabIndex = 1;
+            
             // 
             // cbo_equipos
             // 

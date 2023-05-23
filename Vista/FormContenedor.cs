@@ -98,5 +98,10 @@ namespace Vista
             FormEliminar formEliminar = new FormEliminar();
             formEliminar.ShowDialog();
         }
+
+        private void aplicaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Sistema.InformacionAplicacion());
+        }
     }
 }

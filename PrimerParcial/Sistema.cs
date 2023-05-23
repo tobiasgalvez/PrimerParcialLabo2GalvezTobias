@@ -22,8 +22,6 @@ namespace BibliotecaDeClases
 
         public static List<Usuario> ListaDeUsuarios { get => _listaDeUsuarios; set => _listaDeUsuarios = value; }
 
-
-
         public static Usuario VerificarUsuarioExcepciones(string usuario, string contraseña)
         {
             string mensaje = "Error, datos ingresados invalidos";
@@ -44,9 +42,19 @@ namespace BibliotecaDeClases
                 throw new Exception(mensaje);
         }
 
-        //    formulario.MaximizeBox = false;
-        //    formulario.MinimizeBox = false;
-        //}
+        public static string InformacionAplicacion()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Ésta es una aplicación de torneos de fútbol!!!");
+            sb.AppendLine();
+            sb.AppendLine("Acá se van a poder agregar jugadores, equipos, torneos y resultados");
+            sb.AppendLine();
+            sb.AppendLine("También vas a poder consultar nuestro ránking histórico, en el cual tenemos los equipos con más partidos jugados, los equipos con más goles y mucho más!!!");
+        
+            return sb.ToString();
+        }
+
+       
 
     }
 }

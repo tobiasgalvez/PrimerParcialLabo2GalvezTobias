@@ -69,6 +69,7 @@ namespace Vista
             {
                 csvJugadores.EliminarDato(jugadorAEliminar);
                 MessageBox.Show($"Jugador '{jugadorAEliminar}' eliminado!!!");
+                cbo_jugadores.DataSource = csvJugadores.LeerDatos();
             }
             else
             {
@@ -86,6 +87,7 @@ namespace Vista
             {
                 csvEquipos.EliminarDato(equipoAEliminar);
                 MessageBox.Show($"Equipo '{equipoAEliminar}' eliminado!!!");
+                cbo_equipos.DataSource = csvEquipos.LeerDatos();
                 foreach (var item in Jugadores)
                 {
                     Jugador jugadorEquipoEliminado = item;
@@ -113,6 +115,7 @@ namespace Vista
             {
                 csvUsuarios.EliminarDato(usuarioAEliminar);
                 MessageBox.Show($"Usuario '{usuarioAEliminar}' eliminado!!!");
+                cbo_usuarios.DataSource = csvUsuarios.LeerDatos();
             }
             else
             {
@@ -130,6 +133,7 @@ namespace Vista
             {
                 csvTorneos.EliminarDato(torneoAEliminar);
                 MessageBox.Show($"Torneo '{torneoAEliminar}' eliminado!!!");
+                cbo_torneos.DataSource = csvTorneos.LeerDatos();
 
                 foreach (var item in Equipos)
                 {
@@ -153,11 +157,27 @@ namespace Vista
             {
                 csvPartidos.EliminarDato(partidoAEliminar);
                 MessageBox.Show($"Partido '{partidoAEliminar}' eliminado!!!");
+                cbo_partidos.DataSource = csvPartidos.LeerDatos();
             }
             else
             {
                 MessageBox.Show("Se canceló la eliminación");
             }
         }
+
+        //private void cbo_jugadores_SelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //    cbo_jugadores.SelectedItem = csvJugadores.LeerDatos();
+        //}
+
+        //private void cbo_jugadores_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+            
+        //}
+
+        //private void cbo_jugadores_SelectedValueChanged(object sender, EventArgs e)
+        //{
+        //    cbo_jugadores.DataSource = csvJugadores.LeerDatos();
+        //}
     }
 }

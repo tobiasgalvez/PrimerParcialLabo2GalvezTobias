@@ -14,8 +14,6 @@ namespace BibliotecaDeClases
         private List<Equipo> _listaDeEquipos;
         private List<Partido> _listaDePartidos;
 
-        //lista de partidos y q un partido sea clase e/ 2 equipos
-
         public Torneo(string nombre)
         {
             _nombre = nombre;
@@ -42,12 +40,21 @@ namespace BibliotecaDeClases
         public List<Partido> ListaDePartidos { get => _listaDePartidos; set => _listaDePartidos = value; }
         public int CantidadPartidos { get => _cantidadPartidos; set => _cantidadPartidos = value; }
 
+        /// <summary>
+        /// Sobrecarga del método ToString() para retornar nombre del torneo
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Nombre;
         }
 
-
+        /// <summary>
+        /// Método que permite buscar el indice de un torneo
+        /// </summary>
+        /// <param name="torneos"></param>
+        /// <param name="torneo"></param>
+        /// <returns>si encontró el torneo, su posición. Sino -1</returns>
         public static int BuscarIndice(List<Torneo> torneos, Torneo torneo)
         {
             int indice = -1;
