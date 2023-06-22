@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,8 @@ namespace Vista
     public partial class FormListaEquipos : Form
     {
         List<Equipo> Equipos { get; set; }
-        ManejadorCsvEquipos csvEquipos;
+        //ManejadorCsvEquipos csvEquipos;
+        IManejadorSQL<Equipo> ManejadorSqlEquipos { get; set; }
         //List<Jugador> listaJugadores;
 
 
@@ -23,14 +25,16 @@ namespace Vista
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
-            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            ManejadorSqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
             //listaJugadores = new List<Jugador>();
         }
 
-        private void FormListaEquipos_Load(object sender, EventArgs e)
+        private async void FormListaEquipos_Load(object sender, EventArgs e)
         {
- 
-            Equipos = csvEquipos.LeerDatos();
+
+            //Equipos = csvEquipos.LeerDatos();
+            Equipos = await ManejadorSqlEquipos.LeerDatosAsync();
 
             dgv_listadoEquipos.DataSource = Equipos;
             this.MaximizeBox = false;
@@ -56,7 +60,8 @@ namespace Vista
                 if (!esIgual)
                 {
                     Equipos.Add(equipoIngresado);
-                    csvEquipos.AgregarDato(equipoIngresado);
+                    //csvEquipos.AgregarDato(equipoIngresado);
+                    ManejadorSqlEquipos.AgregarDatoAsync(equipoIngresado).Wait();   
                     //DataGridHelp.ActualizarDataGrid(dgv_listadoEquipos, Equipos);
                     ActualizarDataGrid();
                     MessageBox.Show("equipo cargado con exito!!!!");

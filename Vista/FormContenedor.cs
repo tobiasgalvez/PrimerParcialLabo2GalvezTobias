@@ -14,17 +14,28 @@ namespace Vista
 {
     public partial class FormContenedor : Form
     {
-        private Usuario _usuarioIngresado;
+        public Usuario UsuarioIngresado { get; set; }
+        public GestionEventos GestionEventos { get; set; }
         public FormContenedor(Usuario usuarioIngresado)
         {
             InitializeComponent();
-            _usuarioIngresado = usuarioIngresado;
+            UsuarioIngresado = usuarioIngresado;
+            GestionEventos = new GestionEventos();
+            //me suscribo al evento log
+            GestionEventos.EventoLog += GestionEventos_EventoLog;
 
+        }
+
+        private void GestionEventos_EventoLog(Logs log)
+        {
+            // Agregar el registro de log al TextBox
+            lst_logs.Text = $"[{log.Fecha}] {log.Usuario}: {log.Accion}" + Environment.NewLine;
+            lbl_logs.Text = $"[{log.Fecha}] {log.Usuario}: {log.Accion}" + Environment.NewLine;
         }
 
         private void verPersonasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormListaJugadores formListado = new FormListaJugadores();
+            FormListaJugadores formListado = new FormListaJugadores(UsuarioIngresado, GestionEventos);
             formListado.ShowDialog();
             //this.Hide();
 
@@ -33,7 +44,7 @@ namespace Vista
         private void FormContenedor_Load(object sender, EventArgs e)
         {
             IsMdiContainer = true;
-            if(_usuarioIngresado.Rol == Enumerados.ERol.Visitante)
+            if(UsuarioIngresado.Rol == Enumerados.ERol.Visitante)
             {
                 modificarToolStripMenuItem.Visible = false;
                 verUsuariosToolStripMenuItem.Visible = false;
@@ -68,7 +79,7 @@ namespace Vista
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_usuarioIngresado.ObtenerInformacion());
+            MessageBox.Show(UsuarioIngresado.ObtenerInformacion());
         }
 
         private void verResultadosToolStripMenuItem1_Click(object sender, EventArgs e)

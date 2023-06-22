@@ -43,6 +43,8 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplicaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lst_logs = new System.Windows.Forms.ListBox();
+            this.lbl_logs = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,6 +163,25 @@
             this.desconectarToolStripMenuItem.Text = "Desconectar";
             this.desconectarToolStripMenuItem.Click += new System.EventHandler(this.desconectarToolStripMenuItem_Click);
             // 
+            // lst_logs
+            // 
+            this.lst_logs.FormattingEnabled = true;
+            this.lst_logs.ItemHeight = 15;
+            this.lst_logs.Location = new System.Drawing.Point(53, 48);
+            this.lst_logs.Name = "lst_logs";
+            this.lst_logs.Size = new System.Drawing.Size(394, 154);
+            this.lst_logs.TabIndex = 1;
+            // 
+            // lbl_logs
+            // 
+            this.lbl_logs.AutoSize = true;
+            this.lbl_logs.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_logs.Location = new System.Drawing.Point(158, 238);
+            this.lbl_logs.Name = "lbl_logs";
+            this.lbl_logs.Size = new System.Drawing.Size(63, 25);
+            this.lbl_logs.TabIndex = 2;
+            this.lbl_logs.Text = "label1";
+            // 
             // FormContenedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -170,6 +191,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1061, 510);
             this.ControlBox = false;
+            this.Controls.Add(this.lbl_logs);
+            this.Controls.Add(this.lst_logs);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -200,5 +223,7 @@
         private ToolStripMenuItem aplicaciónToolStripMenuItem;
         private ToolStripMenuItem verRankingHistoricoToolStripMenuItem;
         private ToolStripMenuItem eliminarToolStripMenuItem;
+        private ListBox lst_logs;
+        private Label lbl_logs;
     }
 }

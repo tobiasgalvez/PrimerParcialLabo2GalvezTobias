@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.Entidades;
+﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,19 @@ namespace Vista
     public partial class FormListaJugadores : Form
     {
         public List<Jugador> Jugadores { get; set; }
+        public Usuario UsuarioIngresado{get; set;}
+        public GestionEventos GestionEventos { get; set; }
         //Jugador jugador;
-        public FormListaJugadores()
+        public FormListaJugadores(Usuario usuarioIngresado, GestionEventos evento)
         {
             InitializeComponent();
             Jugadores = new List<Jugador>();
+            UsuarioIngresado = usuarioIngresado;
+            GestionEventos = evento;
+
         }
+
+
 
         private void FormListado_Load(object sender, EventArgs e)
         {
@@ -60,6 +68,15 @@ namespace Vista
                     csvJugadores.AgregarDato(jugadorIngresado);
                         ActualizarDataGrid();
                         MessageBox.Show("jugador cargado con exito!!!!");
+                    Logs registro = new Logs
+                    {
+                        Fecha = DateTime.Now,
+                        Usuario = UsuarioIngresado.User,
+                        Accion = "Agregó un nuevo jugador",
+                    };
+
+                    GestionEventos.EnviarRegistroLog(registro);
+
 
                 }
                 else
