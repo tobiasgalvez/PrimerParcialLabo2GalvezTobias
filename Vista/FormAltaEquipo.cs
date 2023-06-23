@@ -1,6 +1,7 @@
 ﻿using BibliotecaDeClases;
 using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,11 +22,13 @@ namespace Vista
         private string _nombreAnterior;
 
 
-        ManejadorCsvTorneos csvTorneos;
+        //ManejadorCsvTorneos csvTorneos;
+        IManejadorSQL<Torneo> sqlTorneos;
         public FormAltaEquipo()
         {
             InitializeComponent();
-            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            sqlTorneos = new ManejadorSQLTorneos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
         }
 
         public FormAltaEquipo(List<Equipo> listaEquipos):this()
@@ -39,10 +42,11 @@ namespace Vista
         public string NombreAnterior { get => _nombreAnterior; set => _nombreAnterior = value; }
         
 
-        private void FormAltaEquipo_Load(object sender, EventArgs e)
+        private async void FormAltaEquipo_Load(object sender, EventArgs e)
         {
 
-            Torneos = csvTorneos.LeerDatos();
+            //Torneos = csvTorneos.LeerDatos();
+            Torneos = await sqlTorneos.LeerDatosAsync();
 
             cbo_torneos.DataSource = Torneos;
             comboBox1.DataSource = Equipos;

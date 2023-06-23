@@ -2,6 +2,7 @@
 using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.Excepciones;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,8 @@ namespace Vista
         public List<Torneo> Torneos { get; set; }
         public Partido Partido { get; set; }
 
-        readonly ManejadorCsvTorneos csvTorneos;
+        //readonly ManejadorCsvTorneos csvTorneos;
+        IManejadorSQL<Torneo> sqlTorneos;
 
         public FormAgregarResultado()
         {
@@ -32,17 +34,20 @@ namespace Vista
             Equipos = new List<Equipo>();
             Torneos = new List<Torneo>();
             Partido = new Partido();
-            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            sqlTorneos = new ManejadorSQLTorneos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
         }
 
-        private void FormAgregarResultado_Load(object sender, EventArgs e)
+        private async void FormAgregarResultado_Load(object sender, EventArgs e)
         {
             
             lbl_mensajeError.Visible = false;
             Torneo torneoSeleccionado;
             //Hardcodeo.HardcodearEquipos(Equipos);
-            
-            Torneos = csvTorneos.LeerDatos();
+
+            //Torneos = csvTorneos.LeerDatos();
+
+            Torneos = await sqlTorneos.LeerDatosAsync();
 
             cbo_torneo.DataSource = Torneos;
             torneoSeleccionado = (Torneo)cbo_torneo.SelectedItem;   
@@ -141,8 +146,12 @@ namespace Vista
                 cbo_equipo1.DataSource = listaEquipos1;
                 cbo_equipo2.DataSource = listaEquipos2;
             }
+            else
+            {
+                throw new SinEquiposCargadosException("El torneo no tiene equipos cargados!!!");
 
-            throw new SinEquiposCargadosException("El torneo no tiene equipos cargados!!!");
+            }
+
 
         }
 

@@ -64,7 +64,8 @@ namespace Vista
                 Partido partidoIngresado = formAgregarResultado.Partido;
                
                 Partidos.Add(partidoIngresado);
-                csvPartidos.AgregarDato(partidoIngresado);
+                //csvPartidos.AgregarDato(partidoIngresado);
+                SqlPartidos.AgregarDatoAsync(partidoIngresado);
 
                 ActualizarDataGrid();
                 MessageBox.Show("Resultado cargado con exito!!!!");

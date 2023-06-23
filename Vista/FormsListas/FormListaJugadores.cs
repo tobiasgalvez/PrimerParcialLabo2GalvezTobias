@@ -55,7 +55,7 @@ namespace Vista
         private void Btn_agregarProducto_Click(object sender, EventArgs e)
         {
             bool esIgual = false;
-            ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
+            //ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
             FormAltaJugador altaJugador = new FormAltaJugador();
             DialogResult resultado = altaJugador.ShowDialog(); //para poner foco en el form alta jugador
             if(resultado == DialogResult.OK)
@@ -71,7 +71,7 @@ namespace Vista
                 if(!esIgual)
                 {
                         Jugadores.Add(jugadorIngresado);
-                    csvJugadores.AgregarDato(jugadorIngresado);
+                    SqlJugadores.AgregarDatoAsync(jugadorIngresado);
                         ActualizarDataGrid();
                         MessageBox.Show("jugador cargado con exito!!!!");
                     Logs registro = new Logs

@@ -26,7 +26,7 @@ namespace BibliotecaDeClases.ManejadorSQL
             {
                 await connection.OpenAsync();
 
-                using (SqlCommand command = new SqlCommand("SELECT * FROM partidos", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM partidos WHERE is_deleted = 0", connection))
                 {
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
@@ -87,7 +87,7 @@ namespace BibliotecaDeClases.ManejadorSQL
             {
                 await connection.OpenAsync();
 
-                using (SqlCommand command = new SqlCommand("DELETE FROM partidos WHERE id_equipoLocal = @IdEquipoLocal, id_equipoVisitante = @IdEquipoVisitante, resultado = @Resultado, golesLocal = @GolesLocal, golesVisitante = @GolesVisitante", connection))
+                using (SqlCommand command = new SqlCommand("UPDATE partidos SET is_deleted = 1 WHERE id_equipoLocal = @IdEquipoLocal AND id_equipoVisitante = @IdEquipoVisitante AND resultado = @Resultado AND golesLocal = @GolesLocal AND golesVisitante = @GolesVisitante", connection))
                 {
                     int idEquipoLocal = await ObtenerIdEquipoAsync(partido.EquipoLocal.Nombre);
                     int idEquipoVisitante = await ObtenerIdEquipoAsync(partido.EquipoVisitante.Nombre);
@@ -169,7 +169,7 @@ namespace BibliotecaDeClases.ManejadorSQL
                         {
                             Equipo equipo = new Equipo();
                             equipo.Nombre = reader.GetString(1);
-                            equipo.Liga = await ObtenerNombreTorneoAsync(reader.GetInt32(2));
+                            equipo.Liga = await ObtenerNombreTorneoAsync(reader.GetInt32(3));
 
                             return equipo;
                         }

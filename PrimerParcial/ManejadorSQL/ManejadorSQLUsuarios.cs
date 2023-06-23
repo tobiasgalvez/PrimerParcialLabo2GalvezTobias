@@ -26,7 +26,7 @@ namespace BibliotecaDeClases.ManejadorSQL
             {
                 await connection.OpenAsync();
 
-                using (SqlCommand command = new SqlCommand("SELECT * FROM usuarios", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM usuarios WHERE is_deleted = 0", connection))
                 {
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
@@ -69,7 +69,7 @@ namespace BibliotecaDeClases.ManejadorSQL
             {
                 await connection.OpenAsync();
 
-                using (SqlCommand command = new SqlCommand("DELETE FROM usuarios WHERE dni = @Dni", connection))
+                using (SqlCommand command = new SqlCommand("UPDATE usuarios SET is_deleted = 1 WHERE dni = @Dni", connection))
                 {
                     command.Parameters.AddWithValue("@Dni", usuario.Dni);
 

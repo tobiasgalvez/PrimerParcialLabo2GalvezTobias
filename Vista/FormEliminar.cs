@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,20 @@ namespace Vista
 {
     public partial class FormEliminar : Form
     {
-        ManejadorCsvJugadores csvJugadores;
-        ManejadorCsvTorneos csvTorneos;
-        ManejadorCsvUsuarios csvUsuarios;
-        ManejadorCsvEquipos csvEquipos;
-        ManejadorCsvPartidos csvPartidos;
+    //    ManejadorCsvJugadores csvJugadores;
+    //    ManejadorCsvTorneos csvTorneos;
+    //    ManejadorCsvUsuarios csvUsuarios;
+    //    ManejadorCsvEquipos csvEquipos;
+    //    ManejadorCsvPartidos csvPartidos;
+
+        IManejadorSQL<Jugador> sqlJugadores;
+        IManejadorSQL<Torneo> sqlTorneos;
+        IManejadorSQL<Usuario> sqlUsuarios;
+        IManejadorSQL<Equipo> sqlEquipos;
+        IManejadorSQL<Partido> sqlPartidos;
+
+        string connection = @"Server=.;Database=aplicacion;Trusted_Connection=True;";
+
 
         List<Jugador> Jugadores { get; set; }
         List<Torneo> Torneos { get; set; }
@@ -30,11 +40,18 @@ namespace Vista
         {
             InitializeComponent();
 
-            csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
-            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
-            csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
-            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
-            csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+            //csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
+            //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            //csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
+            //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            //csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+
+
+            sqlJugadores = new ManejadorSQLJugadores(connection);
+            sqlTorneos = new ManejadorSQLTorneos(connection);
+            sqlUsuarios = new ManejadorSQLUsuarios(connection);
+            sqlEquipos = new ManejadorSqlEquipos(connection);
+            sqlPartidos = new ManejadorSQLResultados(connection);
 
             Jugadores = new List<Jugador>();
             Torneos = new List<Torneo>();
@@ -43,13 +60,19 @@ namespace Vista
             Partidos = new List<Partido>();
         }
 
-        private void FormEliminar_Load(object sender, EventArgs e)
+        private async void FormEliminar_Load(object sender, EventArgs e)
         {
-            Jugadores = csvJugadores.LeerDatos();
-            Torneos = csvTorneos.LeerDatos();
-            Usuarios = csvUsuarios.LeerDatos();
-            Equipos = csvEquipos.LeerDatos();
-            Partidos = csvPartidos.LeerDatos();
+            //Jugadores = csvJugadores.LeerDatos();
+            //Torneos = csvTorneos.LeerDatos();
+            //Usuarios = csvUsuarios.LeerDatos();
+            //Equipos = csvEquipos.LeerDatos();
+            //Partidos = csvPartidos.LeerDatos();
+
+            Jugadores = await sqlJugadores.LeerDatosAsync();
+            Torneos = await sqlTorneos.LeerDatosAsync();
+            Usuarios = await sqlUsuarios.LeerDatosAsync();
+            Equipos = await sqlEquipos.LeerDatosAsync();
+            Partidos = await sqlPartidos.LeerDatosAsync();
 
 
             cbo_jugadores.DataSource = Jugadores;
@@ -59,7 +82,7 @@ namespace Vista
             cbo_partidos.DataSource = Partidos;
         }
 
-        private void btn_eliminarJugador_Click(object sender, EventArgs e)
+        private async void btn_eliminarJugador_Click(object sender, EventArgs e)
         {
             Jugador jugadorAEliminar;
             jugadorAEliminar = (Jugador)cbo_jugadores.SelectedItem;
@@ -67,9 +90,10 @@ namespace Vista
             DialogResult resultado = MessageBox.Show("Confirma eliminación de este jugador?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resultado == DialogResult.OK)
             {
-                csvJugadores.EliminarDato(jugadorAEliminar);
+                //csvJugadores.EliminarDato(jugadorAEliminar);
+                await sqlJugadores.EliminarDatoAsync(jugadorAEliminar);
                 MessageBox.Show($"Jugador '{jugadorAEliminar}' eliminado!!!");
-                cbo_jugadores.DataSource = csvJugadores.LeerDatos();
+                cbo_jugadores.DataSource = await sqlJugadores.LeerDatosAsync();
             }
             else
             {
@@ -77,7 +101,7 @@ namespace Vista
             }
         }
 
-        private void btn_eliminarEquipo_Click(object sender, EventArgs e)
+        private async void btn_eliminarEquipo_Click(object sender, EventArgs e)
         {
             Equipo equipoAEliminar;
             equipoAEliminar = (Equipo)cbo_equipos.SelectedItem;
@@ -85,16 +109,19 @@ namespace Vista
             DialogResult resultado = MessageBox.Show("Confirma eliminación de este equipo?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resultado == DialogResult.OK)
             {
-                csvEquipos.EliminarDato(equipoAEliminar);
+                //csvEquipos.EliminarDato(equipoAEliminar);
+                await sqlEquipos.EliminarDatoAsync(equipoAEliminar);
                 MessageBox.Show($"Equipo '{equipoAEliminar}' eliminado!!!");
-                cbo_equipos.DataSource = csvEquipos.LeerDatos();
+                cbo_equipos.DataSource =  await sqlEquipos.LeerDatosAsync();
                 foreach (var item in Jugadores)
                 {
                     Jugador jugadorEquipoEliminado = item;
                     if (item.Equipo == equipoAEliminar.Nombre)
                     {
                         jugadorEquipoEliminado.Equipo = "Sin equipo";
-                        csvJugadores.ModificarDato(item, jugadorEquipoEliminado);
+                        //csvJugadores.ModificarDato(item, jugadorEquipoEliminado);
+                        await sqlJugadores.ModificarDatoAsync(item, jugadorEquipoEliminado);
+
                     }
                         
                 }
@@ -105,7 +132,7 @@ namespace Vista
             }
         }
 
-        private void btn_eliminarUsuario_Click(object sender, EventArgs e)
+        private async void btn_eliminarUsuario_Click(object sender, EventArgs e)
         {
             Usuario usuarioAEliminar;
             usuarioAEliminar = (Usuario)cbo_usuarios.SelectedItem;
@@ -113,9 +140,10 @@ namespace Vista
             DialogResult resultado = MessageBox.Show("Confirma eliminación de este usuario?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resultado == DialogResult.OK)
             {
-                csvUsuarios.EliminarDato(usuarioAEliminar);
+                //csvUsuarios.EliminarDato(usuarioAEliminar);
+                await sqlUsuarios.EliminarDatoAsync(usuarioAEliminar);
                 MessageBox.Show($"Usuario '{usuarioAEliminar}' eliminado!!!");
-                cbo_usuarios.DataSource = csvUsuarios.LeerDatos();
+                cbo_usuarios.DataSource = await sqlUsuarios.LeerDatosAsync();
             }
             else
             {
@@ -123,7 +151,7 @@ namespace Vista
             }
         }
 
-        private void btn_eliminarTorneo_Click(object sender, EventArgs e)
+        private async void btn_eliminarTorneo_Click(object sender, EventArgs e)
         {
             Torneo torneoAEliminar;
             torneoAEliminar = (Torneo)cbo_torneos.SelectedItem;
@@ -131,9 +159,10 @@ namespace Vista
             DialogResult resultado = MessageBox.Show("Confirma eliminación de este torneo?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resultado == DialogResult.OK)
             {
-                csvTorneos.EliminarDato(torneoAEliminar);
+                //csvTorneos.EliminarDato(torneoAEliminar);
+                await sqlTorneos.EliminarDatoAsync(torneoAEliminar);
                 MessageBox.Show($"Torneo '{torneoAEliminar}' eliminado!!!");
-                cbo_torneos.DataSource = csvTorneos.LeerDatos();
+                cbo_torneos.DataSource = await sqlTorneos.LeerDatosAsync();
 
                 foreach (var item in Equipos)
                 {
@@ -147,7 +176,7 @@ namespace Vista
             }
         }
 
-        private void btn_eliminarPartido_Click(object sender, EventArgs e)
+        private async void btn_eliminarPartido_Click(object sender, EventArgs e)
         {
             Partido partidoAEliminar;
             partidoAEliminar = (Partido)cbo_partidos.SelectedItem;
@@ -155,9 +184,10 @@ namespace Vista
             DialogResult resultado = MessageBox.Show("Confirma eliminación de este partido?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resultado == DialogResult.OK)
             {
-                csvPartidos.EliminarDato(partidoAEliminar);
+                //csvPartidos.EliminarDato(partidoAEliminar);
+                await sqlPartidos.EliminarDatoAsync(partidoAEliminar);
                 MessageBox.Show($"Partido '{partidoAEliminar}' eliminado!!!");
-                cbo_partidos.DataSource = csvPartidos.LeerDatos();
+                cbo_partidos.DataSource = await sqlPartidos.LeerDatosAsync();
             }
             else
             {

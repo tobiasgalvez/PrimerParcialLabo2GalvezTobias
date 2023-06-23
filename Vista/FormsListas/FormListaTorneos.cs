@@ -16,14 +16,14 @@ namespace Vista
     public partial class FormListaTorneos : Form
     {
         List<Torneo> Torneos { get; set; }
-        ManejadorCsvTorneos csvTorneos;
+        //ManejadorCsvTorneos csvTorneos;
         IManejadorSQL<Torneo> SqlTorneos { get; set; }
 
         public FormListaTorneos()
         {
             InitializeComponent();
             Torneos = new List<Torneo>();
-            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
             SqlTorneos = new ManejadorSQLTorneos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
 
         }
@@ -57,7 +57,8 @@ namespace Vista
                 if (!esIgual)
                 {
                     Torneos.Add(torneoIngresado);
-                    csvTorneos.AgregarDato(torneoIngresado);
+                    //csvTorneos.AgregarDato(torneoIngresado);
+                    SqlTorneos.AgregarDatoAsync(torneoIngresado);
                     ActualizarDataGrid();
                     MessageBox.Show("torneo cargado con exito!!!!");
 

@@ -1,6 +1,7 @@
 ﻿using BibliotecaDeClases;
 using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,13 +20,15 @@ namespace Vista
         
         public Jugador Jugador { get; set; }
         public List<Equipo> Equipos { get; set; }
-        public ManejadorCsvEquipos csvEquipos;
+        //public ManejadorCsvEquipos csvEquipos;
+        public IManejadorSQL<Equipo> sqlEquipos;
         public List<Jugador> Jugadores { get; set; }
         public FormAltaJugador()
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
-            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            sqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
 
 
         }
@@ -40,7 +43,7 @@ namespace Vista
 
        
 
-        private void AltaProducto_Load(object sender, EventArgs e)
+        private async void AltaProducto_Load(object sender, EventArgs e)
         {
 
 
@@ -50,7 +53,8 @@ namespace Vista
             //    txt_altaApellido.Text = Jugador.Apellido;
             //    txt
             //}
-           Equipos = csvEquipos.LeerDatos();
+            //Equipos = csvEquipos.LeerDatos();
+            Equipos = await sqlEquipos.LeerDatosAsync();
            cbo_altaEquipo.DataSource = Equipos;
            cbo_posiciones.DataSource = Enum.GetValues(typeof(EPosiciones)).Cast<EPosiciones>().ToList();
 

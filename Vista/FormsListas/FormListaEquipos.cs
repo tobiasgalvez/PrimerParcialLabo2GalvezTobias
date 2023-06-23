@@ -61,7 +61,7 @@ namespace Vista
                 {
                     Equipos.Add(equipoIngresado);
                     //csvEquipos.AgregarDato(equipoIngresado);
-                    ManejadorSqlEquipos.AgregarDatoAsync(equipoIngresado).Wait();   
+                    ManejadorSqlEquipos.AgregarDatoAsync(equipoIngresado);
                     //DataGridHelp.ActualizarDataGrid(dgv_listadoEquipos, Equipos);
                     ActualizarDataGrid();
                     MessageBox.Show("equipo cargado con exito!!!!");

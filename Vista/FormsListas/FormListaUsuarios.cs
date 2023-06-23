@@ -17,19 +17,19 @@ namespace Vista
     {
         List<Usuario> Usuarios { get; set; }
         //ManejadorCsvUsuarios csvUsuarios;
-        IManejadorSQL<Usuario> SqlUsuarios { get; set; }
+        IManejadorSQL<Usuario> sqlUsuarios;
         public FormListaUsuarios()
         {
             InitializeComponent();
             //csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
-            SqlUsuarios = new ManejadorSQLUsuarios(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            sqlUsuarios = new ManejadorSQLUsuarios(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
         }
 
 
         private async void FormListaUsuarios_Load(object sender, EventArgs e)
         {
             //Usuarios = csvUsuarios.LeerDatos();
-            Usuarios = await SqlUsuarios.LeerDatosAsync();
+            Usuarios = await sqlUsuarios.LeerDatosAsync();
             dgv_listado.DataSource = Usuarios;
         }
 
@@ -53,6 +53,7 @@ namespace Vista
                 {
                     Usuarios.Add(usuarioIngresado);
                     //csv.AgregarJugador(jugadorIngresado);AGREGAR USUARIO
+                    sqlUsuarios.AgregarDatoAsync(usuarioIngresado);
                     ActualizarDataGrid();
                     MessageBox.Show("usuario cargado con exito!!!!");
 
