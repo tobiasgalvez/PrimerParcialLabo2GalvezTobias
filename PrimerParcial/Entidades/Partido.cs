@@ -28,9 +28,8 @@ namespace BibliotecaDeClases.Entidades
             _eventos = new List<string>();
         }
 
-        public Partido(/*DateTime fechaPartido,*/ Equipo equipoLocal, Equipo equipoVisitante, Enumerados.EResultado resultado, int golesLocal, int golesVisitante, string torneo, int tarjetasAmarillasLocal, int tarjetasAmarillasVisitante, int tarjetasRojasLocal, int tarjetasRojasVisitante) : this()
+        public Partido(Equipo equipoLocal, Equipo equipoVisitante, Enumerados.EResultado resultado, int golesLocal, int golesVisitante, string torneo, int tarjetasAmarillasLocal, int tarjetasAmarillasVisitante, int tarjetasRojasLocal, int tarjetasRojasVisitante) : this()
         {
-            //_fechaPartido = fechaPartido;
             _equipoLocal = equipoLocal;
             _equipoVisitante = equipoVisitante;
             _resultado = resultado;

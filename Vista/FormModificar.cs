@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,19 @@ namespace Vista
 {
     public partial class FormModificar : Form
     {
-        ManejadorCsvJugadores csvJugadores;
-        ManejadorCsvTorneos csvTorneos;
-        ManejadorCsvUsuarios csvUsuarios;
-        ManejadorCsvEquipos csvEquipos;
-        ManejadorCsvPartidos csvPartidos;
+        //ManejadorCsvJugadores csvJugadores;
+        //ManejadorCsvTorneos csvTorneos;
+        //ManejadorCsvUsuarios csvUsuarios;
+        //ManejadorCsvEquipos csvEquipos;
+        //ManejadorCsvPartidos csvPartidos;
+
+        IManejadorSQL<Jugador> sqlJugadores;
+        IManejadorSQL<Torneo> sqlTorneos;
+        IManejadorSQL<Usuario> sqlUsuarios;
+        IManejadorSQL<Equipo> sqlEquipos;
+        IManejadorSQL<Partido> sqlPartidos;
+
+        string connection = @"Server=.;Database=aplicacion;Trusted_Connection=True;";
 
         List<Jugador> Jugadores { get; set; }
         List<Torneo> Torneos { get; set; }
@@ -30,11 +39,18 @@ namespace Vista
         public FormModificar()
         {
             InitializeComponent();
-            csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
-            csvTorneos = new ManejadorCsvTorneos("torneos.csv");
-            csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
-            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
-            csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+            //csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
+            //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            //csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
+            //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            //csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+
+            sqlJugadores = new ManejadorSQLJugadores(connection);
+            sqlTorneos = new ManejadorSQLTorneos(connection);
+            sqlUsuarios = new ManejadorSQLUsuarios(connection);
+            sqlEquipos = new ManejadorSqlEquipos(connection);
+            sqlPartidos = new ManejadorSQLResultados(connection);
+
 
             Jugadores = new List<Jugador>();
             Torneos = new List<Torneo>();
@@ -44,13 +60,13 @@ namespace Vista
 
         }
 
-        private void FormModificar_Load(object sender, EventArgs e)
+        private async void FormModificar_Load(object sender, EventArgs e)
         {
-            Jugadores = csvJugadores.LeerDatos();
-            Torneos = csvTorneos.LeerDatos();
-            Usuarios = csvUsuarios.LeerDatos();
-            Equipos = csvEquipos.LeerDatos();
-            Partidos = csvPartidos.LeerDatos();
+            Jugadores = await sqlJugadores.LeerDatosAsync();
+            Torneos = await sqlTorneos.LeerDatosAsync();
+            Usuarios = await sqlUsuarios.LeerDatosAsync();
+            Equipos = await sqlEquipos.LeerDatosAsync();
+            Partidos = await sqlPartidos.LeerDatosAsync();
         }
 
         private void btn_modificarJugador_Click(object sender, EventArgs e)
@@ -66,7 +82,8 @@ namespace Vista
                 {
                     if (jugadorModificado == item)
                     {
-                        csvJugadores.ModificarDato(item, jugadorModificado);
+                        //csvJugadores.ModificarDato(item, jugadorModificado);
+                        sqlJugadores.ModificarDatoAsync(item, jugadorModificado);
                         MessageBox.Show("Jugador modificado con éxito!!!");
                     }
                 }
@@ -92,7 +109,8 @@ namespace Vista
                 {
                     if (nombreAnteriorEquipo == item.Nombre)
                     {
-                        csvEquipos.ModificarDato(item, equipoModificado);
+                        //csvEquipos.ModificarDato(item, equipoModificado);
+                        sqlEquipos.ModificarDatoAsync(item, equipoModificado);
                         MessageBox.Show("Equipo modificado con exito!!!");
                         flag = true;
                         break;
@@ -125,7 +143,8 @@ namespace Vista
                 {
                     if (nombreAnteriorTorneo == item.Nombre)
                     {
-                        csvTorneos.ModificarDato(item, torneoModificado);
+                        //csvTorneos.ModificarDato(item, torneoModificado);
+                        sqlTorneos.ModificarDatoAsync(item, torneoModificado);
                         MessageBox.Show("Torneo modificado con exito!!!");
                         flag = true;
                     }
@@ -156,7 +175,8 @@ namespace Vista
                 {
                     if (usuarioModificado == item)
                     {
-                        csvUsuarios.ModificarDato(item, usuarioModificado);
+                        //csvUsuarios.ModificarDato(item, usuarioModificado);
+                        sqlUsuarios.ModificarDatoAsync(item, usuarioModificado);
                         MessageBox.Show("Usuario modificado con éxito!!!");
                     }
                 }
@@ -181,7 +201,8 @@ namespace Vista
                 {
                     Jugador jugadorNombreEquipoModificado = item;
                     jugadorNombreEquipoModificado.Equipo = equipoModificado.Nombre;
-                    csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
+                    //csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
+                    sqlJugadores.ModificarDatoAsync(item, jugadorNombreEquipoModificado);
                 }
             }
         }

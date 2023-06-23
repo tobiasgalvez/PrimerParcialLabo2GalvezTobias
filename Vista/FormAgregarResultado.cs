@@ -141,10 +141,8 @@ namespace Vista
                 cbo_equipo1.DataSource = listaEquipos1;
                 cbo_equipo2.DataSource = listaEquipos2;
             }
-            else
-            {
-                throw new SinEquiposCargadosException("El torneo no tiene equipos cargados!!!");
-            }
+
+            throw new SinEquiposCargadosException("El torneo no tiene equipos cargados!!!");
 
         }
 

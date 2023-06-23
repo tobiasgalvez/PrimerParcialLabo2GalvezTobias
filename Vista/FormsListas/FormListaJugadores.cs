@@ -1,6 +1,7 @@
 ﻿using BibliotecaDeClases;
 using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace Vista
     {
         public List<Jugador> Jugadores { get; set; }
         public Usuario UsuarioIngresado{get; set;}
+        IManejadorSQL<Jugador> SqlJugadores { get; set; }
         public GestionEventos GestionEventos { get; set; }
         //Jugador jugador;
         public FormListaJugadores(Usuario usuarioIngresado, GestionEventos evento)
@@ -25,19 +27,23 @@ namespace Vista
             Jugadores = new List<Jugador>();
             UsuarioIngresado = usuarioIngresado;
             GestionEventos = evento;
+            SqlJugadores = new ManejadorSQLJugadores(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
 
         }
 
 
 
-        private void FormListado_Load(object sender, EventArgs e)
+        private async void FormListado_Load(object sender, EventArgs e)
         {
             //Hardcodeo.HardcodearJugadores(Jugadores);
             //jugadores.Add(jugador);
 
 
-            ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
-            Jugadores = csvJugadores.LeerDatos();
+            //ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
+
+            // Jugadores = csvJugadores.LeerDatos();
+
+            Jugadores = await SqlJugadores.LeerDatosAsync();
             
             //csv.AgregarJugador(Jugadores[1]);
             //Jugadores = csv.LeerJugadores();

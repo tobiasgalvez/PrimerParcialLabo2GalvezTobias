@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Vista
         List<Equipo> Equipos { get; set; }
         ManejadorCsvPartidos csvPartidos;
         ManejadorCsvEquipos csvEquipos;
+        IManejadorSQL<Partido> SqlPartidos { get; set; }
+        IManejadorSQL<Equipo> SqlEquipos { get; set; }
 
         public FormListaResultados()
         {
@@ -26,13 +29,18 @@ namespace Vista
             Equipos = new List<Equipo>();
             csvPartidos = new ManejadorCsvPartidos("partidos.csv");
             csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            SqlPartidos = new ManejadorSQLResultados(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            SqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
         }
 
-        private void FormListaResultados_Load(object sender, EventArgs e)
+        private async void FormListaResultados_Load(object sender, EventArgs e)
         {
 
-            Partidos = csvPartidos.LeerDatos();
-            Equipos = csvEquipos.LeerDatos();
+            //Partidos = csvPartidos.LeerDatos();
+            //Equipos = csvEquipos.LeerDatos();
+            Equipos = await SqlEquipos.LeerDatosAsync();
+            Partidos = await SqlPartidos.LeerDatosAsync();
+
             //csvPartidos.EliminarDato(Partidos[0]);
             //csvPartidos.EliminarDato(Partidos[1]);
             //csvPartidos.EliminarDato(Partidos[2]);

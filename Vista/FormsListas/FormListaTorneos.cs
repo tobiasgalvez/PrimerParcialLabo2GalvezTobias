@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,18 +17,22 @@ namespace Vista
     {
         List<Torneo> Torneos { get; set; }
         ManejadorCsvTorneos csvTorneos;
+        IManejadorSQL<Torneo> SqlTorneos { get; set; }
 
         public FormListaTorneos()
         {
             InitializeComponent();
             Torneos = new List<Torneo>();
             csvTorneos = new ManejadorCsvTorneos("torneos.csv");
+            SqlTorneos = new ManejadorSQLTorneos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+
         }
 
-        private void ListaTorneos_Load(object sender, EventArgs e)
+        private async void ListaTorneos_Load(object sender, EventArgs e)
         {
             //Hardcodeo.HardcodearTorneos(Torneos);
-            Torneos = csvTorneos.LeerDatos();
+            //Torneos = csvTorneos.LeerDatos();
+            Torneos = await SqlTorneos.LeerDatosAsync();
 
             dgv_listadoTorneos.DataSource = Torneos;
             this.MaximizeBox = false;

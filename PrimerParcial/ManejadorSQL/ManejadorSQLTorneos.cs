@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaDeClases.ManejadorSQL
 {
-    internal class ManejadorSQLTorneos : IManejadorSQL<Torneo>
+    public class ManejadorSQLTorneos : IManejadorSQL<Torneo>
     {
         private readonly string _connectionString;
 

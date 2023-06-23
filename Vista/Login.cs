@@ -22,6 +22,11 @@ namespace Vista
             txt_contraseña.PasswordChar = '*';
         }
 
+        private async void Login_Load(object sender, EventArgs e)
+        {
+            Sistema.ListaDeUsuarios = await Sistema.SqlUsuarios.LeerDatosAsync();
+        }
+
         private void Btn_ingresar_Click(object sender, EventArgs e)
         {
             //abstraccion (el boton se abstrae de cómo hace el sistema para verificar el usuario. Le importa que le devuelva un usuario NADA MÁS)
@@ -76,5 +81,7 @@ namespace Vista
         {
             Application.Exit();
         }
+
+        
     }
 }

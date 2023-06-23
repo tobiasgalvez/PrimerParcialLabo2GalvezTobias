@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,17 +16,20 @@ namespace Vista
     public partial class FormListaUsuarios : Form
     {
         List<Usuario> Usuarios { get; set; }
-        ManejadorCsvUsuarios csvUsuarios;
+        //ManejadorCsvUsuarios csvUsuarios;
+        IManejadorSQL<Usuario> SqlUsuarios { get; set; }
         public FormListaUsuarios()
         {
             InitializeComponent();
-            csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
+            //csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
+            SqlUsuarios = new ManejadorSQLUsuarios(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
         }
 
 
-        private void FormListaUsuarios_Load(object sender, EventArgs e)
+        private async void FormListaUsuarios_Load(object sender, EventArgs e)
         {
-            Usuarios = csvUsuarios.LeerDatos();
+            //Usuarios = csvUsuarios.LeerDatos();
+            Usuarios = await SqlUsuarios.LeerDatosAsync();
             dgv_listado.DataSource = Usuarios;
         }
 

@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,15 +13,17 @@ namespace BibliotecaDeClases
     public static class Sistema
     {
         private static List<Usuario> _listaDeUsuarios;
-
+        private static IManejadorSQL<Usuario> _sqlUsuarios;
+        
         static Sistema()
         {
             _listaDeUsuarios = new List<Usuario>();
-            ManejadorCsvUsuarios csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
-            _listaDeUsuarios = csvUsuarios.LeerDatos();
+            _sqlUsuarios = new ManejadorSQLUsuarios(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+
         }
 
         public static List<Usuario> ListaDeUsuarios { get => _listaDeUsuarios; set => _listaDeUsuarios = value; }
+        public static IManejadorSQL<Usuario> SqlUsuarios { get => _sqlUsuarios; set => _sqlUsuarios = value; }
 
 
         /// <summary>

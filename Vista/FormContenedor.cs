@@ -16,6 +16,7 @@ namespace Vista
     {
         public Usuario UsuarioIngresado { get; set; }
         public GestionEventos GestionEventos { get; set; }
+
         public FormContenedor(Usuario usuarioIngresado)
         {
             InitializeComponent();
