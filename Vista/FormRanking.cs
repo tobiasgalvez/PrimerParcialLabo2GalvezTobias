@@ -9,24 +9,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BibliotecaDeClases.Entidades;
+using BibliotecaDeClases.ManejadorSQL;
 
 namespace Vista
 {
     public partial class FormRanking : Form
     {
         List<Equipo> Equipos { get; set; }
-        ManejadorCsvEquipos csvEquipos;
+        //ManejadorCsvEquipos csvEquipos;
+        IManejadorSQL<Equipo> sqlEquipos;
         public FormRanking()
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
-            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            sqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+
 
         }
 
-        private void FormRankingHistórico_Load(object sender, EventArgs e)
+        private async void FormRankingHistórico_Load(object sender, EventArgs e)
         {
-            Equipos = csvEquipos.LeerDatos();
+            //Equipos = csvEquipos.LeerDatos();
+            Equipos = await sqlEquipos.LeerDatosAsync();
             //Equipos = OrdenarEquipos(Equipos);
         }
         private void btn_másGoles_Click(object sender, EventArgs e)

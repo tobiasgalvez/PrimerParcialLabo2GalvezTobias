@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.Entidades;
+﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using BibliotecaDeClases.ManejadorSQL;
 using System;
@@ -17,20 +18,24 @@ namespace Vista
     {
         List<Partido> Partidos { get; set; }
         List<Equipo> Equipos { get; set; }
-        ManejadorCsvPartidos csvPartidos;
-        ManejadorCsvEquipos csvEquipos;
-        IManejadorSQL<Partido> SqlPartidos { get; set; }
-        IManejadorSQL<Equipo> SqlEquipos { get; set; }
+        Usuario UsuarioIngresado { get; set; }
+        GestionEventos GestionEventos { get; set; }
+        //ManejadorCsvPartidos csvPartidos;
+        //ManejadorCsvEquipos csvEquipos;
+        IManejadorSQL<Partido> sqlPartidos;
+        IManejadorSQL<Equipo> sqlEquipos;
 
-        public FormListaResultados()
+        public FormListaResultados(Usuario usuarioIngresado, GestionEventos gestionEventos)
         {
             InitializeComponent();
             Partidos = new List<Partido>();
             Equipos = new List<Equipo>();
-            csvPartidos = new ManejadorCsvPartidos("partidos.csv");
-            csvEquipos = new ManejadorCsvEquipos("equipos.csv");
-            SqlPartidos = new ManejadorSQLResultados(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
-            SqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            //csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+            //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
+            sqlPartidos = new ManejadorSQLResultados(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            sqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            UsuarioIngresado = usuarioIngresado;
+            GestionEventos = gestionEventos;
         }
 
         private async void FormListaResultados_Load(object sender, EventArgs e)
@@ -38,8 +43,8 @@ namespace Vista
 
             //Partidos = csvPartidos.LeerDatos();
             //Equipos = csvEquipos.LeerDatos();
-            Equipos = await SqlEquipos.LeerDatosAsync();
-            Partidos = await SqlPartidos.LeerDatosAsync();
+            Equipos = await sqlEquipos.LeerDatosAsync();
+            Partidos = await sqlPartidos.LeerDatosAsync();
 
             //csvPartidos.EliminarDato(Partidos[0]);
             //csvPartidos.EliminarDato(Partidos[1]);
@@ -65,10 +70,19 @@ namespace Vista
                
                 Partidos.Add(partidoIngresado);
                 //csvPartidos.AgregarDato(partidoIngresado);
-                SqlPartidos.AgregarDatoAsync(partidoIngresado);
+                sqlPartidos.AgregarDatoAsync(partidoIngresado);
 
                 ActualizarDataGrid();
                 MessageBox.Show("Resultado cargado con exito!!!!");
+                Logs registro = new Logs
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = UsuarioIngresado.User,
+                    Accion = "Agregó un nuevo resultado",
+                };
+
+                GestionEventos.EnviarRegistroLog(registro);
+
             }
             else
             {

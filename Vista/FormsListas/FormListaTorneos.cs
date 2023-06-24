@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.Entidades;
+﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using BibliotecaDeClases.ManejadorSQL;
 using System;
@@ -18,14 +19,17 @@ namespace Vista
         List<Torneo> Torneos { get; set; }
         //ManejadorCsvTorneos csvTorneos;
         IManejadorSQL<Torneo> SqlTorneos { get; set; }
+        Usuario UsuarioIngresado { get; set; }
+        GestionEventos GestionEventos { get; set; }
 
-        public FormListaTorneos()
+        public FormListaTorneos(Usuario usuarioIngresado, GestionEventos gestionEventos)
         {
             InitializeComponent();
             Torneos = new List<Torneo>();
             //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
             SqlTorneos = new ManejadorSQLTorneos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
-
+            UsuarioIngresado = usuarioIngresado;
+            GestionEventos = gestionEventos;
         }
 
         private async void ListaTorneos_Load(object sender, EventArgs e)
@@ -61,6 +65,14 @@ namespace Vista
                     SqlTorneos.AgregarDatoAsync(torneoIngresado);
                     ActualizarDataGrid();
                     MessageBox.Show("torneo cargado con exito!!!!");
+                    Logs registro = new Logs
+                    {
+                        Fecha = DateTime.Now,
+                        Usuario = UsuarioIngresado.User,
+                        Accion = $"Agregó un nuevo torneo: {torneoIngresado.Nombre}",
+                    };
+
+                    GestionEventos.EnviarRegistroLog(registro);
 
                 }
                 else

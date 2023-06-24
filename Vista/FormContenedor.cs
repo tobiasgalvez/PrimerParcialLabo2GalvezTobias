@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases;
 using BibliotecaDeClases.Entidades;
+using BibliotecaDeClases.ManejadorSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,22 +17,25 @@ namespace Vista
     {
         public Usuario UsuarioIngresado { get; set; }
         public GestionEventos GestionEventos { get; set; }
+        IManejadorSQL<Logs> sqlRegistros;
 
         public FormContenedor(Usuario usuarioIngresado)
         {
             InitializeComponent();
             UsuarioIngresado = usuarioIngresado;
             GestionEventos = new GestionEventos();
+            sqlRegistros = new ManejadorSQLRegistros(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
             //me suscribo al evento log
             GestionEventos.EventoLog += GestionEventos_EventoLog;
 
         }
 
-        private void GestionEventos_EventoLog(Logs log)
+        private async void GestionEventos_EventoLog(Logs log)
         {
-            // Agregar el registro de log al TextBox
-            lst_logs.Text = $"[{log.Fecha}] {log.Usuario}: {log.Accion}" + Environment.NewLine;
-            lbl_logs.Text = $"[{log.Fecha}] {log.Usuario}: {log.Accion}" + Environment.NewLine;
+            // Agregar el registro de log al TextBox 
+            //lst_registros.Items.Add($"[{log.Fecha}] {log.Usuario}: {log.Accion}"); 
+            await sqlRegistros.AgregarDatoAsync(log);
+
         }
 
         private void verPersonasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,6 +54,7 @@ namespace Vista
                 modificarToolStripMenuItem.Visible = false;
                 verUsuariosToolStripMenuItem.Visible = false;
                 eliminarToolStripMenuItem.Visible = false;
+                registrosToolStripMenuItem.Visible = false;
             }
         }
 
@@ -62,13 +67,13 @@ namespace Vista
 
         private void verEquiposToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormListaEquipos formListado = new FormListaEquipos();
+            FormListaEquipos formListado = new FormListaEquipos(UsuarioIngresado, GestionEventos);
             formListado.ShowDialog();
         }
 
         private void verTorneosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormListaTorneos formListadoTorneos = new FormListaTorneos();
+            FormListaTorneos formListadoTorneos = new FormListaTorneos(UsuarioIngresado, GestionEventos);
             formListadoTorneos.ShowDialog();
         }
 
@@ -85,7 +90,7 @@ namespace Vista
 
         private void verResultadosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormListaResultados formListaResultados = new FormListaResultados();
+            FormListaResultados formListaResultados = new FormListaResultados(UsuarioIngresado, GestionEventos);
             formListaResultados.ShowDialog();
         }
 
@@ -97,19 +102,25 @@ namespace Vista
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormModificar formModificar = new FormModificar();
+            FormModificar formModificar = new FormModificar(UsuarioIngresado, GestionEventos);
             formModificar.ShowDialog();
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormEliminar formEliminar = new FormEliminar();
+            FormEliminar formEliminar = new FormEliminar(UsuarioIngresado, GestionEventos);
             formEliminar.ShowDialog();
         }
 
         private void aplicaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Sistema.InformacionAplicacion());
+        }
+
+        private void registrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRegistros formRegistros = new FormRegistros();
+            formRegistros.ShowDialog();
         }
     }
 }

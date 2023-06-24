@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.Entidades;
+﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using BibliotecaDeClases.ManejadorSQL;
 using System;
@@ -21,6 +22,9 @@ namespace Vista
         //ManejadorCsvEquipos csvEquipos;
         //ManejadorCsvPartidos csvPartidos;
 
+        Usuario UsuarioIngresado { get; set; }
+        GestionEventos GestionEventos { get; set; }
+
         IManejadorSQL<Jugador> sqlJugadores;
         IManejadorSQL<Torneo> sqlTorneos;
         IManejadorSQL<Usuario> sqlUsuarios;
@@ -36,7 +40,7 @@ namespace Vista
         List<Partido> Partidos { get; set; }
 
 
-        public FormModificar()
+        public FormModificar(Usuario usuarioIngresado, GestionEventos gestionEventos)
         {
             InitializeComponent();
             //csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
@@ -58,6 +62,8 @@ namespace Vista
             Equipos = new List<Equipo>();
             Partidos = new List<Partido>();
 
+            UsuarioIngresado = usuarioIngresado;
+            GestionEventos = gestionEventos;
         }
 
         private async void FormModificar_Load(object sender, EventArgs e)
@@ -85,6 +91,14 @@ namespace Vista
                         //csvJugadores.ModificarDato(item, jugadorModificado);
                         sqlJugadores.ModificarDatoAsync(item, jugadorModificado);
                         MessageBox.Show("Jugador modificado con éxito!!!");
+                        Logs registro = new Logs
+                        {
+                            Fecha = DateTime.Now,
+                            Usuario = UsuarioIngresado.User,
+                            Accion = $"Modificó un jugador: {item}",
+                        };
+
+                        GestionEventos.EnviarRegistroLog(registro);
                     }
                 }
 
@@ -113,6 +127,14 @@ namespace Vista
                         sqlEquipos.ModificarDatoAsync(item, equipoModificado);
                         MessageBox.Show("Equipo modificado con exito!!!");
                         flag = true;
+                        Logs registro = new Logs
+                        {
+                            Fecha = DateTime.Now,
+                            Usuario = UsuarioIngresado.User,
+                            Accion = $"Modificó un equipo: nombre anterior: {item} nombre actual: {equipoModificado}",
+                        };
+
+                        GestionEventos.EnviarRegistroLog(registro);
                         break;
                     }
                 }
@@ -147,6 +169,14 @@ namespace Vista
                         sqlTorneos.ModificarDatoAsync(item, torneoModificado);
                         MessageBox.Show("Torneo modificado con exito!!!");
                         flag = true;
+                        Logs registro = new Logs
+                        {
+                            Fecha = DateTime.Now,
+                            Usuario = UsuarioIngresado.User,
+                            Accion = $"Modificó un torneo: nombre anterior:{item.Nombre} nombre actual: {torneoModificado.Nombre}",
+                        };
+
+                        GestionEventos.EnviarRegistroLog(registro);
                     }
                 }
 
@@ -178,6 +208,14 @@ namespace Vista
                         //csvUsuarios.ModificarDato(item, usuarioModificado);
                         sqlUsuarios.ModificarDatoAsync(item, usuarioModificado);
                         MessageBox.Show("Usuario modificado con éxito!!!");
+                        Logs registro = new Logs
+                        {
+                            Fecha = DateTime.Now,
+                            Usuario = UsuarioIngresado.User,
+                            Accion = $"Modificó un usuario: {item}",
+                        }; 
+                        GestionEventos.EnviarRegistroLog(registro);
+
                     }
                 }
 

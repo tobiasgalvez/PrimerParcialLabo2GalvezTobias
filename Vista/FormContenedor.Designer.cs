@@ -42,9 +42,10 @@
             this.informaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplicaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lst_logs = new System.Windows.Forms.ListBox();
-            this.lbl_logs = new System.Windows.Forms.Label();
+            this.lst_registros = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,8 @@
             this.modificarToolStripMenuItem,
             this.eliminarToolStripMenuItem,
             this.informaciónToolStripMenuItem,
+            this.informesToolStripMenuItem,
+            this.registrosToolStripMenuItem,
             this.desconectarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -156,6 +159,19 @@
             this.aplicaciónToolStripMenuItem.Text = "Aplicación";
             this.aplicaciónToolStripMenuItem.Click += new System.EventHandler(this.aplicaciónToolStripMenuItem_Click);
             // 
+            // informesToolStripMenuItem
+            // 
+            this.informesToolStripMenuItem.Name = "informesToolStripMenuItem";
+            this.informesToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.informesToolStripMenuItem.Text = "Informes";
+            // 
+            // registrosToolStripMenuItem
+            // 
+            this.registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
+            this.registrosToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.registrosToolStripMenuItem.Text = "Registros ";
+            this.registrosToolStripMenuItem.Click += new System.EventHandler(this.registrosToolStripMenuItem_Click);
+            // 
             // desconectarToolStripMenuItem
             // 
             this.desconectarToolStripMenuItem.Name = "desconectarToolStripMenuItem";
@@ -163,24 +179,15 @@
             this.desconectarToolStripMenuItem.Text = "Desconectar";
             this.desconectarToolStripMenuItem.Click += new System.EventHandler(this.desconectarToolStripMenuItem_Click);
             // 
-            // lst_logs
+            // lst_registros
             // 
-            this.lst_logs.FormattingEnabled = true;
-            this.lst_logs.ItemHeight = 15;
-            this.lst_logs.Location = new System.Drawing.Point(53, 48);
-            this.lst_logs.Name = "lst_logs";
-            this.lst_logs.Size = new System.Drawing.Size(394, 154);
-            this.lst_logs.TabIndex = 1;
-            // 
-            // lbl_logs
-            // 
-            this.lbl_logs.AutoSize = true;
-            this.lbl_logs.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_logs.Location = new System.Drawing.Point(158, 238);
-            this.lbl_logs.Name = "lbl_logs";
-            this.lbl_logs.Size = new System.Drawing.Size(63, 25);
-            this.lbl_logs.TabIndex = 2;
-            this.lbl_logs.Text = "label1";
+            this.lst_registros.FormattingEnabled = true;
+            this.lst_registros.ItemHeight = 15;
+            this.lst_registros.Location = new System.Drawing.Point(919, 464);
+            this.lst_registros.Name = "lst_registros";
+            this.lst_registros.Size = new System.Drawing.Size(70, 19);
+            this.lst_registros.TabIndex = 4;
+            this.lst_registros.Visible = false;
             // 
             // FormContenedor
             // 
@@ -191,8 +198,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1061, 510);
             this.ControlBox = false;
-            this.Controls.Add(this.lbl_logs);
-            this.Controls.Add(this.lst_logs);
+            this.Controls.Add(this.lst_registros);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -223,7 +229,8 @@
         private ToolStripMenuItem aplicaciónToolStripMenuItem;
         private ToolStripMenuItem verRankingHistoricoToolStripMenuItem;
         private ToolStripMenuItem eliminarToolStripMenuItem;
-        private ListBox lst_logs;
-        private Label lbl_logs;
+        private ToolStripMenuItem informesToolStripMenuItem;
+        private ToolStripMenuItem registrosToolStripMenuItem;
+        private ListBox lst_registros;
     }
 }

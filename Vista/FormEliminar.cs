@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.Entidades;
+﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using BibliotecaDeClases.ManejadorSQL;
 using System;
@@ -15,11 +16,14 @@ namespace Vista
 {
     public partial class FormEliminar : Form
     {
-    //    ManejadorCsvJugadores csvJugadores;
-    //    ManejadorCsvTorneos csvTorneos;
-    //    ManejadorCsvUsuarios csvUsuarios;
-    //    ManejadorCsvEquipos csvEquipos;
-    //    ManejadorCsvPartidos csvPartidos;
+        //    ManejadorCsvJugadores csvJugadores;
+        //    ManejadorCsvTorneos csvTorneos;
+        //    ManejadorCsvUsuarios csvUsuarios;
+        //    ManejadorCsvEquipos csvEquipos;
+        //    ManejadorCsvPartidos csvPartidos;
+
+        Usuario UsuarioIngresado { get; set; }
+        GestionEventos GestionEventos { get; set; }
 
         IManejadorSQL<Jugador> sqlJugadores;
         IManejadorSQL<Torneo> sqlTorneos;
@@ -36,7 +40,7 @@ namespace Vista
         List<Equipo> Equipos { get; set; }
         List<Partido> Partidos { get; set; }
 
-        public FormEliminar()
+        public FormEliminar(Usuario usuarioIngresado, GestionEventos gestionEventos)
         {
             InitializeComponent();
 
@@ -45,6 +49,8 @@ namespace Vista
             //csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
             //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
             //csvPartidos = new ManejadorCsvPartidos("partidos.csv");
+
+
 
 
             sqlJugadores = new ManejadorSQLJugadores(connection);
@@ -58,6 +64,8 @@ namespace Vista
             Usuarios = new List<Usuario>();
             Equipos = new List<Equipo>();
             Partidos = new List<Partido>();
+            UsuarioIngresado = usuarioIngresado;
+            GestionEventos = gestionEventos;
         }
 
         private async void FormEliminar_Load(object sender, EventArgs e)
@@ -94,6 +102,14 @@ namespace Vista
                 await sqlJugadores.EliminarDatoAsync(jugadorAEliminar);
                 MessageBox.Show($"Jugador '{jugadorAEliminar}' eliminado!!!");
                 cbo_jugadores.DataSource = await sqlJugadores.LeerDatosAsync();
+                Logs registro = new Logs
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = UsuarioIngresado.User,
+                    Accion = $"Eliminó un jugador: {jugadorAEliminar}",
+                };
+
+                GestionEventos.EnviarRegistroLog(registro);
             }
             else
             {
@@ -125,6 +141,15 @@ namespace Vista
                     }
                         
                 }
+
+                Logs registro = new Logs
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = UsuarioIngresado.User,
+                    Accion = $"Eliminó un equipo: {equipoAEliminar}",
+                };
+
+                GestionEventos.EnviarRegistroLog(registro);
             }
             else
             {
@@ -144,6 +169,16 @@ namespace Vista
                 await sqlUsuarios.EliminarDatoAsync(usuarioAEliminar);
                 MessageBox.Show($"Usuario '{usuarioAEliminar}' eliminado!!!");
                 cbo_usuarios.DataSource = await sqlUsuarios.LeerDatosAsync();
+
+                Logs registro = new Logs
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = UsuarioIngresado.User,
+                    Accion = $"Eliminó un usuario: {usuarioAEliminar}",
+                };
+
+                GestionEventos.EnviarRegistroLog(registro);
+
             }
             else
             {
@@ -169,6 +204,15 @@ namespace Vista
                     if(item.Liga == torneoAEliminar.Nombre)
                     item.Liga = "nn";
                 }
+
+                Logs registro = new Logs
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = UsuarioIngresado.User,
+                    Accion = $"Eliminó un torneo: {torneoAEliminar.Nombre}",
+                };
+
+                GestionEventos.EnviarRegistroLog(registro);
             }
             else
             {
@@ -188,6 +232,14 @@ namespace Vista
                 await sqlPartidos.EliminarDatoAsync(partidoAEliminar);
                 MessageBox.Show($"Partido '{partidoAEliminar}' eliminado!!!");
                 cbo_partidos.DataSource = await sqlPartidos.LeerDatosAsync();
+                Logs registro = new Logs
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = UsuarioIngresado.User,
+                    Accion = $"Eliminó un partido: {partidoAEliminar.EquipoLocal} vs {partidoAEliminar.EquipoVisitante} del torneo: {partidoAEliminar.Torneo}",
+                };
+
+                GestionEventos.EnviarRegistroLog(registro);
             }
             else
             {

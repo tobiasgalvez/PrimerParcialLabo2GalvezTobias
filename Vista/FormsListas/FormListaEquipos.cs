@@ -1,4 +1,5 @@
-﻿using BibliotecaDeClases.Entidades;
+﻿using BibliotecaDeClases;
+using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.ManejadorCsv;
 using BibliotecaDeClases.ManejadorSQL;
 using System;
@@ -17,16 +18,20 @@ namespace Vista
     {
         List<Equipo> Equipos { get; set; }
         //ManejadorCsvEquipos csvEquipos;
-        IManejadorSQL<Equipo> ManejadorSqlEquipos { get; set; }
+        IManejadorSQL<Equipo> manejadorSqlEquipos;
+        public Usuario UsuarioIngresado { get; set; }
+        public GestionEventos GestionEventos { get; set; }
         //List<Jugador> listaJugadores;
 
 
-        public FormListaEquipos()
+        public FormListaEquipos(Usuario usuarioIngresado,GestionEventos evento)
         {
             InitializeComponent();
             Equipos = new List<Equipo>();
             //csvEquipos = new ManejadorCsvEquipos("equipos.csv");
-            ManejadorSqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            manejadorSqlEquipos = new ManejadorSqlEquipos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            GestionEventos = evento;
+            UsuarioIngresado = usuarioIngresado;
             //listaJugadores = new List<Jugador>();
         }
 
@@ -34,7 +39,7 @@ namespace Vista
         {
 
             //Equipos = csvEquipos.LeerDatos();
-            Equipos = await ManejadorSqlEquipos.LeerDatosAsync();
+            Equipos = await manejadorSqlEquipos.LeerDatosAsync();
 
             dgv_listadoEquipos.DataSource = Equipos;
             this.MaximizeBox = false;
@@ -61,9 +66,18 @@ namespace Vista
                 {
                     Equipos.Add(equipoIngresado);
                     //csvEquipos.AgregarDato(equipoIngresado);
-                    ManejadorSqlEquipos.AgregarDatoAsync(equipoIngresado);
+                    manejadorSqlEquipos.AgregarDatoAsync(equipoIngresado);
                     //DataGridHelp.ActualizarDataGrid(dgv_listadoEquipos, Equipos);
                     ActualizarDataGrid();
+                    Logs registro = new Logs
+                    {
+                        Fecha = DateTime.Now,
+                        Usuario = UsuarioIngresado.User,
+                        Accion = $"Agregó un nuevo equipo: {equipoIngresado}",
+                    };
+
+                    GestionEventos.EnviarRegistroLog(registro);
+
                     MessageBox.Show("equipo cargado con exito!!!!");
 
                 }

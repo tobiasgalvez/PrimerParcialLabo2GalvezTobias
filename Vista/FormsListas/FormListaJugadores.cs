@@ -78,7 +78,7 @@ namespace Vista
                     {
                         Fecha = DateTime.Now,
                         Usuario = UsuarioIngresado.User,
-                        Accion = "Agregó un nuevo jugador",
+                        Accion = $"Agregó un nuevo jugador: {jugadorIngresado}",
                     };
 
                     GestionEventos.EnviarRegistroLog(registro);
