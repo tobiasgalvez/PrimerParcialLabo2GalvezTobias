@@ -36,6 +36,7 @@ namespace BibliotecaDeClases.ManejadorCsv
         public override void AgregarDato(Jugador jugador)
         {
             using (var sw = new StreamWriter(_csvFilePath, true)) // el using sería como un try-finally en donde el finally tira un dispose al archivo 
+            //el false sobrescribe el archivo, mientras que el true agrega contenido al archivo existente
             {
                 sw.WriteLine($"{jugador.Nombre},{jugador.Apellido}, {jugador.FechaDeNacimiento}, {jugador.Dni},{jugador.Posicion},{jugador.Equipo}");
             }
