@@ -109,7 +109,7 @@ namespace Vista
             }
         }
 
-        private void btn_modificarEquipo_Click(object sender, EventArgs e)
+        private async void btn_modificarEquipo_Click(object sender, EventArgs e)
         {
             FormAltaEquipo formAltaEquipo = new FormAltaEquipo(Equipos);
             DialogResult resultado = formAltaEquipo.ShowDialog();
@@ -124,7 +124,7 @@ namespace Vista
                     if (nombreAnteriorEquipo == item.Nombre)
                     {
                         //csvEquipos.ModificarDato(item, equipoModificado);
-                        sqlEquipos.ModificarDatoAsync(item, equipoModificado);
+                        await sqlEquipos.ModificarDatoAsync(item, equipoModificado);
                         MessageBox.Show("Equipo modificado con exito!!!");
                         flag = true;
                         Logs registro = new Logs
@@ -141,7 +141,7 @@ namespace Vista
 
                 if(flag)
                 {
-                    ModificarEquipoEnListaDeJugadores(nombreAnteriorEquipo, equipoModificado);
+                    await Sistema.ModificarEquipoEnListaDeJugadores(nombreAnteriorEquipo, equipoModificado, Jugadores);
                     //ModificarEquipoEnListaDePartidos(nombreAnteriorEquipo, equipoModificado);
                 }
             }
@@ -151,7 +151,7 @@ namespace Vista
             }
         }
 
-        private void btn_modificarTorneo_Click(object sender, EventArgs e)
+        private async void btn_modificarTorneo_Click(object sender, EventArgs e)
         {
             FormAltaTorneo formAltaTorneo = new FormAltaTorneo(Torneos);
             DialogResult resultado = formAltaTorneo.ShowDialog();
@@ -166,7 +166,7 @@ namespace Vista
                     if (nombreAnteriorTorneo == item.Nombre)
                     {
                         //csvTorneos.ModificarDato(item, torneoModificado);
-                        sqlTorneos.ModificarDatoAsync(item, torneoModificado);
+                        await sqlTorneos.ModificarDatoAsync(item, torneoModificado);
                         MessageBox.Show("Torneo modificado con exito!!!");
                         flag = true;
                         Logs registro = new Logs
@@ -182,7 +182,7 @@ namespace Vista
 
                 if(flag)
                 {
-                    ModificarTorneoEnListaDeEquipos(nombreAnteriorTorneo, torneoModificado);
+                    await Sistema.ModificarTorneoEnListaDeEquipos(nombreAnteriorTorneo, torneoModificado, Equipos);
                 }
 
             }
@@ -226,25 +226,7 @@ namespace Vista
             }
         }
 
-        /// <summary>
-        /// Método por el cual se actualiza el nombre del equipo  en la lista de jugadores
-        /// </summary>
-        /// <param name="nombreAnteriorEquipo">nombre anterior del equipo</param>
-        /// <param name="equipoModificado">equipo con nombre modificado</param>
-        private void ModificarEquipoEnListaDeJugadores(string nombreAnteriorEquipo, Equipo equipoModificado)
-        {
-            foreach (var item in Jugadores)
-            {
-                if (nombreAnteriorEquipo == item.Equipo)
-                {
-                    Jugador jugadorNombreEquipoModificado = item;
-                    jugadorNombreEquipoModificado.Equipo = equipoModificado.Nombre;
-                    //csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
-                    sqlJugadores.ModificarDatoAsync(item, jugadorNombreEquipoModificado);
-                }
-            }
-        }
-
+ 
         /// <summary>
         /// Método por el cual se actualiza el nombre del equipo en la lista de partidos
         /// </summary>
@@ -268,25 +250,7 @@ namespace Vista
         //    }
         //}
 
-        /// <summary>
-        /// Método por el cual se actualiza el nombre del torneo en la lista de equipos
-        /// </summary>
-        /// <param name="nombreAnteriorTorneo">nombre anterior del torneo</param>
-        /// <param name="torneoModificado">torneo con nombre modificado</param>
-        private void ModificarTorneoEnListaDeEquipos(string nombreAnteriorTorneo, Torneo torneoModificado)
-        {
-            foreach (var item in Equipos)
-            {
-                Equipo equipoNombreTorneoModificado;
-                if (nombreAnteriorTorneo == item.Liga)
-                {
-                    equipoNombreTorneoModificado = item;
-                    equipoNombreTorneoModificado.Liga = torneoModificado.Nombre;
-                    sqlEquipos.ModificarDatoAsync(item, equipoNombreTorneoModificado);
-                }
-            }
-        }
-
+       
 
 
 

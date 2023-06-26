@@ -75,6 +75,7 @@
             this.btn_exportarJson.TabIndex = 8;
             this.btn_exportarJson.Text = "Exportar json";
             this.btn_exportarJson.UseVisualStyleBackColor = true;
+            this.btn_exportarJson.Visible = false;
             this.btn_exportarJson.Click += new System.EventHandler(this.btn_exportarJson_Click);
             // 
             // btn_exportarCsv
@@ -85,6 +86,7 @@
             this.btn_exportarCsv.TabIndex = 7;
             this.btn_exportarCsv.Text = "Exportar csv";
             this.btn_exportarCsv.UseVisualStyleBackColor = true;
+            this.btn_exportarCsv.Visible = false;
             this.btn_exportarCsv.Click += new System.EventHandler(this.btn_exportarCsv_Click);
             // 
             // lbl_msjError

@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Informes
 {
     public interface IInformes<T>
     {
         public void GuardarDatosCsv(List<T> lista);
         public void GuardarDatosJson(List<T> lista);
- 
+
     }
 }

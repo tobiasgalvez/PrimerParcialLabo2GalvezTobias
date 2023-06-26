@@ -1,5 +1,6 @@
 ﻿using BibliotecaDeClases;
 using BibliotecaDeClases.Entidades;
+using BibliotecaDeClases.Informes;
 using BibliotecaDeClases.ManejadorCsv;
 using BibliotecaDeClases.ManejadorSQL;
 using System;
@@ -39,20 +40,19 @@ namespace Vista
 
         private async void FormListado_Load(object sender, EventArgs e)
         {
-            //Hardcodeo.HardcodearJugadores(Jugadores);
-            //jugadores.Add(jugador);
-
-
-            //ManejadorCsvJugadores csvJugadores = new ManejadorCsvJugadores("jugadores.csv");
-
-            // Jugadores = csvJugadores.LeerDatos();
-
+ 
             Jugadores = await SqlJugadores.LeerDatosAsync();
             
             //csv.AgregarJugador(Jugadores[1]);
             //Jugadores = csv.LeerJugadores();
             dgv_listado.DataSource = Jugadores;
             this.MaximizeBox = false;
+
+            if(UsuarioIngresado.Rol == Enumerados.ERol.Admin)
+            {
+                btn_exportarCsv.Visible = true;
+                btn_exportarJson.Visible = true;
+            }
 
         }
 

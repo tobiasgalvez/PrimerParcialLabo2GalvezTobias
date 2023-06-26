@@ -79,7 +79,7 @@ namespace Vista
 
         private void verUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormListaUsuarios formListaUsuarios = new FormListaUsuarios();
+            FormListaUsuarios formListaUsuarios = new FormListaUsuarios(UsuarioIngresado);
             formListaUsuarios.ShowDialog();
         }
 
@@ -119,7 +119,7 @@ namespace Vista
 
         private void registrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormRegistros formRegistros = new FormRegistros();
+            FormRegistros formRegistros = new FormRegistros(UsuarioIngresado);
             formRegistros.ShowDialog();
         }
     }

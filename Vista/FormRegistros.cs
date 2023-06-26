@@ -10,19 +10,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BibliotecaDeClases.Entidades;
+using BibliotecaDeClases.Informes;
 
 namespace Vista
 {
     public partial class FormRegistros : Form
     {
+
         List<Logs> ListaRegistros { get; set; }
         IManejadorSQL<Logs> sqlRegistros;
+        public Usuario UsuarioIngresado { get; set; }
 
-        public FormRegistros()
+        public FormRegistros(Usuario usuarioIngresado)
         {
             InitializeComponent();
             ListaRegistros = new List<Logs>();
             sqlRegistros = new ManejadorSQLRegistros(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            UsuarioIngresado = usuarioIngresado;
         }
 
         private async void FormRegistros_Load(object sender, EventArgs e)
@@ -33,6 +37,14 @@ namespace Vista
             lst_registros.Items.Add(item);
 
             }
+
+            if (UsuarioIngresado.Rol == Enumerados.ERol.Admin)
+            {
+                btn_exportarCsv.Visible = true;
+                btn_exportarJson.Visible = true;
+            }
+
+
         }
 
         private void btn_exportarCsv_Click(object sender, EventArgs e)

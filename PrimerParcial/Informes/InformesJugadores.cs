@@ -1,37 +1,37 @@
-﻿using Newtonsoft.Json;
+﻿using BibliotecaDeClases.Entidades;
+using BibliotecaDeClases.Excepciones;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BibliotecaDeClases
+namespace BibliotecaDeClases.Informes
 {
-    public class InformesRegistros : IInformes<Logs>
+    public class InformesJugadores : IInformes<Jugador>
     {
         private string _path;
 
 
-        public InformesRegistros(string path)
+        public InformesJugadores(string path)
         {
             _path = path;
         }
 
-
-        public void GuardarDatosCsv(List<Logs> lista)
+        public void GuardarDatosCsv(List<Jugador> lista)
         {
             using (var sw = new StreamWriter(_path, false)) //el false sobrescribe el archivo, mientras que el true agrega contenido al archivo existente
             {
-                //sw.WriteLine("Nombre,Apellido,FechaDeNacimiento,Dni,Posicion,Equipo");
-                foreach (var registro in lista)
+                sw.WriteLine("Nombre,Apellido,FechaDeNacimiento,Dni,Posicion,Equipo");
+                foreach (var jugador in lista)
                 {
-                    sw.WriteLine($"{registro.Fecha},{registro.Usuario}, {registro.Accion}");
+                    sw.WriteLine($"{jugador.Nombre},{jugador.Apellido}, {jugador.FechaDeNacimiento}, {jugador.Dni},{jugador.Posicion},{jugador.Equipo}");
                 }
             }
         }
 
-        public void GuardarDatosJson(List<Logs> lista)
+        public void GuardarDatosJson(List<Jugador> lista)
         {
             string jsonString = JsonConvert.SerializeObject(lista, Formatting.Indented);
 
@@ -40,8 +40,6 @@ namespace BibliotecaDeClases
                 sw.WriteLine(jsonString);
             }
         }
+
     }
-
-
-  }
-
+}

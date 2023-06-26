@@ -12,13 +12,22 @@ namespace BibliotecaDeClases
 {
     public static class Sistema
     {
+        private static string _connection = @"Server=.;Database=aplicacion;Trusted_Connection=True;";
+
         private static List<Usuario> _listaDeUsuarios;
         private static IManejadorSQL<Usuario> _sqlUsuarios;
-        
+
+        private static IManejadorSQL<Equipo> _sqlEquipos;
+
+        private static IManejadorSQL<Jugador> _sqlJugadores;
+
+
         static Sistema()
         {
             _listaDeUsuarios = new List<Usuario>();
-            _sqlUsuarios = new ManejadorSQLUsuarios(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            _sqlUsuarios = new ManejadorSQLUsuarios(_connection);
+            _sqlEquipos = new ManejadorSqlEquipos(_connection);
+            _sqlJugadores = new ManejadorSQLJugadores(_connection);
 
         }
 
@@ -69,7 +78,47 @@ namespace BibliotecaDeClases
             return sb.ToString();
         }
 
-       
+
+        /// <summary>
+        /// Método por el cual se actualiza el nombre del torneo en la lista de equipos
+        /// </summary>
+        /// <param name="nombreAnteriorTorneo">nombre anterior del torneo</param>
+        /// <param name="torneoModificado">torneo con nombre modificado</param>
+        public static async Task ModificarTorneoEnListaDeEquipos(string nombreAnteriorTorneo, Torneo torneoModificado, List<Equipo> listaEquipos)
+        {
+            foreach (var item in listaEquipos)
+            {
+                Equipo equipoNombreTorneoModificado;
+                if (nombreAnteriorTorneo == item.Liga)
+                {
+                    equipoNombreTorneoModificado = item;
+                    equipoNombreTorneoModificado.Liga = torneoModificado.Nombre;
+                    await _sqlEquipos.ModificarDatoAsync(item, equipoNombreTorneoModificado);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método por el cual se actualiza el nombre del equipo  en la lista de jugadores
+        /// </summary>
+        /// <param name="nombreAnteriorEquipo">nombre anterior del equipo</param>
+        /// <param name="equipoModificado">equipo con nombre modificado</param>
+        public static async Task ModificarEquipoEnListaDeJugadores(string nombreAnteriorEquipo, Equipo equipoModificado, List<Jugador> listaJugadores)
+        {
+            foreach (var item in listaJugadores)
+            {
+                if (nombreAnteriorEquipo == item.Equipo)
+                {
+                    Jugador jugadorNombreEquipoModificado = item;
+                    jugadorNombreEquipoModificado.Equipo = equipoModificado.Nombre;
+                    //csvJugadores.ModificarDato(item, jugadorNombreEquipoModificado);
+                    await _sqlJugadores.ModificarDatoAsync(item, jugadorNombreEquipoModificado);
+                }
+            }
+        }
+
+
+
 
     }
 }

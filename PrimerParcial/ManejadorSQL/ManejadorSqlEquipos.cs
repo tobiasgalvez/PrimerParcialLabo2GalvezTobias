@@ -152,7 +152,7 @@ namespace BibliotecaDeClases.ManejadorSQL
                         return Convert.ToInt32(result);
                     }
 
-                    throw new ArgumentException("El nombre del torneo no existe.");
+                    throw new Exception("El nombre del torneo no existe.");
                 }
             }
         }

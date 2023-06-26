@@ -84,6 +84,11 @@ namespace BibliotecaDeClases.Entidades
             return indice;
         }
 
+
+
+
+
+
         /// <summary>
         /// Sobrecarga del operador !=
         /// </summary>

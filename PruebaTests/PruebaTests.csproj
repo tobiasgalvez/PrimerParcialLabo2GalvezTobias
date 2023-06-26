@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PrimerParcial\BibliotecaDeClases.csproj" />
-    <ProjectReference Include="..\Vista\Vista.csproj" />
   </ItemGroup>
 
 </Project>
