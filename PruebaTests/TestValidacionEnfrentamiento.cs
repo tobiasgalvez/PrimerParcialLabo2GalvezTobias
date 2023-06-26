@@ -1,8 +1,10 @@
 ﻿using BibliotecaDeClases.Entidades;
 using BibliotecaDeClases.Excepciones;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,41 +16,56 @@ namespace PruebaTests
         [TestMethod]
         public void ValidarEnfrentamiento_DeberiaLanzarExceptionSiEquipo1EsIgualAEquipo2()
         {
-            // Arrange
             var equipo1 = new Equipo("Boca", "LPF");
             var equipo2 = new Equipo("Boca", "LPF");
 
 
 
-            // Act & Assert
             Assert.ThrowsException<PartidoException>(() => Partido.ValidarEnfrentamiento(equipo1, equipo2));
         }
 
         [TestMethod]
         public void ValidarEnfrentamiento_DeberiaLanzarExceptionSiEquipo1NoTieneSuficientesJugadores()
         {
-            // Arrange
+            int dni = 44521134;
+
             var equipo1 = new Equipo("Boca", "LPF");
             equipo1.ListaJugadores = new List<Jugador>(); // Sin jugadores
 
             var equipo2 = new Equipo("River", "LPF");
-            equipo2.ListaJugadores = new List<Jugador>(); // Sin jugadores
+            equipo2.ListaJugadores = new List<Jugador>();
 
-            // Act & Assert
+
+            for (int i = 0; i < 12; i++)
+            {
+                var jugador = new Jugador("Juan", "Pérez", new DateTime(2002, 10, 10), dni, "delantero", "Boca");
+                equipo2.ListaJugadores.Add(jugador);
+
+                dni--;
+            }
+
             Assert.ThrowsException<PartidoException>(() => Partido.ValidarEnfrentamiento(equipo1, equipo2));
         }
 
         [TestMethod]
         public void ValidarEnfrentamiento_DeberiaLanzarExceptionSiEquipo2NoTieneSuficientesJugadores()
         {
-            // Arrange
+            int dni = 44521134;
+
             var equipo1 = new Equipo("Boca", "LPF");
             equipo1.ListaJugadores = new List<Jugador>(); // Sin jugadores
 
             var equipo2 = new Equipo("River", "LPF");
-            equipo2.ListaJugadores = new List<Jugador>
-                { new Jugador("hola","hola",new DateTime(2002,10,10),44521134,"delantero","Cebollitas"),
-                  new Jugador("juan","perez",new DateTime(2002,10,10),44521133,"delantero","Cebollitas") }; // Solo 2 jugadores
+            equipo2.ListaJugadores = new List<Jugador>();
+
+            for (int i = 0; i < 12; i++)
+            {
+                var jugador = new Jugador("Juan", "Pérez", new DateTime(2002, 10, 10), dni, "delantero", "Boca");
+                equipo1.ListaJugadores.Add(jugador);
+                
+                dni--;
+            }
+
 
             //Assert
             Assert.ThrowsException<PartidoException>(() => Partido.ValidarEnfrentamiento(equipo1, equipo2));
@@ -58,21 +75,25 @@ namespace PruebaTests
         [TestMethod]
         public void ValidarEnfrentamiento_NoDeberiaLanzarExceptionSiLosEquiposSonDistintosYAmbosTienenSuficientesJugadores()
         {
-            // Arrange
+            //var jugador1 = new Jugador("Juan", "Pérez", new DateTime(2002, 10, 10), 44521134, "delantero", "Cebollitas");
+
+            int dni = 44521134;
+
             var equipo1 = new Equipo("Boca", "LPF");
-            equipo1.ListaJugadores = new List<Jugador>
-            { new Jugador("hola", "hola", new DateTime(2002, 10, 10), 44521134, "delantero", "Cebollitas"),
-                new Jugador("hola", "hola", new DateTime(2002, 10, 10), 44521133, "delantero", "Cebollitas"),
-                new Jugador("hola", "hola", new DateTime(2002, 10, 10), 44521132, "delantero", "Cebollitas") }; // 3 jugadores
-
+            
             var equipo2 = new Equipo("River", "LPF");
-            equipo2.ListaJugadores = new List<Jugador>
-                { new Jugador("hola", "hola", new DateTime(2002, 10, 10), 44521134, "delantero", "Cebollitas"),
-                new Jugador("hola", "hola", new DateTime(2002, 10, 10), 44521133, "delantero", "Cebollitas"),
-                new Jugador("hola", "hola", new DateTime(2002, 10, 10), 44521132, "delantero", "Cebollitas") };// 3 jugadores
+            
 
-            // Act & Assert
-            Assert.ThrowsException<PartidoException>(() => Partido.ValidarEnfrentamiento(equipo1, equipo2));
+            for (int i = 0; i < 12; i++)
+            {
+                var jugador = new Jugador("Juan", "Pérez", new DateTime(2002, 10, 10), dni, "delantero", "Boca");
+                equipo1.ListaJugadores.Add(jugador);
+                equipo2.ListaJugadores.Add(jugador);
+                dni--;
+            }
+
+            Action act = () => Partido.ValidarEnfrentamiento(equipo1, equipo2);
+            act.Should().NotThrow<PartidoException>();
         }
 
 

@@ -42,9 +42,9 @@
             this.lst_registros.BackColor = System.Drawing.Color.Silver;
             this.lst_registros.FormattingEnabled = true;
             this.lst_registros.ItemHeight = 15;
-            this.lst_registros.Location = new System.Drawing.Point(69, 36);
+            this.lst_registros.Location = new System.Drawing.Point(12, 36);
             this.lst_registros.Name = "lst_registros";
-            this.lst_registros.Size = new System.Drawing.Size(753, 289);
+            this.lst_registros.Size = new System.Drawing.Size(890, 289);
             this.lst_registros.TabIndex = 0;
             // 
             // btn_exportar

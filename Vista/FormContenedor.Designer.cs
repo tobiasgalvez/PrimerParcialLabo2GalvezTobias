@@ -42,7 +42,6 @@
             this.informaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplicaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.informesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lst_registros = new System.Windows.Forms.ListBox();
@@ -58,7 +57,6 @@
             this.modificarToolStripMenuItem,
             this.eliminarToolStripMenuItem,
             this.informaciónToolStripMenuItem,
-            this.informesToolStripMenuItem,
             this.registrosToolStripMenuItem,
             this.desconectarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -159,12 +157,6 @@
             this.aplicaciónToolStripMenuItem.Text = "Aplicación";
             this.aplicaciónToolStripMenuItem.Click += new System.EventHandler(this.aplicaciónToolStripMenuItem_Click);
             // 
-            // informesToolStripMenuItem
-            // 
-            this.informesToolStripMenuItem.Name = "informesToolStripMenuItem";
-            this.informesToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.informesToolStripMenuItem.Text = "Informes";
-            // 
             // registrosToolStripMenuItem
             // 
             this.registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
@@ -229,7 +221,6 @@
         private ToolStripMenuItem aplicaciónToolStripMenuItem;
         private ToolStripMenuItem verRankingHistoricoToolStripMenuItem;
         private ToolStripMenuItem eliminarToolStripMenuItem;
-        private ToolStripMenuItem informesToolStripMenuItem;
         private ToolStripMenuItem registrosToolStripMenuItem;
         private ListBox lst_registros;
     }

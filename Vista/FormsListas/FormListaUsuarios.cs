@@ -20,13 +20,16 @@ namespace Vista
         List<Usuario> Usuarios { get; set; }
         //ManejadorCsvUsuarios csvUsuarios;
         Usuario UsuarioIngresado { get; set; }
+        public GestionEventos GestionEventos { get; set; }
         IManejadorSQL<Usuario> sqlUsuarios;
-        public FormListaUsuarios(Usuario usuarioIngresado)
+
+        public FormListaUsuarios(Usuario usuarioIngresado, GestionEventos evento)
         {
             InitializeComponent();
             //csvUsuarios = new ManejadorCsvUsuarios("usuarios.csv");
             sqlUsuarios = new ManejadorSQLUsuarios(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
             UsuarioIngresado = usuarioIngresado;
+            GestionEventos = evento;
         }
 
 
@@ -52,26 +55,36 @@ namespace Vista
             DialogResult resultado = formAltaUsuario.ShowDialog(); //para poner foco en el form alta jugador
             if (resultado == DialogResult.OK)
             {
-                Usuario usuarioIngresado = formAltaUsuario.Usuario;
+                Usuario usuarioNuevoAIngresar = formAltaUsuario.Usuario;
                 foreach (var item in Usuarios)
                 {
-                    if (usuarioIngresado == item)
+                    if (usuarioNuevoAIngresar == item)
                     {
                         esIgual = true;
                     }
                 }
                 if (!esIgual)
                 {
-                    Usuarios.Add(usuarioIngresado);
+                    Usuarios.Add(usuarioNuevoAIngresar);
                     //csv.AgregarJugador(jugadorIngresado);AGREGAR USUARIO
-                    sqlUsuarios.AgregarDatoAsync(usuarioIngresado);
+                    sqlUsuarios.AgregarDatoAsync(usuarioNuevoAIngresar);
                     ActualizarDataGrid();
+
+                    Logs registro = new Logs
+                    {
+                        Fecha = DateTime.Now,
+                        Usuario = UsuarioIngresado.User,
+                        Accion = $"Agregó un nuevo usuario: {usuarioNuevoAIngresar} con rol '{usuarioNuevoAIngresar.Rol}'",
+                    };
+
+                    GestionEventos.EnviarRegistroLog(registro);
+
                     MessageBox.Show("usuario cargado con exito!!!!");
 
                 }
                 else
                 {
-                    MessageBox.Show($"El nombre de usuario: {usuarioIngresado.User} ya fue utilizado");
+                    MessageBox.Show($"El nombre de usuario: {usuarioNuevoAIngresar.User} ya fue utilizado");
                 }
             }
             else

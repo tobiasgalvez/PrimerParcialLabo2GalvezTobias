@@ -3,7 +3,7 @@
 namespace BibliotecaDeClases.Excepciones
 {
     [Serializable]
-    internal class CampoVacioException : Exception
+    public class CampoVacioException : Exception
     {
         public CampoVacioException()
         {
