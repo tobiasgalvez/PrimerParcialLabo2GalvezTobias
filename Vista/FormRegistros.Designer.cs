@@ -96,6 +96,7 @@
             this.lbl_msjError.Size = new System.Drawing.Size(55, 15);
             this.lbl_msjError.TabIndex = 11;
             this.lbl_msjError.Text = "label1";
+            this.lbl_msjError.Visible = false;
             // 
             // FormRegistros
             // 
@@ -112,6 +113,7 @@
             this.Font = new System.Drawing.Font("Unispace", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormRegistros";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormRegistros";
             this.Load += new System.EventHandler(this.FormRegistros_Load);
             this.ResumeLayout(false);

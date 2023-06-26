@@ -87,7 +87,7 @@ namespace BibliotecaDeClases.ManejadorSQL
             {
                 await connection.OpenAsync();
 
-                using (SqlCommand command = new SqlCommand("INSERT INTO equipos (nombre, id_Torneo) VALUES (@Nombre, @IdTorneo)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO equipos (nombre, id_liga) VALUES (@Nombre, @IdTorneo)", connection))
                 {
                     command.Parameters.AddWithValue("@Nombre", equipo.Nombre);
                     command.Parameters.AddWithValue("@IdTorneo", idTorneo);
