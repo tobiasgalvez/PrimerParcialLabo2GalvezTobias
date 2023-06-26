@@ -11,6 +11,6 @@ namespace BibliotecaDeClases
     {
         public void GuardarDatosCsv(List<T> lista);
         public void GuardarDatosJson(List<T> lista);
-
+ 
     }
 }

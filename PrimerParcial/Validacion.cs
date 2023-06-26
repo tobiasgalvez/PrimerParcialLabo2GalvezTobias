@@ -46,6 +46,32 @@ namespace BibliotecaDeClases
         }
 
 
+        public static void ValidarExtensionJson(string path)
+        {
+            Validacion.ValidarString(path);
+
+            if (!path.Contains(".json"))
+            {
+                throw new Exception("El archivo a exportar debe contener la extension .json");
+                //argumentFormatException
+            }
+
+        }
+
+        public static void ValidarExtensionCsv(string path)
+        {
+            Validacion.ValidarString(path);
+
+            if (!path.Contains(".csv"))
+            {
+                throw new Exception("El archivo a exportar debe contener la extension .csv");
+                //argumentFormatException
+            }
+
+        }
+
+
+
 
 
     }

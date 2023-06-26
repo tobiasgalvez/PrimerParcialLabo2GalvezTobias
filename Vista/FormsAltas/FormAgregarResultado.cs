@@ -36,6 +36,7 @@ namespace Vista
             Partido = new Partido();
             //csvTorneos = new ManejadorCsvTorneos("torneos.csv");
             sqlTorneos = new ManejadorSQLTorneos(@"Server=.;Database=aplicacion;Trusted_Connection=True;");
+            Partido.GolMarcado += Partido_GolMarcado;
         }
 
         private async void FormAgregarResultado_Load(object sender, EventArgs e)
@@ -80,6 +81,11 @@ namespace Vista
             //    cbo_torneo.Items.Add(item.Nombre);
             //}
             
+        }
+
+        private void Partido_GolMarcado(string equipo, int minuto)
+        {
+            MessageBox.Show($"GOOOOOOL DEL {equipo} AL MINUTO {minuto}");
         }
 
         private void Btn_generarResultado_Click(object sender, EventArgs e)

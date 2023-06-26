@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BibliotecaDeClases.Entidades;
 
 namespace Vista
 {
@@ -32,6 +33,80 @@ namespace Vista
             lst_registros.Items.Add(item);
 
             }
+        }
+
+        private void btn_exportarCsv_Click(object sender, EventArgs e)
+        {
+
+            txt_path.Visible = true;
+            btn_exportar.Visible = true;
+            btn_exportarCsv.Visible = false;
+            btn_exportarJson.Visible = false;
+
+            txt_path.PlaceholderText = "Ingrese path para csv";
+
+        }
+
+        private void btn_exportarJson_Click(object sender, EventArgs e)
+        {
+
+            txt_path.Visible = true;
+            btn_exportar.Visible = true;
+            btn_exportarCsv.Visible = false;
+            btn_exportarJson.Visible = false;
+
+            txt_path.PlaceholderText = "Ingrese path para json";
+        }
+
+        private void btn_exportar_Click(object sender, EventArgs e)
+        {
+            string auxPath;
+            IInformes<Logs> informesRegistros;
+            bool extensionJson = false;
+
+            if (txt_path.PlaceholderText == "Ingrese path para json")
+            {
+                extensionJson = true;
+            }
+
+            try
+            {
+                auxPath = txt_path.Text;
+                if (extensionJson)
+                    Validacion.ValidarExtensionJson(auxPath);
+                else
+                    Validacion.ValidarExtensionCsv(auxPath);
+
+
+
+
+                informesRegistros = new InformesRegistros(auxPath);
+
+                if (extensionJson)
+                    informesRegistros.GuardarDatosJson(ListaRegistros);
+                else
+                    informesRegistros.GuardarDatosCsv(ListaRegistros);
+
+                MessageBox.Show("Archivo generado con exito!!!");
+
+                lbl_msjError.Visible = false;
+                txt_path.Visible = false;
+                btn_exportarCsv.Visible = true;
+                btn_exportarJson.Visible = true;
+                btn_exportar.Visible = false;
+
+
+
+            }
+            catch (Exception excepcion)
+            {
+                //MessageBox.Show(excepcion.Message.ToString());
+                lbl_msjError.Visible = true;
+                lbl_msjError.Text = excepcion.Message;
+
+            }
+
+
         }
     }
 }

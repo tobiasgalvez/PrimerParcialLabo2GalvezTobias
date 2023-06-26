@@ -14,11 +14,15 @@ namespace BibliotecaDeClases.Entidades
         private List<Equipo> _listaDeEquipos;
         private List<Partido> _listaDePartidos;
 
-        public Torneo(string nombre)
+        public Torneo()
         {
-            _nombre = nombre;
             _cantidadEquipos = 0;
             _cantidadPartidos = 0;
+        }
+
+        public Torneo(string nombre):this()
+        {
+            _nombre = nombre;
             _listaDeEquipos = new List<Equipo>();
             _listaDePartidos = new List<Partido>();
         }

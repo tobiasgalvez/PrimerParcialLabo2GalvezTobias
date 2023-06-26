@@ -12,13 +12,12 @@ namespace BibliotecaDeClases.Entidades
         private string _equipo;
 
 
-
-
         public Jugador(string nombre, string apellido, DateTime edad, int dni, string posicion, string equipo) : base(nombre, apellido, edad, dni)
         {
             _posicion = posicion;
             _equipo = equipo;
         }
+
 
         public string Posicion { get => _posicion; set => _posicion = value; }
         public string Equipo { get => _equipo; set => _equipo = value; }

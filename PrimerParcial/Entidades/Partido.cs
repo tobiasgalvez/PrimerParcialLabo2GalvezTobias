@@ -23,6 +23,10 @@ namespace BibliotecaDeClases.Entidades
         private int _minutoActual;
 
 
+        public event Action<string, int> GolMarcado;
+
+
+
         public Partido()
         {
             _eventos = new List<string>();
@@ -68,10 +72,10 @@ namespace BibliotecaDeClases.Entidades
             {
                 throw new PartidoException("Un equipo no puede jugar consigo mismo!!!");
             }
-            //if (equipo1.ListaJugadores.Count < 11 || equipo2.ListaJugadores.Count < 11)
-            //{
-            //    throw new PartidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
-            //}
+            if (equipo1.ListaJugadores.Count < 11 || equipo2.ListaJugadores.Count < 11)
+            {
+                throw new PartidoException("Uno o dos equipos no tiene/n suficientes jugadores para jugar el partido (mínimo 11)!");
+            }
         }
 
         /// <summary>
@@ -133,11 +137,13 @@ namespace BibliotecaDeClases.Entidades
                     {
                         EquipoLocal.Goles++;
                         Eventos.Add($"Minuto {MinutoActual}: Gol de {EquipoLocal.Nombre}");
+                        OnGolMarcado(EquipoLocal.Nombre, MinutoActual);
                     }
                     else
                     {
                         EquipoVisitante.Goles++;
                         Eventos.Add($"Minuto {MinutoActual}: Gol de {EquipoVisitante.Nombre}");
+                        OnGolMarcado(EquipoVisitante.Nombre, MinutoActual);
                     }
                 }
                 // Simular una tarjeta amarilla
@@ -218,6 +224,14 @@ namespace BibliotecaDeClases.Entidades
             }
 
         }
+
+
+        protected virtual void OnGolMarcado(string equipo, int minuto)
+        {
+            GolMarcado?.Invoke(equipo, minuto);
+        }
+
+
 
         /// <summary>
         /// Sobrecarga del operador != 

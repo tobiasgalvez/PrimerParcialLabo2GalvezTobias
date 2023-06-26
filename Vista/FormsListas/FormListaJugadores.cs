@@ -20,6 +20,10 @@ namespace Vista
         public Usuario UsuarioIngresado{get; set;}
         IManejadorSQL<Jugador> SqlJugadores { get; set; }
         public GestionEventos GestionEventos { get; set; }
+        private Action<Jugador> jugadorAgregadoCallback;
+
+
+
         //Jugador jugador;
         public FormListaJugadores(Usuario usuarioIngresado, GestionEventos evento)
         {
@@ -101,6 +105,81 @@ namespace Vista
             dgv_listado.DataSource = null; // limpiar el DataSource para actualizar los datos
             dgv_listado.DataSource = Jugadores; // volver a vincular con la lista de jugadores actualizada
             dgv_listado.Refresh(); // refrescar el datagrid
+        }
+
+        private void btn_exportarCsv_Click(object sender, EventArgs e)
+        {
+
+            txt_path.Visible = true;
+            btn_exportar.Visible = true;
+            btn_exportarCsv.Visible = false;
+            btn_exportarJson.Visible = false;
+
+            txt_path.PlaceholderText = "Ingrese path para csv";
+
+        }
+
+        private void btn_exportarJson_Click(object sender, EventArgs e)
+        {
+
+            txt_path.Visible = true;
+            btn_exportar.Visible = true;
+            btn_exportarCsv.Visible = false;
+            btn_exportarJson.Visible = false;
+
+            txt_path.PlaceholderText = "Ingrese path para json";
+
+        }
+
+        private void btn_exportar_Click(object sender, EventArgs e)
+        {
+            string auxPath;
+            IInformes<Jugador> informesJugadores;
+            bool extensionJson = false; 
+
+            if(txt_path.PlaceholderText == "Ingrese path para json")
+            {
+                extensionJson = true;
+            }
+
+            try
+            {
+                auxPath = txt_path.Text;
+                if(extensionJson)
+                    Validacion.ValidarExtensionJson(auxPath);
+                else
+                    Validacion.ValidarExtensionCsv(auxPath);
+
+
+
+
+                informesJugadores = new InformesJugadores(auxPath);
+
+                if (extensionJson)
+                    informesJugadores.GuardarDatosJson(Jugadores);
+                else
+                    informesJugadores.GuardarDatosCsv(Jugadores);
+
+                MessageBox.Show("Archivo generado con exito!!!");
+
+                lbl_msjError.Visible = false;
+                txt_path.Visible = false;
+                btn_exportarCsv.Visible = true;
+                btn_exportarJson.Visible = true;
+                btn_exportar.Visible = false;
+
+
+
+            }
+            catch (Exception excepcion)
+            {
+                //MessageBox.Show(excepcion.Message.ToString());
+                lbl_msjError.Visible = true;
+                lbl_msjError.Text = excepcion.Message;
+
+            }
+
+
         }
     }
 }
